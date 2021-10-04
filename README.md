@@ -1,7 +1,8 @@
 # Visuol
 
-![Team Photo](Insert a Team Photo URL here)
-[*how?*](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
+
+![](https://user-images.githubusercontent.com/50385455/135918941-44f2251f-2081-4865-8f67-53c0cabdd637.jpg)
+
 
 TODO: short project description, some sample screenshots or mockups
 
