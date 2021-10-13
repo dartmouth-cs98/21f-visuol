@@ -5,6 +5,7 @@
 
 
 TODO: short project description, some sample screenshots or mockups
+VisuOL is an interactive offer letter visualizer that helps users better understand their full offer package. 
 
 ## Architecture
 
