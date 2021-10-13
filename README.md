@@ -5,6 +5,7 @@
 
 
 TODO: short project description, some sample screenshots or mockups
+VisuOL is an interactive offer letter visualizer that helps users better understand their full offer package. 
 
 ## Architecture
 
@@ -20,6 +21,10 @@ TODO: how to deploy the project
 
 ## Authors
 
-TODO: list of authors
+Raymond Chen
+Ruiheng Ma
+Nina Paripovic
+James Verschleiser
+Austin Zhang
 
 ## Acknowledgments
