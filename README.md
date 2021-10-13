@@ -21,10 +21,10 @@ TODO: how to deploy the project
 
 ## Authors
 
-Raymond Chen
-Ruiheng Ma
-Nina Paripovic
 James Verschleiser
 Austin Zhang
+Raymond Chen
+Nina Paripovic
+Ruiheng "Eddie" Ma
 
 ## Acknowledgments
