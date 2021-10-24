@@ -1,8 +1,10 @@
 //Credit to https://ant.design/components/form/
 //Component for logging in
 import { Form, Input, Button, Switch} from 'antd';
+import { createBrowserHistory } from 'history';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import axios from 'axios';
 class Registration extends Component {
   constructor(props) {
     super(props)
@@ -12,11 +14,29 @@ class Registration extends Component {
     }
   }
 
-  
+  history = createBrowserHistory()
+
+  //OnFinish dictates what happens when submitting a form object
+  finishRegistration = (response) => {
+    console.log('Success!');
+    this.history.push("/login"); //TODO: better convey that registration succeeded (alert?)
+  }
+
   //OnFinish dictates what happens when submitting a form object
   onFinish = (values) => {
-    console.log('Success:', values);
-    console.log('Company?', this.state.displayCompanyForm);
+    const info = {
+      name: values.name,
+      username: values.username,
+      password: values.password,
+      company: (this.state.displayCompanyForm) ? values.company : '',
+    }
+    axios.post('http://localhost:5000/api_v1/register_user', info).then(function(response)
+      {
+        console.log(response);
+        this.finishRegistration(response);
+      }).catch(function(error){
+        console.log(error);
+      });
   };
 
   onFinishFailed = (errorInfo) => {

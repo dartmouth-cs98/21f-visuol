@@ -2,11 +2,34 @@
 //Component for logging in
 import { Form, Input, Button} from 'antd';
 import React, { Component } from 'react';
+import { createBrowserHistory } from 'history';
 import 'antd/dist/antd.css';
+import axios from 'axios';
 class Login extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      sessionToken : '',
+    }
+  }
+  
+  history = createBrowserHistory()
+
   //OnFinish dictates what happens when submitting a form object
+  finishLogin = (response) => {
+    this.history.push("/home"); //TODO: do more with login
+  }
+  
   onFinish = (values) => {
-    console.log('Success:', values);
+    axios.post('http://localhost:5000/api_v1/login', values).then(function(response)
+      {
+        console.log(response);
+        this.finishLogin(response);
+      }).catch(function(error){
+        console.log(error);
+      });
   };
 
    onFinishFailed = (errorInfo) => {
@@ -32,7 +55,7 @@ class Login extends Component {
       >
         <Form.Item
           label="Username"
-          name="username"
+          name="email"
           rules={[
             {
               required: true,
