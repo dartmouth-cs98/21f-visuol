@@ -6,7 +6,7 @@ import Registration from './Registration';
 import SideMenu from './Menu';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 function App() {
   return (
     <BrowserRouter>
