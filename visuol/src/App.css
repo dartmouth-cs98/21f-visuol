@@ -13,6 +13,7 @@
   background: #6aa0c7;
 }
 .ant-layout-footer {
+  text-align: center;
   line-height: 1.5;
 }
 .ant-layout-sider {
@@ -27,11 +28,8 @@
   min-height: 120px;
   color: #fff;
   line-height: 120px;
-  background: rgba(16, 142, 233, 1);
+  background: rgb(241, 241, 241);
 }
 [data-theme="dark"] .ant-layout-content {
   background: #107bcb;
-}
-> .code-box-demo > .ant-layout + .ant-layout {
-  margin-top: 48px;
 }

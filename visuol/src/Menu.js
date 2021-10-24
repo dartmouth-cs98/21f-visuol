@@ -14,10 +14,11 @@ class SideMenu extends Component {
     return (
       <Menu
         onClick={this.handleClick}
-        style={{ width: 256, borderRight: 0 }}
+        style={{ width: 256, borderRight: 0}}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode="inline"
+        theme='dark'
       >
         <SubMenu
           key="sub1"

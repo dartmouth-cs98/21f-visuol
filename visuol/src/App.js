@@ -11,18 +11,20 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
-        <Sider width={256} className="site-layout-background">
-          <SideMenu />
-        </Sider>
-        <Layout style={{padding: '48px 24px 24px'}}>
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/register">
-                <Registration />
-              </Route>
-            </Switch>
+        <Layout style={{height:"100vh"}}>
+          <Sider style={{backgroundColor: '#A3EA7C'}} width={256} className="site-layout-background">
+            <SideMenu />
+          </Sider>
+          <Content style={{padding: '48px 24px 24px'}}>
+              <Switch>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/register">
+                  <Registration />
+                </Route>
+              </Switch>
+          </Content>
         </Layout>
       </Layout>
     </BrowserRouter>
