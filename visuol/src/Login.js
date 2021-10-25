@@ -3,10 +3,32 @@
 import { Form, Input, Button} from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 class Login extends Component {
-  //OnFinish dictates what happens when submitting a form object
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      sessionToken : '',
+    }
+  }
+  
+  finishLogin = (response) => {
+    localStorage.setItem('token', response.data['session_token']);
+    localStorage.setItem('expiration', response.data['expiration']);
+    this.props.history.push("/home");
+  }
+  
   onFinish = (values) => {
-    console.log('Success:', values);
+    axios.post('http://10.132.14.205:5000/api_v1/login', values).then((response) =>
+      {
+        console.log(response);
+        this.finishLogin(response);
+      }).catch(function(error){
+        console.log(error);
+      });
   };
 
    onFinishFailed = (errorInfo) => {
@@ -31,12 +53,12 @@ class Login extends Component {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label="Email"
+          name="email"
           rules={[
             {
               required: true,
-              message: 'Please input your username!',
+              message: 'Please input your email!',
             },
           ]}
         >
@@ -71,4 +93,4 @@ class Login extends Component {
   }
 };
 
-export default Login;
+export default withRouter(Login);

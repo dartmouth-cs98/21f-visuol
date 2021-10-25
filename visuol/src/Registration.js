@@ -3,6 +3,8 @@
 import { Form, Input, Button, Switch} from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 class Registration extends Component {
   constructor(props) {
     super(props)
@@ -12,11 +14,27 @@ class Registration extends Component {
     }
   }
 
-  
+  //OnFinish dictates what happens when submitting a form object
+  finishRegistration = (response) => {
+    console.log('Success!');
+    this.context.history.push("/login"); //TODO: better convey that registration succeeded (alert?)
+  }
+
   //OnFinish dictates what happens when submitting a form object
   onFinish = (values) => {
-    console.log('Success:', values);
-    console.log('Company?', this.state.displayCompanyForm);
+    const info = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      company: (this.state.displayCompanyForm) ? values.company : null,
+    }
+    axios.post('http://localhost:5000/api_v1/register_user', info).then(function(response)
+      {
+        console.log(response);
+        this.finishRegistration(response);
+      }).catch(function(error){
+        console.log(error);
+      });
   };
 
   onFinishFailed = (errorInfo) => {
@@ -60,12 +78,12 @@ class Registration extends Component {
         </Form.Item>
 
         <Form.Item
-          label="Username"
-          name="username"
+          label="Email"
+          name="email"
           rules={[
             {
               required: true,
-              message: 'Please input your desired username!',
+              message: 'Please input your email!',
             },
           ]}
         >
@@ -117,4 +135,4 @@ class Registration extends Component {
   }
 };
 
-export default Registration;
+export default withRouter(Registration);
