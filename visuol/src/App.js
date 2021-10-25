@@ -3,13 +3,15 @@ import './App.css';
 import 'antd/dist/antd.css';
 import Login from './Login';
 import Registration from './Registration';
+import Home from './Home';
 import SideMenu from './Menu';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 const { Sider, Content } = Layout;
-function App() {
+const App = () => {
+  const history = useHistory();
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Layout>
         <Layout style={{height:"100vh"}}>
           <Sider style={{backgroundColor: 'black'}} width={256} className="site-layout-background">
@@ -22,6 +24,9 @@ function App() {
                 </Route>
                 <Route path="/register">
                   <Registration />
+                </Route>
+                <Route path="/home">
+                  <Home />
                 </Route>
               </Switch>
           </Content>
