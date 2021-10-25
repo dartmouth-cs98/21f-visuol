@@ -2,9 +2,9 @@
 //Component for logging in
 import { Form, Input, Button} from 'antd';
 import React, { Component } from 'react';
-import { createBrowserHistory } from 'history';
 import 'antd/dist/antd.css';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 class Login extends Component {
 
   constructor(props) {
@@ -15,15 +15,14 @@ class Login extends Component {
     }
   }
   
-  history = createBrowserHistory()
 
   //OnFinish dictates what happens when submitting a form object
   finishLogin = (response) => {
-    this.history.push("/home"); //TODO: do more with login
+    this.props.history.push("/home"); //TODO: do more with login
   }
   
   onFinish = (values) => {
-    axios.post('http://localhost:5000/api_v1/login', values).then(function(response)
+    axios.post('http://10.132.14.205:5000/api_v1/login', values).then((response) =>
       {
         console.log(response);
         this.finishLogin(response);
@@ -54,12 +53,12 @@ class Login extends Component {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
+          label="Email"
           name="email"
           rules={[
             {
               required: true,
-              message: 'Please input your username!',
+              message: 'Please input your email!',
             },
           ]}
         >
@@ -94,4 +93,4 @@ class Login extends Component {
   }
 };
 
-export default Login;
+export default withRouter(Login);
