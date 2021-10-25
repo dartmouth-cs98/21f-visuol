@@ -38,6 +38,11 @@ class SideMenu extends Component {
                 Register
             </NavLink>
         </Menu.Item>
+        <Menu.Item key="3">
+            <NavLink to="/new-offer">
+                New Offer
+            </NavLink>
+        </Menu.Item>
         </SubMenu>
       </Menu>
     );

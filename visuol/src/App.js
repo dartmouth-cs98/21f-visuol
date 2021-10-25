@@ -5,6 +5,7 @@ import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
 import SideMenu from './Menu';
+import NewOfferForm from './NewOfferForm';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import LoadGraphs from './LoadGraphs'
@@ -31,7 +32,10 @@ const App = () => {
                   </Route>
                 <Route path="/home">
                   <Home />
-                  </Route>
+                </Route>
+                <Route path="/new-offer">
+                  <NewOfferForm/>
+                </Route>
               </Switch>
           </Content>
         </Layout>
