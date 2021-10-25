@@ -22,7 +22,7 @@ class Login extends Component {
   }
   
   onFinish = (values) => {
-    axios.post('http://10.132.14.205:5000/api_v1/login', values).then((response) =>
+    axios.post('http://localhost:5000/api_v1/login', values).then((response) =>
       {
         console.log(response);
         this.finishLogin(response);
