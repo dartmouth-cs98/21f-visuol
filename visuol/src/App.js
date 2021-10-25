@@ -7,6 +7,7 @@ import Home from './Home';
 import SideMenu from './Menu';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
+import LoadGraphs from './LoadGraphs'
 const { Sider, Content } = Layout;
 const App = () => {
   const history = useHistory();
@@ -25,9 +26,12 @@ const App = () => {
                 <Route path="/register">
                   <Registration />
                 </Route>
+                <Route path="/loadGraph">
+                  <LoadGraphs/>
+                  </Route>
                 <Route path="/home">
                   <Home />
-                </Route>
+                  </Route>
               </Switch>
           </Content>
         </Layout>
