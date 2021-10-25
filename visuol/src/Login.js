@@ -15,10 +15,10 @@ class Login extends Component {
     }
   }
   
-
-  //OnFinish dictates what happens when submitting a form object
   finishLogin = (response) => {
-    this.props.history.push("/home"); //TODO: do more with login
+    localStorage.setItem('token', response.data['session_token']);
+    localStorage.setItem('expiration', response.data['expiration']);
+    this.props.history.push("/home");
   }
   
   onFinish = (values) => {
