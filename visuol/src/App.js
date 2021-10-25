@@ -6,6 +6,7 @@ import Registration from './Registration';
 import SideMenu from './Menu';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
+import LoadGraphs from './LoadGraphs'
 const { Sider, Content } = Layout;
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
                 </Route>
                 <Route path="/register">
                   <Registration />
+                </Route>
+                <Route path="/loadGraph">
+                  <LoadGraphs/>
                 </Route>
               </Switch>
           </Content>
