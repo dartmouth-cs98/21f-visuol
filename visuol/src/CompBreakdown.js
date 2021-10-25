@@ -4,8 +4,7 @@ import { PieChart, Pie,
         BarChart, Bar, 
         XAxis, 
         YAxis, CartesianGrid, 
-        Tooltip, Legend, 
-        ResponsiveContainer } from "recharts";
+        Tooltip, Legend } from "recharts";
 
 export class CompBreakdown extends Component {
 
