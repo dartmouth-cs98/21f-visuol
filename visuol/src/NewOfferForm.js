@@ -87,11 +87,11 @@ class NewOfferForm extends Component {
 
             <Form.Item
               wrapperCol={{
-                offset: 8,
+                offset: 12,
                 span: 10,
               }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" style={{ background: "grey", borderColor: "grey" }}>
                 Save
               </Button>
             </Form.Item>

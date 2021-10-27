@@ -16,7 +16,7 @@ const App = () => {
     <BrowserRouter history={history}>
       <Layout>
         <Layout style={{height:"100vh"}}>
-          <Sider style={{backgroundColor: 'black'}} width={256} className="site-layout-background">
+          <Sider style={{backgroundColor: '#C1DE9C'}} width={256} className="site-layout-background">
             <SideMenu />
           </Sider>
           <Content style={{padding: '48px 24px 24px'}}>

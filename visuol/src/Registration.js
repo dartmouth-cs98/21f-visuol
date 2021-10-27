@@ -103,7 +103,10 @@ class Registration extends Component {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item label="Company Account" valuePropName="checked">
+        <Form.Item wrapperCol={{
+            offset: 4,
+            span: 2,
+          }} label="Company Account" valuePropName="checked">
           <Switch onClick={this.onClickSwitch}/>
         </Form.Item>
 
@@ -122,11 +125,11 @@ class Registration extends Component {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
+            offset: 12,
             span: 10,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" style={{ background: "grey", borderColor: "grey" }}>
             Submit
           </Button>
         </Form.Item>
