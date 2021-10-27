@@ -10,12 +10,31 @@ class NewOfferForm extends Component {
     
         this.state = {
           companyName : '',
+          baseSalary: '',
+          stocks: '',
+          cashBonus: '',
+          matchPercentage: '',
         }
       }
 
-        onInputChange = (event) => {
-            this.setState({ companyName: event.target.value });
-        }
+
+
+      handleInputChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        console.log(name);
+        console.log(event.target.value);
+
+
+        this.setState({
+          [name]: target.value
+        });
+      }
+
+      // handleSubmit = () => {
+
+      // }
+
 
       render() {
           return (
@@ -36,7 +55,7 @@ class NewOfferForm extends Component {
           >
             <Form.Item
               label="Company Name"
-              name="companyname"
+              name="companyName"
               rules={[
                 {
                   required: true,
@@ -44,13 +63,12 @@ class NewOfferForm extends Component {
                 },
               ]}
             >
-                {/* change to on submit */}
-              <Input onChange={this.onInputChange} value={this.state.companyName} />
+              <Input name="companyName" onChange={this.handleInputChange} />
             </Form.Item>
     
             <Form.Item
               label="Base salary"
-              name="Base salary"
+              name="baseSalary"
               rules={[
                 {
                   required: true,
@@ -58,31 +76,29 @@ class NewOfferForm extends Component {
                 },
               ]}
             >                    
-              <Input prefix="$" suffix="USD"/>
+              <Input name="baseSalary" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
               {/* <Switch checkedChildren="Yearly" unCheckedChildren="Hourly" defaultChecked /> */}
             </Form.Item>
 
             <Form.Item
               label="Stocks"
-              name="Stocks"
+              name="stocks"
             >                    
-              <Input prefix="$" suffix="USD"/>
-              {/* <Switch checkedChildren="RSU" unCheckedChildren="Stock Options" defaultChecked /> */}
+              <Input name="stocks" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
             </Form.Item>
 
             <Form.Item
               label="Cash Bonus"
-              name="Cash Bonus"
+              name="cashBonus"
             >                    
-              <Input prefix="$" suffix="USD"/>
-              {/* <Switch checkedChildren="RSU" unCheckedChildren="Stock Options" defaultChecked /> */}
+              <Input name="cashBonus" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
             </Form.Item>
 
             <Form.Item
               label="401K Match Percentage"
-              name="401K Match Percentage"
+              name="matchPercentage"
             >                    
-              <Input prefix="%"/>
+              <Input name="matchPercentage" onChange={this.handleInputChange} prefix="%"/>
             </Form.Item>
 
             <Form.Item
@@ -91,7 +107,7 @@ class NewOfferForm extends Component {
                 span: 10,
               }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" onClick={this.handleSubmit}>
                 Save
               </Button>
             </Form.Item>
