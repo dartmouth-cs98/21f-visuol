@@ -17,7 +17,7 @@ class Registration extends Component {
   //OnFinish dictates what happens when submitting a form object
   finishRegistration = (response) => {
     console.log('Success!');
-    this.context.history.push("/login"); //TODO: better convey that registration succeeded (alert?)
+    this.props.history.push("/login"); //TODO: better convey that registration succeeded (alert?)
   }
 
   //OnFinish dictates what happens when submitting a form object
@@ -28,7 +28,7 @@ class Registration extends Component {
       password: values.password,
       company: (this.state.displayCompanyForm) ? values.company : null,
     }
-    axios.post('http://localhost:5000/api_v1/register_user', info).then(function(response)
+    axios.post('http://localhost:5000/api_v1/register_user', info).then((response) =>
       {
         console.log(response);
         this.finishRegistration(response);
