@@ -31,9 +31,10 @@ class NewOfferForm extends Component {
         });
       }
 
-      // handleSubmit = () => {
-
-      // }
+      handleSubmit = () => {
+        // make API call
+        // clear state
+      }
 
 
       render() {
