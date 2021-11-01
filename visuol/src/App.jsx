@@ -1,6 +1,7 @@
 // Css is used from https://ant.design/components/layout/
 import './App.css';
 import 'antd/dist/antd.css';
+import React from 'react';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import SideMenu from './Menu';
