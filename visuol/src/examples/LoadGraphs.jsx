@@ -37,8 +37,8 @@ class LoadGraphs extends Component {
     const { data } = this.state;
     return (
       <div>
-        <div className="Role">{job}</div>
-        <div className="Graphs">
+        <div className='Role'>{job}</div>
+        <div className='Graphs'>
           <CompBreakdown data={data[0]} />
           <MonthlyComp barData={data[1]} />
         </div>

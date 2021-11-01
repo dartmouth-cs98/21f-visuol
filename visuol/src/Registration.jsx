@@ -55,7 +55,7 @@ class Registration extends Component {
 
     return (
       <Form
-        name="basic"
+        name='basic'
         labelCol={{
           span: 8,
         }}
@@ -67,11 +67,11 @@ class Registration extends Component {
         }}
         onFinish={this.onFinish}
         onFinishFailed={this.onFinishFailed}
-        autoComplete="off"
+        autoComplete='off'
       >
         <Form.Item
-          label="Name"
-          name="name"
+          label='Name'
+          name='name'
           rules={[
             {
               required: true,
@@ -83,8 +83,8 @@ class Registration extends Component {
         </Form.Item>
 
         <Form.Item
-          label="Email"
-          name="email"
+          label='Email'
+          name='email'
           rules={[
             {
               required: true,
@@ -96,8 +96,8 @@ class Registration extends Component {
         </Form.Item>
 
         <Form.Item
-          label="Password"
-          name="password"
+          label='Password'
+          name='password'
           rules={[
             {
               required: true,
@@ -113,15 +113,15 @@ class Registration extends Component {
             offset: 4,
             span: 2,
           }}
-          label="Company Account"
-          valuePropName="checked"
+          label='Company Account'
+          valuePropName='checked'
         >
           <Switch onClick={this.onClickSwitch} />
         </Form.Item>
 
         <Form.Item
-          label="Company Name"
-          name="company"
+          label='Company Name'
+          name='company'
           rules={[
             {
               required: displayCompanyForm,
@@ -138,7 +138,7 @@ class Registration extends Component {
             span: 10,
           }}
         >
-          <Button type="primary" htmlType="submit" style={{ background: 'grey', borderColor: 'grey' }}>
+          <Button type='primary' htmlType='submit' style={{ background: 'grey', borderColor: 'grey' }}>
             Submit
           </Button>
         </Form.Item>

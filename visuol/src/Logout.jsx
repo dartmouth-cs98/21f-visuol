@@ -20,7 +20,7 @@ class Logout extends Component {
    render() {
      return (
        <Form
-         name="basic"
+         name='basic'
          labelCol={{
            span: 8,
          }}
@@ -32,7 +32,7 @@ class Logout extends Component {
          }}
          onFinish={this.onFinish}
          onFinishFailed={this.onFinishFailed}
-         autoComplete="off"
+         autoComplete='off'
        >
          <Form.Item
            wrapperCol={{
@@ -40,7 +40,7 @@ class Logout extends Component {
              span: 10,
            }}
          >
-           <Button type="primary" htmlType="submit">
+           <Button type='primary' htmlType='submit'>
              Log Out
            </Button>
          </Form.Item>
