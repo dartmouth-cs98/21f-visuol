@@ -2,7 +2,7 @@
 import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import './Menu.css';
 const { SubMenu } = Menu;
 
 class SideMenu extends Component {
@@ -25,23 +25,23 @@ class SideMenu extends Component {
           key="sub1"
           title={
             <span>
-              <span>Navigation</span>
+              <span class="black">Navigation</span>
             </span>
           }
         >
           <Menu.Item key="new-offer">
             <NavLink to="/new-offer">
-                New Offer
+              <span class = "black">New Offer</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="loadGraph">
             <NavLink to="/loadGraph">
-                Display Offer
+              <span class="black">Display Offer</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="logout">
             <NavLink to="/logout">
-                Log Out
+              <span class="black">Log Out</span>
             </NavLink>
           </Menu.Item>
         </SubMenu>
@@ -58,12 +58,12 @@ class SideMenu extends Component {
         >
           <Menu.Item key="login">
             <NavLink to="/login">
-                Login
+              <span class="black">Login</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="register">
               <NavLink to="/register">
-                  Register
+                <span class="black">Register</span>
               </NavLink>
           </Menu.Item>
         </SubMenu>

@@ -81,11 +81,11 @@ class Login extends Component {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
+            offset: 12,
             span: 10,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" style={{ background: "grey", borderColor: "grey" }}>
             Submit
           </Button>
         </Form.Item>
