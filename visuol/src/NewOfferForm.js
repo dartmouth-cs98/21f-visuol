@@ -104,11 +104,11 @@ class NewOfferForm extends Component {
 
             <Form.Item
               wrapperCol={{
-                offset: 8,
+                offset: 12,
                 span: 10,
               }}
             >
-              <Button type="primary" htmlType="submit" onClick={this.handleSubmit}>
+              <Button type="primary" htmlType="submit"  onClick={this.handleSubmit} style={{ background: "grey", borderColor: "grey" }}>
                 Save
               </Button>
             </Form.Item>

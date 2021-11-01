@@ -18,7 +18,8 @@ class Login extends Component {
   finishLogin = (response) => {
     localStorage.setItem('token', response.data['session_token']);
     localStorage.setItem('expiration', response.data['expiration']);
-    this.props.history.push("/home");
+    this.props.history.push("/");
+    window.location.reload(); 
   }
   
   onFinish = (values) => {
@@ -80,11 +81,11 @@ class Login extends Component {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
+            offset: 12,
             span: 10,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" style={{ background: "grey", borderColor: "grey" }}>
             Submit
           </Button>
         </Form.Item>
