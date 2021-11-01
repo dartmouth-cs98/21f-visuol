@@ -18,7 +18,8 @@ class Login extends Component {
   finishLogin = (response) => {
     localStorage.setItem('token', response.data['session_token']);
     localStorage.setItem('expiration', response.data['expiration']);
-    this.props.history.push("/home");
+    this.props.history.push("/");
+    window.location.reload(); 
   }
   
   onFinish = (values) => {
