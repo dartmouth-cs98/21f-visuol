@@ -18,11 +18,12 @@ class Login extends Component {
   finishLogin = (response) => {
     localStorage.setItem('token', response.data['session_token']);
     localStorage.setItem('expiration', response.data['expiration']);
-    this.props.history.push("/home");
+    this.props.history.push("/");
+    window.location.reload(); 
   }
   
   onFinish = (values) => {
-    axios.post('http://localhost:5000/api_v1/login', values).then((response) =>
+    axios.post('http://10.132.6.254:5000/api_v1/login', values).then((response) =>
       {
         console.log(response);
         this.finishLogin(response);
