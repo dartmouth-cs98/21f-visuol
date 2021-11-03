@@ -21,5 +21,6 @@ module.exports = {
   rules: {
     'max-classes-per-file': 'off',
     'react/prop-types': 'off',
+    'linebreak-style': 'off',
   },
 };
