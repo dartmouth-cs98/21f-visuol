@@ -22,5 +22,6 @@ module.exports = {
     'max-classes-per-file': 'off',
     'react/prop-types': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
+    'linebreak-style': 'off',
   },
 };
