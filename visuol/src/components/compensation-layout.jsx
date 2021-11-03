@@ -17,34 +17,38 @@ import {
   Tooltip,
   Area,
 } from 'recharts';
-import React from 'react';
+import React, { useState } from 'react';
 
 const SECTION_HEADER_CLASSNAME = 'section-header';
 
-const updateValue = (fieldName) => (value) => {
-  // TODO: Figure out where our data/states are stored
-  console.log('fieldname', fieldName, 'value', value);
-};
+const CompensationLayout = () => {
+  const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
+  const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
+  const updateValue = (setter) => (value) => {
+    setter(value);
+  };
+  console.log(bonusAppreciationRate, baseAppreciationRate);
 
-const CompensationLayout = () => (
-  <>
-    <CompensationHeader />
-    <CompensationSummary
-      baseSalary={100000}
-      bonus={30000}
-      equity={1000}
-      vestingPeriod={48} // in months
-    />
-    <Divider />
-    <SampleChart />
-    <Divider />
-    <ExplorationExplaination />
-    <Divider />
-    <BaseSalary />
-    <Divider />
-    <BonusConfiguration />
-  </>
-);
+  return (
+    <>
+      <CompensationHeader />
+      <CompensationSummary
+        baseSalary={100000}
+        bonus={30000}
+        equity={1000}
+        vestingPeriod={48}
+      />
+      <Divider />
+      <SampleChart />
+      <Divider />
+      <ExplorationExplaination />
+      <Divider />
+      <BaseSalary stateUpdate={updateValue(setBaseAppreciationRate)} />
+      <Divider />
+      <BonusConfiguration stateUpdate={updateValue(setBonusAppreciationRate)} />
+    </>
+  );
+};
 
 const CompensationHeader = () => (
   <PageHeader
@@ -69,7 +73,7 @@ const SliderCard = (props) => {
     min,
     max,
     defaultValue,
-    fieldName,
+    updateValue,
   } = props;
 
   return (
@@ -79,7 +83,7 @@ const SliderCard = (props) => {
         defaultValue={defaultValue}
         min={min}
         max={max}
-        onChange={updateValue(fieldName)}
+        onChange={updateValue}
       />
     </Card>
   );
@@ -149,41 +153,48 @@ const CompensationSummary = (props) => {
   );
 };
 
-const BonusConfiguration = () => (
-  <>
-    <PageHeader
-      className={SECTION_HEADER_CLASSNAME}
-      title='Bonus'
-      subTitle='Configure your bonus options.'
-    />
-    <SliderCard
-      title='Projected Growth'
-      description='How much, in percentage terms, do you expect your bonus to grow yearly?'
-      defaultValue={0}
-      min={0}
-      max={50}
-      fieldName='projectedBonusGrowth'
-    />
-  </>
-);
+const BonusConfiguration = (props) => {
+  const { stateUpdate } = props;
+  return (
+    <>
+      <PageHeader
+        className={SECTION_HEADER_CLASSNAME}
+        title='Bonus'
+        subTitle='Configure your bonus options.'
+      />
+      <SliderCard
+        title='Projected Growth'
+        description='How much, in percentage terms, do you expect your bonus to grow yearly?'
+        defaultValue={0}
+        min={0}
+        max={50}
+        updateValue={stateUpdate}
+      />
+    </>
+  );
+};
 
-const BaseSalary = () => (
-  <>
-    <PageHeader
-      className={SECTION_HEADER_CLASSNAME}
-      title='Base'
-      subTitle='Configure your base salary options.'
-    />
-    <SliderCard
-      title='Projected Growth'
-      description='How much, in percentage terms, do you expect your salary to grow yearly?'
-      defaultValue={0}
-      min={0}
-      max={50}
-      fieldName='projectedBaseGrowth'
-    />
-  </>
-);
+const BaseSalary = (props) => {
+  const { stateUpdate } = props;
+
+  return (
+    <>
+      <PageHeader
+        className={SECTION_HEADER_CLASSNAME}
+        title='Base'
+        subTitle='Configure your base salary options.'
+      />
+      <SliderCard
+        title='Projected Growth'
+        description='How much, in percentage terms, do you expect your salary to grow yearly?'
+        defaultValue={0}
+        min={0}
+        max={50}
+        updateValue={stateUpdate}
+      />
+    </>
+  );
+};
 
 export default withRouter(CompensationLayout);
 
