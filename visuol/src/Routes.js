@@ -1,7 +1,7 @@
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
-import NewOfferForm from './NewOfferForm';
+import NewOfferForm from './components/NewOffer/NewOfferForm';
 import LoadGraphs from './LoadGraphs';
 
 import { Component } from "react";
