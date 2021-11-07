@@ -10,6 +10,7 @@ const CompanyDetails = ({ handleChange, values }) => (
         // defaultValue="Hello!"
         value={values.companyName}
         onChange={handleChange('companyName')}
+        className="input"
       />
       <input
         className="small-input"

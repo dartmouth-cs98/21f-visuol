@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+/* eslint-disable react/destructuring-assignment */
 import { Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
-import NewOfferForm from './NewOfferForm';
-import LoadGraphs from './examples/LoadGraphs';
+import NewOfferForm from './components/NewOffer/NewOfferForm';
 
 import Logout from './Logout';
+import LoadGraphs from './examples/LoadGraphs';
 
 class Routes extends Component {
   display() {
-    const { loggedIn } = this.props;
-
-    if (loggedIn) {
+    if (this.props.loggedIn) {
       return (
         <Switch>
           <Route path="/loadGraph" component={LoadGraphs} />
