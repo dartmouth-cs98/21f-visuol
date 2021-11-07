@@ -36,7 +36,9 @@ class Registration extends Component {
     };
     axios.post('http://localhost:5000/api_v1/register_user', info).then((response) => {
       console.log(response);
-      this.finishRegistration(response);
+      if (response.data.status === 'success') {
+        this.finishRegistration(response);
+      }
     }).catch((error) => {
       console.log(error);
     });
