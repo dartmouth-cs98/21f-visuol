@@ -2,13 +2,12 @@ import './compensation-layout.css';
 
 import {
   Divider,
-  Card,
+  // Card,
   Slider,
   PageHeader,
   Row,
   Col,
   Typography,
-  Space,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
@@ -46,16 +45,14 @@ const CompensationLayout = () => {
         position='Level 3 SWE'
         company='Snapchat'
       />
-      <CompensationSummary
+      {/* <CompensationSummary
         baseSalary={100000}
         bonus={30000}
         equity={1000}
         vestingPeriod={48}
-      />
-      <Divider />
+      /> */}
       <SampleChart />
-      <Divider />
-      <ExplorationExplaination />
+      {/* <ExplorationExplaination /> */}
       <Divider />
       <CompensationConfiguration
         updateBase={updateValue(setBaseAppreciationRate)}
@@ -81,7 +78,6 @@ const CompensationHeader = (props) => {
             {totalCompensation}
             $
           </Title>
-          <Space />
           <div style={{ display: 'inline-block', margin: '10px' }}>
             <Text>yearly</Text>
             <br />
@@ -99,41 +95,41 @@ const CompensationHeader = (props) => {
   );
 };
 
-const ExplorationExplaination = () => (
-  <PageHeader
-    className={SECTION_HEADER_CLASSNAME}
-    title='Explore Your Offer'
-    subTitle='Manipulate different aspects of your offer with the sliders below.'
-  />
-);
+// const ExplorationExplaination = () => (
+//   <PageHeader
+//     className={SECTION_HEADER_CLASSNAME}
+//     title='Explore Your Offer'
+//     subTitle='Manipulate different aspects of your offer with the sliders below.'
+//   />
+// );
 
-const SliderCard = (props) => {
-  const {
-    title,
-    description,
-    min,
-    max,
-    defaultValue,
-    updateValue,
-    sliderColor,
-  } = props;
+// const SliderCard = (props) => {
+//   const {
+//     title,
+//     description,
+//     min,
+//     max,
+//     defaultValue,
+//     updateValue,
+//     sliderColor,
+//   } = props;
 
-  return (
-    <Card title={title} style={{ width: 500 }}>
-      <p>{description}</p>
-      <Slider
-        defaultValue={defaultValue}
-        min={min}
-        max={max}
-        onChange={updateValue}
-        trackStyle={{ backgroundColor: sliderColor }}
-        // TODO: currently box shadow (ring around handle) is still default blue.
-        // Figure out code to change this.
-        handleStyle={{ borderColor: sliderColor }}
-      />
-    </Card>
-  );
-};
+//   return (
+//     <Card title={title} style={{ width: 500 }}>
+//       <p>{description}</p>
+//       <Slider
+//         defaultValue={defaultValue}
+//         min={min}
+//         max={max}
+//         onChange={updateValue}
+//         trackStyle={{ backgroundColor: sliderColor }}
+//         // TODO: currently box shadow (ring around handle) is still default blue.
+//         // Figure out code to change this.
+//         handleStyle={{ borderColor: sliderColor }}
+//       />
+//     </Card>
+//   );
+// };
 
 const CompensationSlider = (props) => {
   const {
@@ -158,71 +154,71 @@ const CompensationSlider = (props) => {
   );
 };
 
-const CompRow = (props) => {
-  const {
-    compType,
-    compValue,
-    compTimeframe,
-    illiquid, // if the unit is not in dollars
-  } = props;
+// const CompRow = (props) => {
+//   const {
+//     compType,
+//     compValue,
+//     compTimeframe,
+//     illiquid, // if the unit is not in dollars
+//   } = props;
 
-  return (
-    <div style={{ color: 'black' }}>
-      <Row justify='center' style={{ fontSize: 20, fontWeight: 'bold', maxHeight: '75px' }}>
-        <Col flex=''>
-          {compType ? (
-            <p>
-              {compType}
-            </p>
-          ) : null}
-        </Col>
-        <Col>
-          <Divider type='vertical' />
-        </Col>
-        <Col>
-          {!illiquid ? '$' : null}
-          {compValue}
-          {compTimeframe ? ` over ${compTimeframe} months` : null}
-        </Col>
-      </Row>
-    </div>
-  );
-};
+//   return (
+//     <div style={{ color: 'black' }}>
+//       <Row justify='center' style={{ fontSize: 20, fontWeight: 'bold', maxHeight: '75px' }}>
+//         <Col flex=''>
+//           {compType ? (
+//             <p>
+//               {compType}
+//             </p>
+//           ) : null}
+//         </Col>
+//         <Col>
+//           <Divider type='vertical' />
+//         </Col>
+//         <Col>
+//           {!illiquid ? '$' : null}
+//           {compValue}
+//           {compTimeframe ? ` over ${compTimeframe} months` : null}
+//         </Col>
+//       </Row>
+//     </div>
+//   );
+// };
 
-const CompensationSummary = (props) => {
-  const {
-    baseSalary,
-    bonus,
-    equity,
-    vestingPeriod,
-  } = props;
+// const CompensationSummary = (props) => {
+//   const {
+//     baseSalary,
+//     bonus,
+//     equity,
+//     vestingPeriod,
+//   } = props;
 
-  return (
-    <>
-      <PageHeader
-        className={SECTION_HEADER_CLASSNAME}
-        title='Compensation Overview'
-        subTitle="Here's a quick summary of your compensation."
-      />
-      <div style={{ width: '600px' }}>
-        <CompRow
-          compType='Base Salary'
-          compValue={baseSalary}
-        />
-        <CompRow
-          compType='Bonus'
-          compValue={bonus}
-        />
-        <CompRow
-          compType='Equity'
-          compValue={equity}
-          vestingPeriod={vestingPeriod}
-          illiquid
-        />
-      </div>
-    </>
-  );
-};
+//   return (
+//     <>
+//       <PageHeader
+//         className={SECTION_HEADER_CLASSNAME}
+//         title='Compensation Overview'
+//         subTitle="Here's a quick summary of your compensation."
+//       />
+//       <div style={{ width: '600px' }}>
+//         <CompRow
+//           compType='Base Salary'
+//           compValue={baseSalary}
+//         />
+//         <CompRow
+//           compType='Bonus'
+//           compValue={bonus}
+//         />
+//         <CompRow
+//           compType='Equity'
+//           compValue={equity}
+//           vestingPeriod={vestingPeriod}
+//           illiquid
+//         />
+//       </div>
+//     </>
+//   );
+// };
 
 const CompensationConfiguration = (props) => {
   const { updateBase, updateBonus } = props;
@@ -231,13 +227,23 @@ const CompensationConfiguration = (props) => {
     <>
       <PageHeader
         className={SECTION_HEADER_CLASSNAME}
-        title='Base'
-        subTitle='Configure your base salary options.'
+        title='Growth'
+        subTitle='Add your growth expectations. Each slider represents your projected yearly growth by percentage.'
       />
       <Row gutter={[8, 8]}>
-        <Col span={4}><Text>Base Salary</Text></Col>
-        <Col span={4}>$110,000</Col>
-        <Col span={16}>
+        <Col style={{ textAlign: 'right' }} span={4}>
+          <h1>Base Salary</h1>
+          <br />
+          <h1>Yearly Bonus</h1>
+          <br />
+        </Col>
+        <Divider type='vertical' style={{ height: 'auto' }} span={6} />
+        <Col>
+          <h1>$150,000</h1>
+          <br />
+          <h1>$30,000</h1>
+        </Col>
+        <Col span={10}>
           <CompensationSlider
             defaultValue={0}
             min={0}
@@ -245,30 +251,16 @@ const CompensationConfiguration = (props) => {
             updateValue={updateBase}
             sliderColor={baseColor}
           />
+          <br />
+          <CompensationSlider
+            defaultValue={0}
+            min={0}
+            max={50}
+            updateValue={updateBonus}
+            sliderColor={bonusColor}
+          />
         </Col>
-
-        <Col span={8} />
-        <Col span={8} />
-        <Col span={8} />
       </Row>
-      <SliderCard
-        title='Projected Growth'
-        description='How much, in percentage terms, do you expect your salary to grow yearly?'
-        defaultValue={0}
-        min={0}
-        max={50}
-        updateValue={updateBase}
-        sliderColor={baseColor}
-      />
-      <SliderCard
-        title='Projected Growth'
-        description='How much, in percentage terms, do you expect your bonus to grow yearly?'
-        defaultValue={0}
-        min={0}
-        max={50}
-        updateValue={updateBonus}
-        sliderColor={bonusColor}
-      />
     </>
   );
 };
