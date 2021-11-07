@@ -2,7 +2,9 @@
 import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Menu.css';
+import {
+  LoginOutlined, BulbFilled, BankFilled, PlusCircleFilled, PieChartFilled, CloseCircleFilled,
+} from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 
@@ -26,22 +28,26 @@ class SideMenu extends Component {
           key="sub1"
           title={(
             <span>
+              <BankFilled />
               <span className="black">Navigation</span>
             </span>
           )}
         >
           <Menu.Item key="new-offer">
             <NavLink to="/new-offer">
+              <PlusCircleFilled />
               <span className="black">New Offer</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="loadGraph">
             <NavLink to="/loadGraph">
+              <PieChartFilled />
               <span className="black">Display Offer</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="logout">
             <NavLink to="/logout">
+              <CloseCircleFilled />
               <span className="black">Log Out</span>
             </NavLink>
           </Menu.Item>
@@ -53,17 +59,20 @@ class SideMenu extends Component {
         key="sub1"
         title={(
           <span>
-            <span>Navigation</span>
+            <BankFilled />
+            <span className="black">Navigation</span>
           </span>
         )}
       >
         <Menu.Item key="login">
           <NavLink to="/login">
+            <LoginOutlined />
             <span className="black">Login</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="register">
           <NavLink to="/register">
+            <BulbFilled />
             <span className="black">Register</span>
           </NavLink>
         </Menu.Item>
