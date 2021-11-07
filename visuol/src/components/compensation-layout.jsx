@@ -1,3 +1,5 @@
+import './compensation-layout.css';
+
 import {
   Divider,
   Card,
@@ -5,6 +7,8 @@ import {
   PageHeader,
   Row,
   Col,
+  Typography,
+  Space,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
@@ -19,7 +23,13 @@ import {
 } from 'recharts';
 import React, { useState } from 'react';
 
+const { Title, Text } = Typography;
+
 const SECTION_HEADER_CLASSNAME = 'section-header';
+
+const baseColor = '#9696CE';
+const bonusColor = '#81DDB0';
+// const equityColor = '#DDC981';
 
 const CompensationLayout = () => {
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
@@ -31,7 +41,11 @@ const CompensationLayout = () => {
 
   return (
     <>
-      <CompensationHeader />
+      <CompensationHeader
+        totalCompensation={205000}
+        position='Level 3 SWE'
+        company='Snapchat'
+      />
       <CompensationSummary
         baseSalary={100000}
         bonus={30000}
@@ -50,13 +64,39 @@ const CompensationLayout = () => {
   );
 };
 
-const CompensationHeader = () => (
-  <PageHeader
-    className={SECTION_HEADER_CLASSNAME}
-    title='Compensation'
-    subTitle="Here's a quick rundown of your financials."
-  />
-);
+const CompensationHeader = (props) => {
+  const { company, position, totalCompensation } = props;
+  return (
+    <>
+      <Row justify='space-between' wrap={false} align='middle'>
+        <Col justify='start'>
+          <Title style={{ display: 'inline-block' }}>{company}</Title>
+          <Text style={{ display: 'inline-block', margin: '10px' }}>
+            {position}
+          </Text>
+        </Col>
+        <Col style={{ whiteSpace: 'nowrap' }}>
+          <Title style={{ display: 'inline-block' }}>
+            {totalCompensation}
+            $
+          </Title>
+          <Space />
+          <div style={{ display: 'inline-block', margin: '10px' }}>
+            <Text>yearly</Text>
+            <br />
+            <Text>compensation</Text>
+          </div>
+        </Col>
+      </Row>
+      <Divider />
+      <PageHeader
+        className={SECTION_HEADER_CLASSNAME}
+        title='Compensation'
+        subTitle="Here's a quick rundown of your financials."
+      />
+    </>
+  );
+};
 
 const ExplorationExplaination = () => (
   <PageHeader
@@ -74,6 +114,7 @@ const SliderCard = (props) => {
     max,
     defaultValue,
     updateValue,
+    sliderColor,
   } = props;
 
   return (
@@ -84,6 +125,8 @@ const SliderCard = (props) => {
         min={min}
         max={max}
         onChange={updateValue}
+        trackStyle={{ backgroundColor: sliderColor }}
+        handleStyle={{ borderColor: sliderColor }}
       />
     </Card>
   );
@@ -99,7 +142,7 @@ const CompRow = (props) => {
 
   return (
     <div style={{ color: 'black' }}>
-      <Row justify='center' style={{ fontSize: 20, fontWeight: 'bold' }}>
+      <Row justify='center' style={{ fontSize: 20, fontWeight: 'bold', maxHeight: '75px' }}>
         <Col flex=''>
           {compType ? (
             <p>
@@ -135,20 +178,22 @@ const CompensationSummary = (props) => {
         title='Compensation Overview'
         subTitle="Here's a quick summary of your compensation."
       />
-      <CompRow
-        compType='Base Salary'
-        compValue={baseSalary}
-      />
-      <CompRow
-        compType='Bonus'
-        compValue={bonus}
-      />
-      <CompRow
-        compType='Equity'
-        compValue={equity}
-        vestingPeriod={vestingPeriod}
-        illiquid
-      />
+      <div style={{ width: '600px' }}>
+        <CompRow
+          compType='Base Salary'
+          compValue={baseSalary}
+        />
+        <CompRow
+          compType='Bonus'
+          compValue={bonus}
+        />
+        <CompRow
+          compType='Equity'
+          compValue={equity}
+          vestingPeriod={vestingPeriod}
+          illiquid
+        />
+      </div>
     </>
   );
 };
@@ -169,6 +214,7 @@ const BonusConfiguration = (props) => {
         min={0}
         max={50}
         updateValue={stateUpdate}
+        sliderColor={bonusColor}
       />
     </>
   );
@@ -191,6 +237,7 @@ const BaseSalary = (props) => {
         min={0}
         max={50}
         updateValue={stateUpdate}
+        sliderColor={baseColor}
       />
     </>
   );
