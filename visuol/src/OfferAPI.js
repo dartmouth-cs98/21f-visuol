@@ -10,16 +10,14 @@ export function getOffer(offerId) {
 
 // Calls the backend api to post the offer in the database
 export function postOffer(offer) {
-    const tokenString = localStorage.getItem('token');
-    const headers = {
-        'Authorization':  tokenString,
-        // 'Access-Control-Allow-Origin': 'http://localhost:3000'
-      }
+  const tokenString = localStorage.getItem('token');
+  const headers = {
+    Authorization: tokenString,
+    // 'Access-Control-Allow-Origin': 'http://localhost:3000'
+  };
 
-    axios.post(BASE_URL + 'api_v1/create_offer', offer, {
-        headers: headers
-    })
-    .then(response => {
-        return response
-    })
+  axios.post(`${BASE_URL}api_v1/create_offer`, offer, {
+    headers,
+  })
+    .then((response) => response);
 }
