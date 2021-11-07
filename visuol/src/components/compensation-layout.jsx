@@ -57,9 +57,10 @@ const CompensationLayout = () => {
       <Divider />
       <ExplorationExplaination />
       <Divider />
-      <BaseSalary stateUpdate={updateValue(setBaseAppreciationRate)} />
-      <Divider />
-      <BonusConfiguration stateUpdate={updateValue(setBonusAppreciationRate)} />
+      <CompensationConfiguration
+        updateBase={updateValue(setBaseAppreciationRate)}
+        updateBonus={updateValue(setBonusAppreciationRate)}
+      />
     </>
   );
 };
@@ -126,9 +127,34 @@ const SliderCard = (props) => {
         max={max}
         onChange={updateValue}
         trackStyle={{ backgroundColor: sliderColor }}
+        // TODO: currently box shadow (ring around handle) is still default blue.
+        // Figure out code to change this.
         handleStyle={{ borderColor: sliderColor }}
       />
     </Card>
+  );
+};
+
+const CompensationSlider = (props) => {
+  const {
+    min,
+    max,
+    defaultValue,
+    updateValue,
+    sliderColor,
+  } = props;
+
+  return (
+    <Slider
+      defaultValue={defaultValue}
+      min={min}
+      max={max}
+      onChange={updateValue}
+      trackStyle={{ backgroundColor: sliderColor }}
+        // TODO: currently box shadow (ring around handle) is still default blue.
+        // Figure out code to change this.
+      handleStyle={{ borderColor: sliderColor }}
+    />
   );
 };
 
@@ -198,30 +224,8 @@ const CompensationSummary = (props) => {
   );
 };
 
-const BonusConfiguration = (props) => {
-  const { stateUpdate } = props;
-  return (
-    <>
-      <PageHeader
-        className={SECTION_HEADER_CLASSNAME}
-        title='Bonus'
-        subTitle='Configure your bonus options.'
-      />
-      <SliderCard
-        title='Projected Growth'
-        description='How much, in percentage terms, do you expect your bonus to grow yearly?'
-        defaultValue={0}
-        min={0}
-        max={50}
-        updateValue={stateUpdate}
-        sliderColor={bonusColor}
-      />
-    </>
-  );
-};
-
-const BaseSalary = (props) => {
-  const { stateUpdate } = props;
+const CompensationConfiguration = (props) => {
+  const { updateBase, updateBonus } = props;
 
   return (
     <>
@@ -230,14 +234,40 @@ const BaseSalary = (props) => {
         title='Base'
         subTitle='Configure your base salary options.'
       />
+      <Row gutter={[8, 8]}>
+        <Col span={4}><Text>Base Salary</Text></Col>
+        <Col span={4}>$110,000</Col>
+        <Col span={16}>
+          <CompensationSlider
+            defaultValue={0}
+            min={0}
+            max={50}
+            updateValue={updateBase}
+            sliderColor={baseColor}
+          />
+        </Col>
+
+        <Col span={8} />
+        <Col span={8} />
+        <Col span={8} />
+      </Row>
       <SliderCard
         title='Projected Growth'
         description='How much, in percentage terms, do you expect your salary to grow yearly?'
         defaultValue={0}
         min={0}
         max={50}
-        updateValue={stateUpdate}
+        updateValue={updateBase}
         sliderColor={baseColor}
+      />
+      <SliderCard
+        title='Projected Growth'
+        description='How much, in percentage terms, do you expect your bonus to grow yearly?'
+        defaultValue={0}
+        min={0}
+        max={50}
+        updateValue={updateBonus}
+        sliderColor={bonusColor}
       />
     </>
   );
