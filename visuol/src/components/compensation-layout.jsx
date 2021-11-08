@@ -45,14 +45,7 @@ const CompensationLayout = () => {
         position='Level 3 SWE'
         company='Snapchat'
       />
-      {/* <CompensationSummary
-        baseSalary={100000}
-        bonus={30000}
-        equity={1000}
-        vestingPeriod={48}
-      /> */}
       <SampleChart />
-      {/* <ExplorationExplaination /> */}
       <Divider />
       <CompensationConfiguration
         updateBase={updateValue(setBaseAppreciationRate)}
@@ -95,42 +88,6 @@ const CompensationHeader = (props) => {
   );
 };
 
-// const ExplorationExplaination = () => (
-//   <PageHeader
-//     className={SECTION_HEADER_CLASSNAME}
-//     title='Explore Your Offer'
-//     subTitle='Manipulate different aspects of your offer with the sliders below.'
-//   />
-// );
-
-// const SliderCard = (props) => {
-//   const {
-//     title,
-//     description,
-//     min,
-//     max,
-//     defaultValue,
-//     updateValue,
-//     sliderColor,
-//   } = props;
-
-//   return (
-//     <Card title={title} style={{ width: 500 }}>
-//       <p>{description}</p>
-//       <Slider
-//         defaultValue={defaultValue}
-//         min={min}
-//         max={max}
-//         onChange={updateValue}
-//         trackStyle={{ backgroundColor: sliderColor }}
-//         // TODO: currently box shadow (ring around handle) is still default blue.
-//         // Figure out code to change this.
-//         handleStyle={{ borderColor: sliderColor }}
-//       />
-//     </Card>
-//   );
-// };
-
 const CompensationSlider = (props) => {
   const {
     min,
@@ -154,72 +111,6 @@ const CompensationSlider = (props) => {
   );
 };
 
-// const CompRow = (props) => {
-//   const {
-//     compType,
-//     compValue,
-//     compTimeframe,
-//     illiquid, // if the unit is not in dollars
-//   } = props;
-
-//   return (
-//     <div style={{ color: 'black' }}>
-//       <Row justify='center' style={{ fontSize: 20, fontWeight: 'bold', maxHeight: '75px' }}>
-//         <Col flex=''>
-//           {compType ? (
-//             <p>
-//               {compType}
-//             </p>
-//           ) : null}
-//         </Col>
-//         <Col>
-//           <Divider type='vertical' />
-//         </Col>
-//         <Col>
-//           {!illiquid ? '$' : null}
-//           {compValue}
-//           {compTimeframe ? ` over ${compTimeframe} months` : null}
-//         </Col>
-//       </Row>
-//     </div>
-//   );
-// };
-
-// const CompensationSummary = (props) => {
-//   const {
-//     baseSalary,
-//     bonus,
-//     equity,
-//     vestingPeriod,
-//   } = props;
-
-//   return (
-//     <>
-//       <PageHeader
-//         className={SECTION_HEADER_CLASSNAME}
-//         title='Compensation Overview'
-//         subTitle="Here's a quick summary of your compensation."
-//       />
-//       <div style={{ width: '600px' }}>
-//         <CompRow
-//           compType='Base Salary'
-//           compValue={baseSalary}
-//         />
-//         <CompRow
-//           compType='Bonus'
-//           compValue={bonus}
-//         />
-//         <CompRow
-//           compType='Equity'
-//           compValue={equity}
-//           vestingPeriod={vestingPeriod}
-//           illiquid
-//         />
-//       </div>
-//     </>
-//   );
-// };
-
 const CompensationConfiguration = (props) => {
   const { updateBase, updateBonus } = props;
 
@@ -231,7 +122,7 @@ const CompensationConfiguration = (props) => {
         subTitle='Add your growth expectations. Each slider represents your projected yearly growth by percentage.'
       />
       <Row gutter={[8, 8]}>
-        <Col style={{ textAlign: 'right' }} span={4}>
+        <Col style={{ textAlign: 'right', whiteSpace: 'nowrap' }} span={4}>
           <h1>Base Salary</h1>
           <br />
           <h1>Yearly Bonus</h1>
