@@ -27,7 +27,9 @@ class Login extends Component {
   onFinish = (values) => {
     axios.post('http://localhost:5000/api_v1/login', values).then((response) => {
       console.log(response);
-      this.finishLogin(response);
+      if (response.data && response.data.status === 'success') {
+        this.finishLogin(response);
+      }
     }).catch((error) => {
       console.log(error);
     });
