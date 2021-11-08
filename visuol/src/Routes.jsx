@@ -5,7 +5,7 @@ import Registration from './Registration';
 import Home from './Home';
 import NewOfferForm from './NewOfferForm';
 import LoadGraphs from './examples/LoadGraphs';
-import CompensationLayout from './components/compensation-layout';
+import CompensationLayout from './components/compensation/compensation-layout';
 
 import Logout from './Logout';
 

@@ -25,7 +25,7 @@ export const DataTransform = (compData, baseGrowth, bonusGrowth, years) => {
 };
 
 const YearlyCompensation = (props) => {
-  const { data } = props;
+  const { data, baseColor, bonusColor } = props;
   return (
     <LineChart
       width={730}
@@ -41,8 +41,8 @@ const YearlyCompensation = (props) => {
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='Year' height={60} tick={<CustomizedAxisTick />} />
       <YAxis />
-      <Line type='monotone' dataKey='Base' stroke='#8884d8' label={<CustomizedLabel />} />
-      <Line type='monotone' dataKey='Bonus' stroke='#82ca9d' label={<CustomizedLabel />} />
+      <Line type='monotone' dataKey='Base' stroke={baseColor} label={<CustomizedLabel />} />
+      <Line type='monotone' dataKey='Bonus' stroke={bonusColor} label={<CustomizedLabel />} />
       <Line type='monotone' dataKey='Total' stroke='#cc3300' label={<CustomizedLabel />} />
       <Tooltip />
       <Legend />
