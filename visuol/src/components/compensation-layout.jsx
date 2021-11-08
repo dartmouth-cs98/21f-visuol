@@ -12,7 +12,8 @@ import {
 
 import { withRouter } from 'react-router-dom';
 import React, { useState } from 'react';
-import SampleChart, { DataTransform } from './overview-graph';
+import YearlyCompensation, { DataTransform } from './overview-graph';
+import numberWithCommas from '../tools/numbersWithCommas';
 
 const { Title, Text } = Typography;
 
@@ -22,27 +23,42 @@ const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
 // const equityColor = '#DDC981';
 
+// TODO: connect to api
+const fetchCompensationData = () => ({
+  baseSalary: 100000,
+  yearlyBonus: 25000,
+  signing: 50000,
+
+});
+
 const CompensationLayout = () => {
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
   const updateValue = (setter) => (value) => {
     setter(value);
   };
+
+  const compensationData = fetchCompensationData();
+  const { baseSalary: base, yearlyBonus: bonus } = compensationData;
+  const totalCompensation = base + bonus;
+
   console.log(bonusAppreciationRate, baseAppreciationRate);
-  const sampleData = DataTransform({ Base: 150000, Bonus: 30000 },
+  const graphData = DataTransform({ base, bonus },
     baseAppreciationRate, bonusAppreciationRate, 7);
   return (
     <>
       <CompensationHeader
-        totalCompensation={205000}
+        totalCompensation={numberWithCommas(totalCompensation)}
         position='Level 3 SWE'
         company='Snapchat'
       />
-      <SampleChart data={sampleData} />
+      <YearlyCompensation data={graphData} />
       <Divider />
       <CompensationConfiguration
-        updateBase={updateValue(setBaseAppreciationRate)}
-        updateBonus={updateValue(setBonusAppreciationRate)}
+        base={base}
+        bonus={bonus}
+        updateBaseRate={updateValue(setBaseAppreciationRate)}
+        updateBonusRate={updateValue(setBonusAppreciationRate)}
       />
     </>
   );
@@ -105,7 +121,9 @@ const CompensationSlider = (props) => {
 };
 
 const CompensationConfiguration = (props) => {
-  const { updateBase, updateBonus } = props;
+  const {
+    base, bonus, updateBaseRate, updateBonusRate,
+  } = props;
 
   return (
     <>
@@ -119,20 +137,25 @@ const CompensationConfiguration = (props) => {
           <h1>Base Salary</h1>
           <br />
           <h1>Yearly Bonus</h1>
-          <br />
         </Col>
         <Divider type='vertical' style={{ height: 'auto' }} span={6} />
         <Col>
-          <h1>$150,000</h1>
+          <h1>
+            $
+            {numberWithCommas(base)}
+          </h1>
           <br />
-          <h1>$30,000</h1>
+          <h1>
+            $
+            {numberWithCommas(bonus)}
+          </h1>
         </Col>
         <Col span={10}>
           <CompensationSlider
             defaultValue={0}
             min={0}
             max={50}
-            updateValue={updateBase}
+            updateValue={updateBaseRate}
             sliderColor={baseColor}
           />
           <br />
@@ -140,7 +163,7 @@ const CompensationConfiguration = (props) => {
             defaultValue={0}
             min={0}
             max={50}
-            updateValue={updateBonus}
+            updateValue={updateBonusRate}
             sliderColor={bonusColor}
           />
         </Col>

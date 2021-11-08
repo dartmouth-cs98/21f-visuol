@@ -11,8 +11,8 @@ import React, { PureComponent } from 'react';
 
 export const DataTransform = (compData, baseGrowth, bonusGrowth, years) => {
   const res = [];
-  const base = compData.Base;
-  const bonus = compData.Bonus;
+  const { base } = compData;
+  const { bonus } = compData;
   for (let i = 0; i < years; i += 1) {
     const data = {};
     data.Year = i;
@@ -24,7 +24,7 @@ export const DataTransform = (compData, baseGrowth, bonusGrowth, years) => {
   return res;
 };
 
-const SampleChart = (props) => {
+const YearlyCompensation = (props) => {
   const { data } = props;
   return (
     <LineChart
@@ -80,4 +80,4 @@ class CustomizedAxisTick extends PureComponent {
   }
 }
 
-export default SampleChart;
+export default YearlyCompensation;
