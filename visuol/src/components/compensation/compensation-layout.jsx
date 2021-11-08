@@ -26,6 +26,10 @@ const fetchCompensationData = () => ({
 const CompensationLayout = () => {
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
+  // const [spendingPercentage, setSpendingPercentage] = useState(60);
+  // const [savingsPercentage, setSavingsPercentage] = useState(30);
+  // const [investmentPercentage, setInvestmentPercentage] = useState(10);
+
   const updateValue = (setter) => (value) => {
     setter(value);
   };
