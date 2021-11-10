@@ -1,4 +1,5 @@
 import {
+  AreaChart, Area,
   LineChart,
   Line,
   XAxis,
@@ -9,22 +10,28 @@ import {
 } from 'recharts';
 import React, { PureComponent } from 'react';
 
-export const DataTransform = (compData, baseGrowth, bonusGrowth, years) => {
+export const DataTransform = (compData, baseGrowth, bonusGrowth, savingsPercentage, years) => {
   const res = [];
-  const { base } = compData;
-  const { bonus } = compData;
+  let pastSavings = 0;
+  const {
+    base, bonus, federalTax, stateTax,
+  } = compData;
   for (let i = 0; i < years; i += 1) {
     const data = {};
     data.Year = i;
     data.Base = parseInt((base * ((1 + (baseGrowth) / 100) ** i)), 10);
     data.Bonus = parseInt(bonus * ((1 + (bonusGrowth) / 100) ** i), 10);
     data.Total = data.Base + data.Bonus;
+    data.PostTaxCompensation = data.Total * ((100
+        - federalTax - stateTax) / 100);
+    pastSavings += data.PostTaxCompensation * (savingsPercentage / 100);
+    data.Savings = pastSavings;
     res.push(data);
   }
   return res;
 };
 
-const YearlyCompensation = (props) => {
+export const YearlyCompensation = (props) => {
   const { data, baseColor, bonusColor } = props;
   return (
     <LineChart
@@ -47,6 +54,30 @@ const YearlyCompensation = (props) => {
       <Tooltip />
       <Legend />
     </LineChart>
+  );
+};
+
+export const YearlySavings = (props) => {
+  const { data } = props;
+  return (
+    <AreaChart
+      width={730}
+      height={500}
+      data={data}
+      margin={{
+        top: 10,
+        right: 30,
+        left: 0,
+        bottom: 0,
+      }}
+    >
+      <CartesianGrid strokeDasharray='3 3' />
+      <XAxis dataKey='Year' height={60} tick={<CustomizedAxisTick />} />
+      <YAxis />
+      <Tooltip />
+      <Area type='monotone' dataKey='Savings' stackId='1' stroke='#82ca9d' fill='#82ca9d' />
+      <Area type='monotone' dataKey='PostTaxCompensation' stackId='1' stroke='#8884d8' fill='#8884d8' />
+    </AreaChart>
   );
 };
 
@@ -79,5 +110,3 @@ class CustomizedAxisTick extends PureComponent {
     );
   }
 }
-
-export default YearlyCompensation;
