@@ -6,10 +6,12 @@ import {
 
 import { withRouter } from 'react-router-dom';
 import React, { useState } from 'react';
-import YearlyCompensation, { DataTransform } from './YearlyCompensationGraph';
+// import YearlyCompensation, { DataTransform } from './YearlyCompensationGraph';
+import { YearlyCompensation, YearlySavings, DataTransform } from './Graphs';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
 import CompensationConfiguration from './CompensationConfiguration';
+// import YearlySavings, { sampleData, calculateSavings } from './SavingsGrowth';
 
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
@@ -23,6 +25,8 @@ const fetchCompensationData = () => ({
   baseSalary: 100000,
   yearlyBonus: 25000,
   signing: 50000,
+  federalTaxRate: 10,
+  stateTaxRate: 2,
 
 });
 
@@ -43,14 +47,17 @@ const CompensationLayout = () => {
   const updateValue = (setter) => (value) => {
     setter(value);
   };
-
   const compensationData = fetchCompensationData();
-  const { baseSalary: base, yearlyBonus: bonus } = compensationData;
+  const {
+    baseSalary: base, yearlyBonus: bonus, federalTaxRate: federalTax, stateTaxRate: stateTax,
+  } = compensationData;
   const totalCompensation = base + bonus;
 
   console.log(bonusAppreciationRate, baseAppreciationRate);
-  const graphData = DataTransform({ base, bonus },
-    baseAppreciationRate, bonusAppreciationRate, 7);
+  const graphData = DataTransform({
+    base, bonus, federalTax, stateTax,
+  },
+  baseAppreciationRate, bonusAppreciationRate, savingsPercentage, 7);
   return (
     <>
       <CompensationHeader
@@ -59,7 +66,7 @@ const CompensationLayout = () => {
         company='Snapchat'
       />
       <div style={{
-        position: 'sticky',
+        // position: 'sticky', TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
         top: 0,
         opacity: 1,
         zIndex: 5000, // arbitrary high value
@@ -73,6 +80,9 @@ const CompensationLayout = () => {
           spendingPercentage={spendingPercentage}
           savingsPercentage={savingsPercentage}
           retirementPercentage={retirementPercentage}
+        />
+        <YearlySavings
+          data={graphData}
         />
       </div>
       <Divider />
@@ -90,6 +100,7 @@ const CompensationLayout = () => {
         savingsColor={savingsColor}
         retirementColor={retirementColor}
       />
+
     </>
   );
 };
