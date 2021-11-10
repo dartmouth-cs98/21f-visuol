@@ -65,17 +65,26 @@ const CompensationLayout = () => {
         position='Level 3 SWE'
         company='Snapchat'
       />
-      <YearlyCompensation
-        data={graphData}
-        baseColor={baseColor}
-        bonusColor={bonusColor}
-        spendingPercentage={spendingPercentage}
-        savingsPercentage={savingsPercentage}
-        retirementPercentage={retirementPercentage}
-      />
-      <YearlySavings
-        data={graphData}
-      />
+      <div style={{
+        // position: 'sticky', TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
+        top: 0,
+        opacity: 1,
+        zIndex: 5000, // arbitrary high value
+        backgroundColor: '#F0F2F5',
+      }}
+      >
+        <YearlyCompensation
+          data={graphData}
+          baseColor={baseColor}
+          bonusColor={bonusColor}
+          spendingPercentage={spendingPercentage}
+          savingsPercentage={savingsPercentage}
+          retirementPercentage={retirementPercentage}
+        />
+        <YearlySavings
+          data={graphData}
+        />
+      </div>
       <Divider />
       <CompensationConfiguration
         base={base}
