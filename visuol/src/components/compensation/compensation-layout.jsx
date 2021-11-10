@@ -13,6 +13,9 @@ import CompensationConfiguration from './CompensationConfiguration';
 
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
+// const spendingColor = '#9881dd';
+const savingsColor = '#cece96';
+const retirementColor = '#dda481';
 // const equityColor = '#DDC981';
 
 // TODO: connect to api
@@ -23,11 +26,18 @@ const fetchCompensationData = () => ({
 
 });
 
+const updateComplimentary = (updateSpendingPercentage,
+  updateSavingsPercentage) => (savingsValue) => {
+  updateSpendingPercentage(100 - savingsValue);
+  updateSavingsPercentage(savingsValue);
+};
+
 const CompensationLayout = () => {
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
-  // const [spendingPercentage, setSpendingPercentage] = useState(60);
-  // const [savingsPercentage, setSavingsPercentage] = useState(30);
+  const [spendingPercentage, setSpendingPercentage] = useState(60);
+  const [savingsPercentage, setSavingsPercentage] = useState(30);
+  const [retirementPercentage, setRetirementPercentage] = useState(50);
   // const [investmentPercentage, setInvestmentPercentage] = useState(10);
 
   const updateValue = (setter) => (value) => {
@@ -52,15 +62,24 @@ const CompensationLayout = () => {
         data={graphData}
         baseColor={baseColor}
         bonusColor={bonusColor}
+        spendingPercentage={spendingPercentage}
+        savingsPercentage={savingsPercentage}
+        retirementPercentage={retirementPercentage}
       />
       <Divider />
       <CompensationConfiguration
         base={base}
         bonus={bonus}
+        savingsPercentage={savingsPercentage}
+        retirementPercentage={retirementPercentage}
         updateBaseRate={updateValue(setBaseAppreciationRate)}
         updateBonusRate={updateValue(setBonusAppreciationRate)}
+        updateSavingsPercentage={updateComplimentary(setSpendingPercentage, setSavingsPercentage)}
+        updateRetirementPercentage={updateValue(setRetirementPercentage)}
         baseColor={baseColor}
         bonusColor={bonusColor}
+        savingsColor={savingsColor}
+        retirementColor={retirementColor}
       />
     </>
   );

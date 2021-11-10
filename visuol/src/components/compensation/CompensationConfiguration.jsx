@@ -60,9 +60,9 @@ const SliderLayout = (props) => {
         {sliderProperties.map((sliderProps, idx) => (
           <>
             <CompensationSlider
-              defaultValue={0}
-              min={0}
-              max={50}
+              defaultValue={sliderProps.defaultValue ? sliderProps.defaultValue : 0}
+              min={sliderProps.min}
+              max={sliderProps.max}
               updateValue={sliderProps.updateValue}
               sliderColor={sliderProps.sliderColor}
             />
@@ -76,7 +76,18 @@ const SliderLayout = (props) => {
 
 const CompensationConfiguration = (props) => {
   const {
-    base, bonus, updateBaseRate, updateBonusRate, baseColor, bonusColor,
+    base,
+    bonus,
+    updateBaseRate,
+    updateBonusRate,
+    baseColor,
+    bonusColor,
+    savingsColor,
+    retirementColor,
+    savingsPercentage,
+    retirementPercentage,
+    updateSavingsPercentage,
+    updateRetirementPercentage,
   } = props;
 
   return (
@@ -95,7 +106,6 @@ const CompensationConfiguration = (props) => {
         <SliderLayout
           sliderProperties={[{
             title: 'Base Salary',
-            base,
             min: 0,
             max: 50,
             value: `$${numberWithCommas(base)}`,
@@ -104,7 +114,6 @@ const CompensationConfiguration = (props) => {
           },
           {
             title: 'Annual Bonus',
-            base,
             min: 0,
             max: 50,
             value: `$${numberWithCommas(bonus)}`,
@@ -114,9 +123,35 @@ const CompensationConfiguration = (props) => {
           ]}
         />
       </Card>
-      <Card>
+      <Card style={{ backgroundColor: 'inherit' }}>
         <h1>Allocation</h1>
-        <Paragraph>How do you expect to spend your earnings?</Paragraph>
+        <Paragraph>How do you expect to partition your earnings?</Paragraph>
+        {/* TODO: TURN THIS INTO A HELP TOOLTIP */}
+        <Paragraph>
+          Adjust the savings rate slider to change what percentage
+          of your total earnings you expect to save.
+          Adjust the retirement rate slider to change what
+          percentage of your savings you would allocate for retirement.
+        </Paragraph>
+        <SliderLayout sliderProperties={[{
+          title: 'Savings Rate',
+          min: 0,
+          max: 100,
+          value: `${numberWithCommas(savingsPercentage)}%`,
+          updateValue: updateSavingsPercentage,
+          sliderColor: savingsColor,
+          defaultValue: savingsPercentage,
+        }, {
+          title: 'Retirement Rate',
+          min: 0,
+          max: 100,
+          value: `${numberWithCommas(retirementPercentage)}%`,
+          updateValue: updateRetirementPercentage,
+          sliderColor: retirementColor,
+          defaultValue: retirementPercentage,
+        },
+        ]}
+        />
 
       </Card>
     </>
