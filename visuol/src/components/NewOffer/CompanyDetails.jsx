@@ -1,5 +1,31 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+// import React from 'react';
+
+import { React, useState } from 'react';
+import { SwitchMultiButton } from 'switch-multi-button';
+
+function Component() {
+  const [state, setState] = useState('year');
+
+  return (
+    <SwitchMultiButton
+      className="wage-toggle"
+      value={state}
+      setValue={setState}
+      style={{ fontSize: 18, fontWeight: 20 }}
+      buttons={[
+        {
+          text: 'Year',
+          value: 'year',
+        },
+        {
+          text: 'Hour',
+          value: 'hour',
+        },
+      ]}
+    />
+  );
+}
 
 const CompanyDetails = ({ handleChange, values }) => (
   <div>
@@ -7,20 +33,18 @@ const CompanyDetails = ({ handleChange, values }) => (
       <input
         type="text"
         placeholder="*Company Name"
-        // defaultValue="Hello!"
-        value={values.companyName}
-        onChange={handleChange('companyName')}
+        value={values.company}
+        onChange={handleChange('company')}
       />
       <input
         className="small-input"
-        type="text"
+        type="number"
         placeholder="*Base Salary"
-        // defaultValue="Hello!"
-        value={values.baseSalary}
-        onChange={handleChange('baseSalary')}
+        value={values.base}
+        onChange={handleChange('base')}
       />
+      <Component />
     </label>
-
   </div>
 );
 export default CompanyDetails;

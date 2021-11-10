@@ -15,8 +15,8 @@ class NewOfferForm extends Component {
 
     this.state = {
       step: 1,
-      companyName: '',
-      baseSalary: '',
+      company: '',
+      base: '',
       stocks: '',
       cashBonus: '',
       matchPercentage: '',
@@ -47,10 +47,10 @@ class NewOfferForm extends Component {
       render() {
         const { step } = this.state;
         const {
-          companyName, baseSalary, stocks, cashBonus, matchPercentage,
+          company, baseSalary, stocks, cashBonus, matchPercentage,
         } = this.state;
         const values = {
-          companyName, baseSalary, stocks, cashBonus, matchPercentage,
+          company, baseSalary, stocks, cashBonus, matchPercentage,
         };
 
         switch (step) {
