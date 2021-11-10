@@ -10,6 +10,7 @@ import YearlyCompensation, { DataTransform } from './YearlyCompensationGraph';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
 import CompensationConfiguration from './CompensationConfiguration';
+import YearlySavings, { sampleData, calculateSavings } from './SavingsGrowth';
 
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
@@ -29,7 +30,8 @@ const CompensationLayout = () => {
   const updateValue = (setter) => (value) => {
     setter(value);
   };
-
+  const savingsRate = 10;
+  const savingsSample = calculateSavings(sampleData, savingsRate);
   const compensationData = fetchCompensationData();
   const { baseSalary: base, yearlyBonus: bonus } = compensationData;
   const totalCompensation = base + bonus;
@@ -58,6 +60,11 @@ const CompensationLayout = () => {
         baseColor={baseColor}
         bonusColor={bonusColor}
       />
+      <Divider />
+      <YearlySavings
+        data={savingsSample}
+      />
+
     </>
   );
 };
