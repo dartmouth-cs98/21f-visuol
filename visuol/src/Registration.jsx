@@ -1,7 +1,7 @@
 // Credit to https://ant.design/components/form/
 // Component for logging in
 import {
-  Form, Input, Button, Switch,
+  Form, Input, Button, Switch, notification,
 } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
@@ -36,7 +36,16 @@ class Registration extends Component {
     };
     axios.post('http://localhost:5000/api_v1/register_user', info).then((response) => {
       console.log(response);
-      this.finishRegistration(response);
+      if (response.data && response.data.status === 'success') {
+        this.finishRegistration(response);
+      } else if (response.data) {
+        notification.open({
+          message: 'Message',
+          description:
+            response.data.error,
+          onClick: () => {},
+        });
+      }
     }).catch((error) => {
       console.log(error);
     });
