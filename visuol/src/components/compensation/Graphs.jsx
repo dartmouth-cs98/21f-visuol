@@ -19,13 +19,13 @@ export const DataTransform = (compData, baseGrowth, bonusGrowth, savingsPercenta
   for (let i = 0; i < years; i += 1) {
     const data = {};
     data.Year = i;
-    data.Base = parseInt((base * ((1 + (baseGrowth) / 100) ** i)), 10);
-    data.Bonus = parseInt(bonus * ((1 + (bonusGrowth) / 100) ** i), 10);
+    data.Base = Math.round((base * ((1 + (baseGrowth) / 100) ** i)));
+    data.Bonus = Math.round(bonus * ((1 + (bonusGrowth) / 100) ** i));
     data.Total = data.Base + data.Bonus;
-    data.PostTaxCompensation = data.Total * ((100
-        - federalTax - stateTax) / 100);
+    data.PostTaxCompensation = Math.round(data.Total * ((100
+        - federalTax - stateTax) / 100));
     pastSavings += data.PostTaxCompensation * (savingsPercentage / 100);
-    data.Savings = pastSavings;
+    data.Savings = Math.round(pastSavings);
     res.push(data);
   }
   return res;
