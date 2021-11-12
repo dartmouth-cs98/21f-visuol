@@ -3,9 +3,18 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:5000/';
 
 // Calls the backend api and receives the offer
-export function getOffer(offerId) {
-  axios.get(`${BASE_URL}api_v1/create_offer/${offerId}`)
-    .then((response) => response);
+export const getOffer = async (offer) => {
+  const tokenString = localStorage.getItem('token');
+
+  let config = {
+    'Authorization' : tokenString
+  };
+
+  const offer = await axios.get(`${BASE_URL}api_v1/users_offers`, offer, {headers: config})
+  .then((response) => {
+    return response.data});
+
+  return offer
 }
 
 // Calls the backend api to post the offer in the database
