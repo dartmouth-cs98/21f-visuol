@@ -12,32 +12,31 @@ class SideMenu extends Component {
     super(props);
     const { href } = window.location;
     const lastToken = href.substring(href.lastIndexOf('/') + 1);
-    this.state = { 
+    this.state = {
       defaultSelectedKey: lastToken,
-      offers: []
-     };
+      offers: [],
+    };
+  }
+
+  componentDidMount() {
+    const retrieved = myOffers()
+      .then((response) => {
+        this.setState({
+          // defaultSelectedKey: this.state.defaultSelectedKey,
+          offers: response,
+        });
+      });
+    return retrieved;
   }
 
   handleClick = (e) => {
     console.log('click ', e);
   };
 
-  componentDidMount() {
-    const retrieved = myOffers()
-    .then(response => {
-      this.setState({
-        defaultSelectedKey: this.state.defaultSelectedKey,
-        offers: response
-      })
-    });
-    return retrieved
-  };
-
   display = (offers) => {
     const { loggedIn } = this.props;
 
     if (loggedIn) {
-
       return (
         <SubMenu
           key="sub1"
@@ -53,7 +52,7 @@ class SideMenu extends Component {
             </NavLink>
           </Menu.Item>
           <SubMenu key="offers" title={<span className="black">My Offers</span>}>
-            {offers.map(offer => (
+            {offers.map((offer) => (
               <Menu.Item key={offer.company}>
                 <NavLink to="/loadGraph">
                   <span className="black">{offer.company}</span>
