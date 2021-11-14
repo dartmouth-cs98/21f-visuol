@@ -21,3 +21,18 @@ export function postOffer(offer) {
   })
     .then((response) => response);
 }
+
+// retrieves a list of all the offers that a user has
+export const myOffers = async () => {
+  const tokenString = localStorage.getItem('token');
+
+  let config = {
+    'Authorization' : tokenString
+  };
+
+  const offers = await axios.get(`${BASE_URL}api_v1/users_offers`, {headers: config})
+  .then((response) => {
+    return response.data});
+
+  return offers
+}

@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
+import { myOffers } from './OfferAPI';
 
 const { SubMenu } = Menu;
 
@@ -11,16 +12,32 @@ class SideMenu extends Component {
     super(props);
     const { href } = window.location;
     const lastToken = href.substring(href.lastIndexOf('/') + 1);
-    this.state = { defaultSelectedKey: lastToken };
+    this.state = { 
+      defaultSelectedKey: lastToken,
+      offers: []
+     };
   }
 
   handleClick = (e) => {
     console.log('click ', e);
   };
 
-  display = () => {
+  componentDidMount() {
+    const retrieved = myOffers()
+    .then(response => {
+      this.setState({
+        defaultSelectedKey: this.state.defaultSelectedKey,
+        offers: response
+      })
+    });
+    return retrieved
+  };
+
+  display = (offers) => {
     const { loggedIn } = this.props;
+
     if (loggedIn) {
+
       return (
         <SubMenu
           key="sub1"
@@ -35,6 +52,15 @@ class SideMenu extends Component {
               <span className="black">New Offer</span>
             </NavLink>
           </Menu.Item>
+          <SubMenu key="offers" title={<span className="black">My Offers</span>}>
+            {offers.map(offer => (
+              <Menu.Item key={offer.company}>
+                <NavLink to="/loadGraph">
+                  <span className="black">{offer.company}</span>
+                </NavLink>
+              </Menu.Item>
+            ))}
+          </SubMenu>
           <Menu.Item key="loadGraph">
             <NavLink to="/loadGraph">
               <span className="black">Display Offer</span>
@@ -72,7 +98,7 @@ class SideMenu extends Component {
   }
 
   render() {
-    const { defaultSelectedKey } = this.state;
+    const { defaultSelectedKey, offers } = this.state;
     return (
       <Menu
         onClick={this.handleClick}
@@ -83,7 +109,7 @@ class SideMenu extends Component {
         theme="dark"
       >
         {/* Menu Item keys must match the last part of their url (text behind last /) */}
-        {this.display()}
+        {this.display(offers)}
       </Menu>
     );
   }
