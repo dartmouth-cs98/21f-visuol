@@ -8,8 +8,8 @@ const AdditionalBenefits = ({ handleChange, values }) => (
         className="small-input"
         type="number"
         placeholder="Cash Bonus"
-        value={values.cashBonus}
-        onChange={handleChange('cashBonus')}
+        value={values.bonus}
+        onChange={handleChange('bnus')}
       />
     </label>
     <label>

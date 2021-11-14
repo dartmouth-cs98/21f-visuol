@@ -4,7 +4,7 @@
 import { React, useState } from 'react';
 import { SwitchMultiButton } from 'switch-multi-button';
 
-function Component() {
+function PaymentRateSwitch() {
   const [state, setState] = useState('year');
 
   return (
@@ -36,14 +36,20 @@ const CompanyDetails = ({ handleChange, values }) => (
         value={values.company}
         onChange={handleChange('company')}
       />
-      <input
-        className="small-input"
-        type="number"
-        placeholder="*Base Salary"
-        value={values.base}
-        onChange={handleChange('base')}
-      />
-      <Component />
+      <h3>BASE SALARY</h3>
+      <hr />
+      <div className="input-box">
+        <input
+          className="small-input"
+          type="number"
+          placeholder="*Base Salary"
+          value={values.base}
+          onChange={handleChange('base')}
+        />
+        <PaymentRateSwitch />
+      </div>
+      <hr />
+      <h2>Does your company offer equity?</h2>
     </label>
   </div>
 );
