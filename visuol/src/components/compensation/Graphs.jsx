@@ -10,6 +10,7 @@ import {
   ComposedChart,
 } from 'recharts';
 import React, { PureComponent } from 'react';
+import numberWithCommas from '../../tools/numbersWithCommas';
 
 // We look at total compensation through the following funnel, Start with Total Compensation,
 // Subtract out amount intended for retirement savings (currently we assume this is out of the
@@ -103,22 +104,33 @@ export const YearlySavings = (props) => {
       <XAxis dataKey='Year' height={60} tick={<CustomizedAxisTick />} />
       <YAxis />
       <Tooltip content={<CustomTooltipSavings />} />
-      <Line type='monotone' dataKey='TotalAccumulatedCompensation' stroke='#82ca9d' fill='#82ca9d' />
-      <Area type='monotone' dataKey='TotalPaidInTaxes' stackId='1' stroke='#8884d8' fill='#8884d8' />
+      <Line type='monotone' dataKey='TotalAccumulatedCompensation' stroke='#cc3300' fill='#cc3300' />
+      <Area type='monotone' dataKey='TotalPaidInTaxes' stackId='1' stroke='#6196E5' fill='#6196E5' />
       <Area type='monotone' dataKey='Savings' stackId='1' stroke={savingsColor} fill={savingsColor} />
       <Area type='monotone' dataKey='RetirementSavings' stackId='1' stroke={retirementColor} fill={retirementColor} />
       <Area type='monotone' dataKey='Spending' stackId='1' stroke={spendingColor} fill={spendingColor} />
     </ComposedChart>
   );
 };
+
+const tooltipStyle = {
+  backgroundColor: '#F0F2F5',
+  opacity: 0.70,
+  'border-style': 'solid',
+  'border-radius': '1px',
+  'border-color': '#dedfe2',
+  'font-size': '12px',
+};
+
+// TODO: Fix hardcoding of tooltips add CSS styling in boxes and font
 const CustomTooltipCompensation = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className='tooltip'>
+      <div className='tooltip' style={tooltipStyle}>
         <p className='label'>{`Year ${label}`}</p>
-        <p className={payload[0].name}>{`${payload[0].name} : ${payload[0].value}`}</p>
-        <p className={payload[1].name}>{`${payload[1].name} : ${payload[1].value}`}</p>
-        <p className={payload[2].name}>{`${payload[2].name} : ${payload[2].value}`}</p>
+        <p className={payload[0].name}>{`${payload[0].name} : ${numberWithCommas(payload[0].value)}`}</p>
+        <p className={payload[1].name}>{`${payload[1].name} : ${numberWithCommas(payload[1].value)}`}</p>
+        <p className={payload[2].name}>{`${payload[2].name} : ${numberWithCommas(payload[2].value)}`}</p>
       </div>
     );
   }
@@ -128,13 +140,13 @@ const CustomTooltipCompensation = ({ active, payload, label }) => {
 const CustomTooltipSavings = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className='tooltip'>
+      <div className='tooltip' style={tooltipStyle}>
         <p className='label'>{`Year ${label}`}</p>
-        <p className={payload[0].name}>{`${payload[0].name} : ${payload[0].value}`}</p>
-        <p className={payload[1].name}>{`${payload[1].name} : ${payload[1].value}`}</p>
-        <p className={payload[2].name}>{`${payload[2].name} : ${payload[2].value}`}</p>
-        <p className={payload[3].name}>{`${payload[3].name} : ${payload[3].value}`}</p>
-        <p className={payload[4].name}>{`${payload[4].name} : ${payload[4].value}`}</p>
+        <p className={payload[0].name}>{`${payload[0].name} : ${numberWithCommas(payload[0].value)}`}</p>
+        <p className={payload[1].name}>{`${payload[1].name} : ${numberWithCommas(payload[1].value)}`}</p>
+        <p className={payload[2].name}>{`${payload[2].name} : ${numberWithCommas(payload[2].value)}`}</p>
+        <p className={payload[3].name}>{`${payload[3].name} : ${numberWithCommas(payload[3].value)}`}</p>
+        <p className={payload[4].name}>{`${payload[4].name} : ${numberWithCommas(payload[4].value)}`}</p>
       </div>
     );
   }
@@ -149,7 +161,7 @@ class CustomizedLabel extends PureComponent {
 
     return (
       <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor='middle'>
-        {value}
+        {numberWithCommas(value)}
       </text>
     );
   }
