@@ -36,7 +36,7 @@ export const DataTransform = (compData, baseGrowth,
     data.Bonus = Math.round(bonus * ((1 + (bonusGrowth) / 100) ** i));
     data.Total = data.Base + data.Bonus;
     // Calculating Tax and Post Tax Compensation
-    data.Tax = data.Total * ((federalTax + stateTax) / 100);
+    data.Tax = data.Total * (federalTax + stateTax);
     data.PostTaxCompensation = data.Total - data.Tax;
     // Update accumulated variables
     pastCompensation += data.Total;
@@ -117,10 +117,10 @@ export const YearlySavings = (props) => {
 const tooltipStyle = {
   backgroundColor: '#F0F2F5',
   opacity: 0.70,
-  'border-style': 'solid',
-  'border-radius': '1px',
-  'border-color': '#dedfe2',
-  'font-size': '12px',
+  borderStyle: 'solid',
+  borderRadius: '1px',
+  borderColor: '#dedfe2',
+  fontSize: '12px',
 };
 
 // TODO: Fix hardcoding of tooltips add CSS styling in boxes and font

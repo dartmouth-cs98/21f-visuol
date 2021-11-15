@@ -56,7 +56,8 @@ class SideMenu extends Component {
           <SubMenu key='offers' title={<span className='black'>My Offers</span>}>
             {offers.map((offer) => (
               <Menu.Item key={offer.company}>
-                <NavLink to={`/LoadGraphs/${offer.company}`}>
+                {/* eslint-disable-next-line no-underscore-dangle */}
+                <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
                   <span className='black'>{offer.company}</span>
                 </NavLink>
               </Menu.Item>
