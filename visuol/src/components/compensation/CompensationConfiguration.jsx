@@ -144,7 +144,7 @@ const CompensationConfiguration = (props) => {
         }, {
           title: 'Retirement Rate',
           min: 0,
-          max: 100,
+          max: 10,
           value: `${numberWithCommas(retirementPercentage)}%`,
           updateValue: updateRetirementPercentage,
           sliderColor: retirementColor,
