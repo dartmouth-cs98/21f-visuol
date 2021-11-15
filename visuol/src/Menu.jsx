@@ -56,7 +56,7 @@ class SideMenu extends Component {
           <SubMenu key="offers" title={<span className="black">My Offers</span>}>
             {offers.map((offer) => (
               <Menu.Item key={offer.company}>
-                <NavLink to="/loadGraph">
+                <NavLink to={"/LoadGraphs/" + offer.company}>
                   <span className="black">{offer.company}</span>
                 </NavLink>
               </Menu.Item>
