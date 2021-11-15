@@ -109,6 +109,7 @@ export const YearlySavings = (props) => {
       <Area type='monotone' dataKey='Savings' stackId='1' stroke={savingsColor} fill={savingsColor} />
       <Area type='monotone' dataKey='RetirementSavings' stackId='1' stroke={retirementColor} fill={retirementColor} />
       <Area type='monotone' dataKey='Spending' stackId='1' stroke={spendingColor} fill={spendingColor} />
+      <Legend />
     </ComposedChart>
   );
 };

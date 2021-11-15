@@ -128,10 +128,8 @@ const CompensationConfiguration = (props) => {
         <Paragraph>How do you expect to partition your earnings?</Paragraph>
         {/* TODO: TURN THIS INTO A HELP TOOLTIP */}
         <Paragraph>
-          Adjust the savings rate slider to change what percentage
-          of your total earnings you expect to save.
-          Adjust the retirement rate slider to change what
-          percentage of your savings you would allocate for retirement.
+          Adjust the savings and retirement rate sliders to change what percentage
+          of your total earnings you expect to allocate.
         </Paragraph>
         <SliderLayout sliderProperties={[{
           title: 'Savings Rate',
@@ -152,7 +150,6 @@ const CompensationConfiguration = (props) => {
         },
         ]}
         />
-
       </Card>
     </>
   );
