@@ -55,7 +55,8 @@ class SideMenu extends Component {
           </Menu.Item>
           <SubMenu key='offers' title={<span className='black'>My Offers</span>}>
             {offers.map((offer) => (
-              <Menu.Item key={offer.company}>
+              // eslint-disable-next-line no-underscore-dangle
+              <Menu.Item key={`${offer.company}/${offer._id}`}>
                 {/* eslint-disable-next-line no-underscore-dangle */}
                 <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
                   <span className='black'>{offer.company}</span>
