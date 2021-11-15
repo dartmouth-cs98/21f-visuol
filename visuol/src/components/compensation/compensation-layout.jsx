@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import {
   Divider,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
 import React, { useState } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../../OfferAPI';
 import { YearlyCompensation, YearlySavings, DataTransform } from './Graphs';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
@@ -17,14 +20,45 @@ const retirementColor = '#dda481';
 // const equityColor = '#DDC981';
 
 // TODO: connect to api
-const fetchCompensationData = () => ({
-  baseSalary: 100000,
-  yearlyBonus: 25000,
-  signing: 50000,
-  federalTaxRate: 10,
-  stateTaxRate: 2,
+const fetchCompensationData = async (id, company, setters) => {
+  const token = localStorage.getItem('token');
+  console.log('fetching');
+  const resp = await axios.post(`${BASE_URL}api_v1/fetch_offer`, {
+    id,
+    company,
+  }, {
+    headers: { Authorization: token },
+  });
 
-});
+  const {
+    base,
+    bonus,
+  } = resp.data;
+  const signing = 0;
+
+  const taxResp = await axios.post(`${BASE_URL}api_v1/fed_taxes`, {
+    married: 'not-married',
+    income: base + bonus,
+  }, {
+    headers: { Authorization: token },
+  });
+
+  const fedTaxRate = taxResp.data.fed_tax_percent;
+
+  const {
+    setBase,
+    setBonus,
+    setSigning,
+    setFederalTaxRate,
+    setStateTaxRate,
+  } = setters;
+
+  setBase(base);
+  setBonus(bonus);
+  setSigning(0);
+  setFederalTaxRate(fedTaxRate);
+  setStateTaxRate(0);
+};
 
 const updateComplimentary = (updateSpendingPercentage,
   updateSavingsPercentage) => (savingsValue) => {
@@ -32,21 +66,30 @@ const updateComplimentary = (updateSpendingPercentage,
   updateSavingsPercentage(savingsValue);
 };
 
-const CompensationLayout = () => {
+const CompensationLayout = (props) => {
+  const { match } = props;
+  const { id, company } = match.params;
+
+  const [base, setBase] = useState(0);
+  const [bonus, setBonus] = useState(0);
+  const [signing, setSigning] = useState(0);
+  const [federalTax, setFederalTaxRate] = useState(0);
+  const [stateTax, setStateTaxRate] = useState(0); // Not currently using
+
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
   const [spendingPercentage, setSpendingPercentage] = useState(60);
   const [savingsPercentage, setSavingsPercentage] = useState(30);
-  const [retirementPercentage, setRetirementPercentage] = useState(50);
-  // const [investmentPercentage, setInvestmentPercentage] = useState(10);
+  const [retirementPercentage, setRetirementPercentage] = useState(4);
+
+  fetchCompensationData(id, company, {
+    setBase, setBonus, setSigning, setFederalTaxRate, setStateTaxRate,
+  });
 
   const updateValue = (setter) => (value) => {
     setter(value);
   };
-  const compensationData = fetchCompensationData();
-  const {
-    baseSalary: base, yearlyBonus: bonus, federalTaxRate: federalTax, stateTaxRate: stateTax,
-  } = compensationData;
+
   const totalCompensation = base + bonus;
 
   console.log(bonusAppreciationRate, baseAppreciationRate);
@@ -59,7 +102,7 @@ const CompensationLayout = () => {
       <CompensationHeader
         totalCompensation={numberWithCommas(totalCompensation)}
         position='Level 3 SWE'
-        company='Snapchat'
+        company={company}
       />
       <div style={{
         // position: 'sticky', TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
