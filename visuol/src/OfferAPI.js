@@ -35,13 +35,12 @@ export function postOffer(offer) {
 export const myOffers = async () => {
   const tokenString = localStorage.getItem('token');
 
-  let config = {
-    'Authorization' : tokenString
+  const config = {
+    Authorization: tokenString,
   };
 
-  const offers = await axios.get(`${BASE_URL}api_v1/users_offers`, {headers: config})
-  .then((response) => {
-    return response.data});
+  const offers = await axios.get(`${BASE_URL}api_v1/users_offers`, { headers: config })
+    .then((response) => response.data);
 
-  return offers
-}
+  return offers;
+};
