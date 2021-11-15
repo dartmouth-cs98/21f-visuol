@@ -3,11 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
-import NewOfferForm from './NewOfferForm';
 import LoadGraphs from './examples/LoadGraphs';
 import CompensationLayout from './components/compensation/compensation-layout';
 
 import Logout from './Logout';
+import NewOfferForm from './components/NewOffer/NewOfferForm';
 
 class Routes extends Component {
   display() {

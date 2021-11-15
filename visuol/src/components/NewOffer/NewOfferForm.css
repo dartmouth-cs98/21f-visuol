@@ -4,21 +4,130 @@ p {
 }
 
 input {
+    display: inline-block;
     font-size:36px;
     height: 50px;
     background-color: transparent;
-    color: rgba(0,0,0,0.2);
+    color: rgba(118, 118, 118);
     width: 100%;
     border: none;
     border-bottom: 2px solid rgba(0,0,0,0.2);
+    margin-right: 10px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(196, 196, 196);
+    opacity: 1; /* Firefox */
   }
 
-  textarea:focus, input:focus{
+.ant-radio-button-wrapper {
+  color: rgba(196, 196, 196);
+  background: rgba(118, 118, 118);
+}
+
+.yes-no-button {
+  color: rgba(196, 196, 196);
+  background: rgba(118, 118, 118);
+  border-radius: 5px;
+  width: 50px;
+
+}
+
+.yes-no-button:focus {
+  color: rgba(118, 118, 118); 
+  background:  rgba(196, 196, 196);
+  border-radius: 5px;
+  outline: none;
+  width: 50px;
+
+}
+
+.yes-no-button:hover {
+  color: rgba(118, 118, 118); 
+  background:  rgba(196, 196, 196);
+  border-radius: 5px;
+  outline: none;
+  width: 50px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+h2 {
+    text-align: center;
+    color: rgba(118, 118, 118);
+}
+
+h3 {
+    margin: 0;
+    margin-top: 40px;
+    color: rgba(118, 118, 118);
+}
+
+hr {
+    margin-top: 0px rgba(118, 118, 118);
+    margin-top: 0;
+}
+
+textarea:focus, input:focus {
     outline: none;
 }
 
 .small-input {
-    width: 50%;
+    width: 200px;
     font-size:20px;
     padding: 20px;
+    padding-left: 0px;
 }
+
+.input-box {
+    display: flex;
+    padding: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+
+
+  .switch-multi-button {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    position: relative;
+    margin: 0px;
+    padding: 3px;
+    box-sizing: border-box;
+    background: rgba(196, 196, 196);
+    border-radius: 10px;
+  }
+
+
+  .switch-multi-button .sweep-button-item {
+
+    display: flex;
+    /* height: 40px; */
+    color:rgba(118, 118, 118);
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 15px;
+    /* padding-left: 100px; */
+    /* background: rgba(0,0,0,0.2); */
+    border-radius: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .switch-multi-button .sweep-button-item-active {
+    position: absolute !important;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    cursor: default;
+    box-sizing: border-box;
+    height: 40px;
+  }
