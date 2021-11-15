@@ -50,7 +50,7 @@ class Login extends Component {
    render() {
      return (
        <Form
-         name="basic"
+         name='basic'
          labelCol={{
            span: 8,
          }}
@@ -62,11 +62,11 @@ class Login extends Component {
          }}
          onFinish={this.onFinish}
          onFinishFailed={this.onFinishFailed}
-         autoComplete="off"
+         autoComplete='off'
        >
          <Form.Item
-           label="Email"
-           name="email"
+           label='Email'
+           name='email'
            rules={[
              {
                required: true,
@@ -78,8 +78,8 @@ class Login extends Component {
          </Form.Item>
 
          <Form.Item
-           label="Password"
-           name="password"
+           label='Password'
+           name='password'
            rules={[
              {
                required: true,
@@ -96,7 +96,7 @@ class Login extends Component {
              span: 10,
            }}
          >
-           <Button type="primary" htmlType="submit" style={{ background: 'grey', borderColor: 'grey' }}>
+           <Button type='primary' htmlType='submit' style={{ background: 'grey', borderColor: 'grey' }}>
              Submit
            </Button>
          </Form.Item>

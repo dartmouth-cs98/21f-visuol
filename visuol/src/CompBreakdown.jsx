@@ -15,11 +15,11 @@ export class CompBreakdown extends PureComponent {
       <PieChart width={600} height={600}>
         <Pie
           data={data}
-          datakey="value"
+          datakey='value'
           cx={200}
           cy={200}
           outerRadius={60}
-          fill="#8884d8"
+          fill='#8884d8'
           label
         />
       </PieChart>
@@ -43,14 +43,14 @@ export class MonthlyComp extends PureComponent {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="month" />
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='month' />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="base" stackId="a" fill="#8884d8" />
-        <Bar dataKey="bonus" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="rsu" stackId="a" fill="#ba296a" />
+        <Bar dataKey='base' stackId='a' fill='#8884d8' />
+        <Bar dataKey='bonus' stackId='a' fill='#82ca9d' />
+        <Bar dataKey='rsu' stackId='a' fill='#ba296a' />
       </BarChart>
     );
   }

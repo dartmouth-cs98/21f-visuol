@@ -13,8 +13,8 @@ const App = () => {
   return (
     <BrowserRouter history={history}>
       <Layout>
-        <Layout style={{ height: '100vh' }}>
-          <Sider style={{ backgroundColor: '#C1DE9C' }} width={256} className="site-layout-background">
+        <Layout style={{ minHeight: '100vh' }}>
+          <Sider style={{ backgroundColor: '#C1DE9C' }} width={256} className='site-layout-background'>
             <SideMenu loggedIn={'token' in localStorage && localStorage.getItem('expiration') > Date.now() / 1000} />
           </Sider>
           <Content style={{ padding: '48px 24px 24px' }}>

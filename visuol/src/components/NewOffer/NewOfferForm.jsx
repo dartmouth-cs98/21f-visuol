@@ -61,7 +61,7 @@ class NewOfferForm extends Component {
                   handleChange={this.handleChange}
                   values={values}
                 />
-                <button type="button" onClick={this.nextStep}>Next</button>
+                <button type='button' onClick={this.nextStep}>Next</button>
               </div>
             );
           case 2:
@@ -75,8 +75,8 @@ class NewOfferForm extends Component {
                   handleChange={this.handleChange}
                   values={values}
                 />
-                <button type="button" onClick={this.nextStep}>Next</button>
-                <button type="button" onClick={this.prevStep}>Previous</button>
+                <button type='button' onClick={this.nextStep}>Next</button>
+                <button type='button' onClick={this.prevStep}>Previous</button>
               </div>
             );
           case 3:
@@ -95,8 +95,8 @@ class NewOfferForm extends Component {
                   handleSubmit={this.handleSubmit}
                   values={values}
                 />
-                <button type="button" onClick={this.prevStep}>Previous</button>
-                <button type="button" onClick={this.handleSubmit}>Done</button>
+                <button type='button' onClick={this.prevStep}>Previous</button>
+                <button type='button' onClick={this.handleSubmit}>Done</button>
               </div>
             );
           default:

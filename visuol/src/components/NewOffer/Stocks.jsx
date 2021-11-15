@@ -5,9 +5,9 @@ const Stocks = ({ handleChange, values }) => (
   <div>
     <label>
       <input
-        className="small-input"
-        type="text"
-        placeholder="Stocks"
+        className='small-input'
+        type='text'
+        placeholder='Stocks'
         value={values.stocks}
         onChange={handleChange('stocks')}
       />
