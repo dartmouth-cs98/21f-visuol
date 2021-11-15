@@ -70,7 +70,6 @@ class NewOfferForm extends Component {
       }
 
       render() {
-        const { step } = this.state;
         const {
           company, askStocks, showStocks, askAdditionalBenefits,
           showAdditionalBenefits, showSubmit, baseSalary, stocks, onus, matchPercentage,
@@ -88,98 +87,27 @@ class NewOfferForm extends Component {
           matchPercentage,
         };
 
-        switch (step) {
-          case 1:
-            return (
-              <div>
-                <CompanyDetails handleChange={this.handleChange} values={values} />
-                {/* Change to equity */}
-                <h3>STOCKS</h3>
-                <hr />
-                <h2>Does your company offer stocks?</h2>
-                <div className='flex-container'>
-                  <Button className='yes-no-button' onClick={this.showStocksQuestion}> Yes </Button>
-                  <Button className='yes-no-button' onClick={this.askAdditionalBenefitsQuestion}>No </Button>
-                </div>
+        return (
+          <div>
+            <CompanyDetails handleChange={this.handleChange} values={values} />
+            <h3>STOCKS</h3>
+            <hr />
 
-                {showStocks
-                && (
-                  <div>
-                    <Stocks handleChange={this.handleChange} values={values} />
-                    <h3>CASH BONUS</h3>
-                    <hr />
-                    <h2>Does your company offer a cash bonus?</h2>
-                    <div className='flex-container'>
-                      <Button className='yes-no-button' onClick={this.showAdditionalBenefitsQuestion}> Yes </Button>
-                      <Button className='yes-no-button'> No </Button>
-                    </div>
-                  </div>
-                )}
-                {askAdditionalBenefits
-                && (
-                  <div>
-                    <h3>CASH BONUS</h3>
-                    <hr />
-                    <h2>Does your company offer a cash bonus?</h2>
-                    <div className='flex-container'>
-                      <Button className='yes-no-button' onClick={this.showAdditionalBenefitsQuestion}> Yes </Button>
-                      <Button className='yes-no-button' onClick={this.showSubmitButton}> No </Button>
-                    </div>
-                  </div>
-                )}
-                {showAdditionalBenefits
-                && (
-                  <div>
-                    <h3>ADDITIONAL BENEFITS</h3>
-                    <hr />
-                    <AdditionalBenefits handleChange={this.handleChange} values={values} />
-                    <button type='button' className='yes-no-button' onClick={this.handleSubmit}>Done</button>
+            <div>
+              <Stocks handleChange={this.handleChange} values={values} />
+            </div>
 
-                  </div>
-                )}
-                {showSubmit
-                && (
-                  <button type='button' className='yes-no-button' onClick={this.handleSubmit}>Done</button>
-                )}
-                {/* <button type="button" onClick={this.nextStep}>Next</button> */}
-              </div>
-            );
-          case 2:
-            return (
-              <div>
-                <CompanyDetails
-                  handleChange={this.handleChange}
-                  values={values}
-                />
-                <button type='button' onClick={this.nextStep}>Next</button>
-                <button type='button' onClick={this.prevStep}>Previous</button>
-              </div>
-            );
-          case 3:
-            return (
-              <div>
-                <CompanyDetails
-                  handleChange={this.handleChange}
-                  values={values}
-                />
-                <Stocks
-                  handleChange={this.handleChange}
-                  values={values}
-                />
-                <AdditionalBenefits
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                  values={values}
-                />
-                <button type='button' onClick={this.prevStep}>Previous</button>
-                <button type='button' onClick={this.handleSubmit}>Done</button>
-              </div>
-            );
-          default:
-            return (
-              <div />
-            );
-        }
+            <div>
+              <h3>ADDITIONAL BENEFITS</h3>
+              <hr />
+              <AdditionalBenefits handleChange={this.handleChange} values={values} />
+
+            </div>
+            <div className='flex-container'>
+              <Button type='button' className='yes-no-button' onClick={this.handleSubmit}>Done</Button>
+            </div>
+          </div>
+        );
       }
 }
 

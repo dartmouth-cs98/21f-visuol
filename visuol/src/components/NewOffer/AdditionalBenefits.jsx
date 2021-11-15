@@ -2,7 +2,7 @@
 import React from 'react';
 
 const AdditionalBenefits = ({ handleChange, values }) => (
-  <div>
+  <div className='input-box'>
     <label>
       <input
         className='small-input'
@@ -16,7 +16,7 @@ const AdditionalBenefits = ({ handleChange, values }) => (
       <input
         className='small-input'
         type='number'
-        placeholder='401k Match Percentage'
+        placeholder='401k Match %'
         value={values.matchPercentage}
         onChange={handleChange('matchPercentage')}
       />
