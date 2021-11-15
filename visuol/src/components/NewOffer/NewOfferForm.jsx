@@ -5,8 +5,9 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Button } from 'antd';
 
+import axios from 'axios';
+
 import { withRouter } from 'react-router-dom';
-import { postOffer } from '../../OfferAPI';
 import CompanyDetails from './CompanyDetails';
 import Stocks from './Stocks';
 import AdditionalBenefits from './AdditionalBenefits';
@@ -49,7 +50,7 @@ class NewOfferForm extends Component {
       }
 
       handleSubmit = () => {
-        postOffer(this.state);
+        this.postOffer(this.state);
         // push to new page
       }
 
@@ -67,6 +68,37 @@ class NewOfferForm extends Component {
 
       showSubmitButton = () => {
         this.setState({ showSubmit: true });
+      }
+
+      // Calls the backend api to post the offer in the database
+      postOffer = (offer) => {
+        const data = Object.assign(offer);
+        data.base = Number.parseInt(offer.base, 10);
+        data.bonus = Number.parseInt(offer.bonus, 10);
+        data.matchPercentage = Number.parseInt(offer.matchPercentage, 10);
+        data.stocks = Number.parseInt(offer.stocks, 10);
+        data.PTO = Number.parseInt(offer.PTO, 10);
+        const tokenString = localStorage.getItem('token');
+        const headers = {
+          Authorization: tokenString,
+          // 'Access-Control-Allow-Origin': 'http://localhost:3000'
+        };
+
+        console.log('createOfferData', data);
+        const BASE_URL = 'http://localhost:5000/';
+        axios.post(`${BASE_URL}api_v1/create_offer`, offer, {
+          headers,
+        })
+          .then((response) => {
+            console.log('submitted', response);
+            if (response.data.id) {
+              const { history } = this.props;
+              // eslint-disable-next-line react/destructuring-assignment
+              history.push(`/LoadGraphs/${this.state.company}/${response.data.id}`);
+              window.location.reload();
+            }
+            return response;
+          });
       }
 
       render() {
