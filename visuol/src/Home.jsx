@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 // Referenced from https://codesandbox.io/s/1l1xu?file=/index.js:190-278
 import { Statistic } from 'antd';
-import companyLogo from './VisuOL-logos.jpeg';
+import companyLogo from '../public/VisuOL-logos.jpeg';
 
 const { Countdown } = Statistic;
 const deadline = new Date(2022, 3, 9);
