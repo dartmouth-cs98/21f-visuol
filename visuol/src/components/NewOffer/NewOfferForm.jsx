@@ -73,7 +73,7 @@ class NewOfferForm extends Component {
         const { step } = this.state;
         const {
           company, askStocks, showStocks, askAdditionalBenefits,
-          showAdditionalBenefits, showSubmit, baseSalary, stocks, onus, matchPercentage,
+          showAdditionalBenefits, showSubmit, baseSalary, stocks, bonus, matchPercentage,
         } = this.state;
         const values = {
           company,
@@ -84,7 +84,7 @@ class NewOfferForm extends Component {
           showAdditionalBenefits,
           baseSalary,
           stocks,
-          onus,
+          bonus,
           matchPercentage,
         };
 
