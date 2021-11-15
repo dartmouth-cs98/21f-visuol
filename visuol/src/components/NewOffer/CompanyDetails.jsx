@@ -10,7 +10,7 @@ function PaymentRateSwitch() {
 
   return (
     <SwitchMultiButton
-      className="wage-toggle"
+      className='wage-toggle'
       value={state}
       setValue={setState}
       style={{ fontSize: 18, fontWeight: 20 }}
@@ -28,47 +28,22 @@ function PaymentRateSwitch() {
   );
 }
 
-// class ShowEquity extends React.PureComponent {
-//   render() {
-//     const { onClick } = this.props;
-
-//     console.log('render button');
-
-//     return (
-//       <div className="flex-container">
-//         <Button
-//           className="yes-no-button"
-//           onClick={onClick}
-//         >
-//           Yes
-//         </Button>
-//         <Button
-//           className="yes-no-button"
-//           onClick={onClick}
-//         >
-//           No
-//         </Button>
-//       </div>
-//     );
-//   }
-// }
-
 const CompanyDetails = ({ handleChange, values }) => (
   <div>
     <label>
       <input
-        type="text"
-        placeholder="*Company Name"
+        type='text'
+        placeholder='*Company Name'
         value={values.company}
         onChange={handleChange('company')}
       />
       <h3>BASE SALARY</h3>
       <hr />
-      <div className="input-box">
+      <div className='input-box'>
         <input
-          className="small-input"
-          type="number"
-          placeholder="*Base Salary"
+          className='small-input'
+          type='number'
+          placeholder='*Base Salary'
           value={values.base}
           onChange={handleChange('base')}
         />

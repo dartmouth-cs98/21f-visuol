@@ -5,18 +5,18 @@ const AdditionalBenefits = ({ handleChange, values }) => (
   <div>
     <label>
       <input
-        className="small-input"
-        type="number"
-        placeholder="Cash Bonus"
+        className='small-input'
+        type='number'
+        placeholder='Cash Bonus'
         value={values.bonus}
         onChange={handleChange('bnus')}
       />
     </label>
     <label>
       <input
-        className="small-input"
-        type="number"
-        placeholder="401k Match Percentage"
+        className='small-input'
+        type='number'
+        placeholder='401k Match Percentage'
         value={values.matchPercentage}
         onChange={handleChange('matchPercentage')}
       />

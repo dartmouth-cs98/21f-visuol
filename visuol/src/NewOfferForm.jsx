@@ -21,7 +21,7 @@ class NewOfferForm extends Component {
           const { companyName } = this.state;
           return (
             <Form
-              name="basic"
+              name='basic'
               labelCol={{
                 span: 8,
               }}
@@ -33,11 +33,11 @@ class NewOfferForm extends Component {
               }}
               onFinish={this.onFinish}
               onFinishFailed={this.onFinishFailed}
-              autoComplete="off"
+              autoComplete='off'
             >
               <Form.Item
-                label="Company Name"
-                name="companyname"
+                label='Company Name'
+                name='companyname'
                 rules={[
                   {
                     required: true,
@@ -50,8 +50,8 @@ class NewOfferForm extends Component {
               </Form.Item>
 
               <Form.Item
-                label="Base salary"
-                name="Base salary"
+                label='Base salary'
+                name='Base salary'
                 rules={[
                   {
                     required: true,
@@ -59,31 +59,31 @@ class NewOfferForm extends Component {
                   },
                 ]}
               >
-                <Input prefix="$" suffix="USD" />
+                <Input prefix='$' suffix='USD' />
                 {/* <Switch checkedChildren="Yearly" unCheckedChildren="Hourly" defaultChecked /> */}
               </Form.Item>
 
               <Form.Item
-                label="Stocks"
-                name="Stocks"
+                label='Stocks'
+                name='Stocks'
               >
-                <Input prefix="$" suffix="USD" />
+                <Input prefix='$' suffix='USD' />
                 {/* <Switch checkedChildren="RSU" unCheckedChildren="Stock Options" defaultChecked /> */}
               </Form.Item>
 
               <Form.Item
-                label="Cash Bonus"
-                name="Cash Bonus"
+                label='Cash Bonus'
+                name='Cash Bonus'
               >
-                <Input prefix="$" suffix="USD" />
+                <Input prefix='$' suffix='USD' />
                 {/* <Switch checkedChildren="RSU" unCheckedChildren="Stock Options" defaultChecked /> */}
               </Form.Item>
 
               <Form.Item
-                label="401K Match Percentage"
-                name="401K Match Percentage"
+                label='401K Match Percentage'
+                name='401K Match Percentage'
               >
-                <Input prefix="%" />
+                <Input prefix='%' />
               </Form.Item>
 
               <Form.Item
@@ -92,7 +92,7 @@ class NewOfferForm extends Component {
                   span: 10,
                 }}
               >
-                <Button type="primary" htmlType="submit" style={{ background: 'grey', borderColor: 'grey' }}>
+                <Button type='primary' htmlType='submit' style={{ background: 'grey', borderColor: 'grey' }}>
                   Save
                 </Button>
               </Form.Item>
