@@ -1,8 +1,11 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
 // Referenced https://3x.ant.design/components/menu/, creates side menu
 import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
+import { myOffers } from './OfferAPI';
 
 const { SubMenu } = Menu;
 
@@ -11,15 +14,30 @@ class SideMenu extends Component {
     super(props);
     const { href } = window.location;
     const lastToken = href.substring(href.lastIndexOf('/') + 1);
-    this.state = { defaultSelectedKey: lastToken };
+    this.state = {
+      defaultSelectedKey: lastToken,
+      offers: [],
+    };
+  }
+
+  componentDidMount() {
+    const retrieved = myOffers()
+      .then((response) => {
+        this.setState({
+          defaultSelectedKey: this.state.defaultSelectedKey,
+          offers: response,
+        });
+      });
+    return retrieved;
   }
 
   handleClick = (e) => {
     console.log('click ', e);
   };
 
-  display = () => {
+  display = (offers) => {
     const { loggedIn } = this.props;
+
     if (loggedIn) {
       return (
         <SubMenu
@@ -35,11 +53,15 @@ class SideMenu extends Component {
               <span className='black'>New Offer</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item key='loadGraph'>
-            <NavLink to='/loadGraph'>
-              <span className='black'>Display Offer</span>
-            </NavLink>
-          </Menu.Item>
+          <SubMenu key='offers' title={<span className='black'>My Offers</span>}>
+            {offers.map((offer) => (
+              <Menu.Item key={offer.company}>
+                <NavLink to={`/LoadGraphs/${offer.company}`}>
+                  <span className='black'>{offer.company}</span>
+                </NavLink>
+              </Menu.Item>
+            ))}
+          </SubMenu>
           <Menu.Item key='logout'>
             <NavLink to='/logout'>
               <span className='black'>Log Out</span>
@@ -53,7 +75,7 @@ class SideMenu extends Component {
         key='sub1'
         title={(
           <span>
-            <span>Navigation</span>
+            <span className='black'>Navigation</span>
           </span>
         )}
       >
@@ -72,7 +94,7 @@ class SideMenu extends Component {
   }
 
   render() {
-    const { defaultSelectedKey } = this.state;
+    const { defaultSelectedKey, offers } = this.state;
     return (
       <Menu
         onClick={this.handleClick}
@@ -83,7 +105,7 @@ class SideMenu extends Component {
         theme='dark'
       >
         {/* Menu Item keys must match the last part of their url (text behind last /) */}
-        {this.display()}
+        {this.display(offers)}
       </Menu>
     );
   }

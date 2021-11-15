@@ -1,6 +1,8 @@
 // Credit to https://ant.design/components/form/
 // Component for logging in
-import { Form, Input, Button } from 'antd';
+import {
+  Form, Input, Button, notification,
+} from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import axios from 'axios';
@@ -26,8 +28,16 @@ class Login extends Component {
 
   onFinish = (values) => {
     axios.post('http://localhost:5000/api_v1/login', values).then((response) => {
-      console.log(response);
-      this.finishLogin(response);
+      if (response.data && response.data.status === 'success') {
+        this.finishLogin(response);
+      } else if (response.data) {
+        notification.open({
+          message: 'Message',
+          description:
+            response.data.error,
+          onClick: () => {},
+        });
+      }
     }).catch((error) => {
       console.log(error);
     });

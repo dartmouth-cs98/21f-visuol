@@ -1,5 +1,3 @@
-import './compensation-layout.css';
-
 import {
   Divider,
 } from 'antd';
