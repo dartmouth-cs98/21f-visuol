@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
-import LoadGraphs from './examples/LoadGraphs';
+import NewOfferForm from './NewOfferForm';
 import CompensationLayout from './components/compensation/compensation-layout';
 
 import Logout from './Logout';
@@ -15,9 +15,8 @@ class Routes extends Component {
     if (loggedIn) {
       return (
         <Switch>
-          <Route path='/loadGraphs/:company' component={LoadGraphs} />
-          <Route path='/loadGraph' component={LoadGraphs} />
-          <Route path='/Snap' component={Home} />
+          <Route path='/loadGraphs/:company/:id' component={CompensationLayout} />
+          <Route path='/loadGraph' component={CompensationLayout} />
           <Route path='/new-offer' component={NewOfferForm} />
           <Route path='/logout' component={Logout} />
           <Route path='/' component={Home} />
