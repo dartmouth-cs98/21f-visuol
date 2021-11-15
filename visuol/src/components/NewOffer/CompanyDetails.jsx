@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import React from 'react';
+// import { Button } from 'antd';
 
 import { React, useState } from 'react';
 import { SwitchMultiButton } from 'switch-multi-button';
@@ -27,6 +28,31 @@ function PaymentRateSwitch() {
   );
 }
 
+// class ShowEquity extends React.PureComponent {
+//   render() {
+//     const { onClick } = this.props;
+
+//     console.log('render button');
+
+//     return (
+//       <div className="flex-container">
+//         <Button
+//           className="yes-no-button"
+//           onClick={onClick}
+//         >
+//           Yes
+//         </Button>
+//         <Button
+//           className="yes-no-button"
+//           onClick={onClick}
+//         >
+//           No
+//         </Button>
+//       </div>
+//     );
+//   }
+// }
+
 const CompanyDetails = ({ handleChange, values }) => (
   <div>
     <label>
@@ -48,8 +74,6 @@ const CompanyDetails = ({ handleChange, values }) => (
         />
         <PaymentRateSwitch />
       </div>
-      <hr />
-      <h2>Does your company offer equity?</h2>
     </label>
   </div>
 );
