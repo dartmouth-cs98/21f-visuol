@@ -53,8 +53,8 @@ const fetchCompensationData = async (id, company, setters) => {
     setStateTaxRate,
   } = setters;
 
-  setBase(base);
-  setBonus(bonus);
+  setBase(base != null ? base : 0);
+  setBonus(bonus != null ? bonus : 0);
   setSigning(0);
   setFederalTaxRate(fedTaxRate);
   setStateTaxRate(0);

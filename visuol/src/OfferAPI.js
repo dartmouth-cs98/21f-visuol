@@ -18,16 +18,27 @@ export const getOffer = async (data) => {
 
 // Calls the backend api to post the offer in the database
 export function postOffer(offer) {
+  const data = Object.assign(offer);
+  data.base = Number.parseInt(offer.base, 10);
+  data.bonus = Number.parseInt(offer.bonus, 10);
+  data.matchPercentage = Number.parseInt(offer.matchPercentage, 10);
+  data.stocks = Number.parseInt(offer.stocks, 10);
+  data.PTO = Number.parseInt(offer.PTO, 10);
   const tokenString = localStorage.getItem('token');
   const headers = {
     Authorization: tokenString,
     // 'Access-Control-Allow-Origin': 'http://localhost:3000'
   };
 
+  console.log(data);
+
   axios.post(`${BASE_URL}api_v1/create_offer`, offer, {
     headers,
   })
-    .then((response) => response);
+    .then((response) => {
+      console.log('submitted', response);
+      return response;
+    });
 }
 
 // retrieves a list of all the offers that a user has
