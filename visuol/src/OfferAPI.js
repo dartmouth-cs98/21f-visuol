@@ -3,14 +3,14 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:5000/';
 
 // Calls the backend api and receives the offer
-export const getOffer = async (offer) => {
+export const getOffer = async (data) => {
   const tokenString = localStorage.getItem('token');
 
   let config = {
     'Authorization' : tokenString
   };
 
-  const offer = await axios.get(`${BASE_URL}api_v1/users_offers`, offer, {headers: config})
+  const offer = await axios.get(`${BASE_URL}api_v1/users_offers`, data, {headers: config})
   .then((response) => {
     return response.data});
 
