@@ -29,7 +29,7 @@ input {
   color: rgba(196, 196, 196);
   background: rgba(118, 118, 118);
   border-radius: 5px;
-  width: 50px;
+  width: 70px;
 
 }
 
@@ -38,7 +38,7 @@ input {
   background:  rgba(196, 196, 196);
   border-radius: 5px;
   outline: none;
-  width: 50px;
+  width: 70px;
 
 }
 
@@ -47,10 +47,10 @@ input {
   background:  rgba(196, 196, 196);
   border-radius: 5px;
   outline: none;
-  width: 50px;
+  width: 70px;
 }
 
-.flex-container{
+.flex-container {
   display: flex;
   justify-content: center;
 }
