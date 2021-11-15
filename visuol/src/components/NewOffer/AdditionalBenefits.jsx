@@ -9,7 +9,7 @@ const AdditionalBenefits = ({ handleChange, values }) => (
         type='number'
         placeholder='Cash Bonus'
         value={values.bonus}
-        onChange={handleChange('bnus')}
+        onChange={handleChange('bonus')}
       />
     </label>
     <label>

@@ -30,7 +30,7 @@ export function postOffer(offer) {
     // 'Access-Control-Allow-Origin': 'http://localhost:3000'
   };
 
-  console.log(data);
+  console.log('createOfferData', data);
 
   axios.post(`${BASE_URL}api_v1/create_offer`, offer, {
     headers,

@@ -101,7 +101,7 @@ const CompensationLayout = (props) => {
     <>
       <CompensationHeader
         totalCompensation={numberWithCommas(totalCompensation)}
-        position='Level 3 SWE'
+        position='' // CURRENTLY DO NOT HAVE POSITION DATA
         company={company}
       />
       <div style={{
