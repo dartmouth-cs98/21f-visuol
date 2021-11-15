@@ -79,7 +79,7 @@ class SideMenu extends Component {
         key="sub1"
         title={(
           <span>
-            <span>Navigation</span>
+            <span className="black">Navigation</span>
           </span>
         )}
       >
