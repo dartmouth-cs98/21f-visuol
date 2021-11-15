@@ -3,11 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
-import NewOfferForm from './NewOfferForm';
-import CompensationLayout from './components/compensation/compensation-layout';
-
-import Logout from './Logout';
 import NewOfferForm from './components/NewOffer/NewOfferForm';
+import CompensationLayout from './components/compensation/compensation-layout';
+import Logout from './Logout';
 
 class Routes extends Component {
   display() {
