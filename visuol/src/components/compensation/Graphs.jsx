@@ -133,6 +133,8 @@ const CustomTooltipSavings = ({ active, payload, label }) => {
         <p className={payload[0].name}>{`${payload[0].name} : ${payload[0].value}`}</p>
         <p className={payload[1].name}>{`${payload[1].name} : ${payload[1].value}`}</p>
         <p className={payload[2].name}>{`${payload[2].name} : ${payload[2].value}`}</p>
+        <p className={payload[3].name}>{`${payload[3].name} : ${payload[3].value}`}</p>
+        <p className={payload[4].name}>{`${payload[4].name} : ${payload[4].value}`}</p>
       </div>
     );
   }
