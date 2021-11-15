@@ -5,21 +5,24 @@ import Registration from './Registration';
 import Home from './Home';
 import NewOfferForm from './NewOfferForm';
 import LoadGraphs from './examples/LoadGraphs';
+import { myOffers } from './OfferAPI';
 
 import Logout from './Logout';
 
 class Routes extends Component {
+
   display() {
     const { loggedIn } = this.props;
 
     if (loggedIn) {
       return (
         <Switch>
+          <Route path="/loadGraphs/:company" component={LoadGraphs} />
           <Route path="/loadGraph" component={LoadGraphs} />
+          <Route path="/Snap" component={Home} />
           <Route path="/new-offer" component={NewOfferForm} />
           <Route path="/logout" component={Logout} />
           <Route path="/" component={Home} />
-          <Route path="/loadGraph/:company" component={}/>
         </Switch>
       );
     }
