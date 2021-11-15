@@ -6,16 +6,14 @@ import {
 
 import { withRouter } from 'react-router-dom';
 import React, { useState } from 'react';
-// import YearlyCompensation, { DataTransform } from './YearlyCompensationGraph';
 import { YearlyCompensation, YearlySavings, DataTransform } from './Graphs';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
 import CompensationConfiguration from './CompensationConfiguration';
-// import YearlySavings, { sampleData, calculateSavings } from './SavingsGrowth';
 
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
-// const spendingColor = '#9881dd';
+const spendingColor = '#9881dd';
 const savingsColor = '#cece96';
 const retirementColor = '#dda481';
 // const equityColor = '#DDC981';
@@ -57,7 +55,7 @@ const CompensationLayout = () => {
   const graphData = DataTransform({
     base, bonus, federalTax, stateTax,
   },
-  baseAppreciationRate, bonusAppreciationRate, savingsPercentage, 7);
+  baseAppreciationRate, bonusAppreciationRate, savingsPercentage, retirementPercentage, 7);
   return (
     <>
       <CompensationHeader
@@ -83,6 +81,9 @@ const CompensationLayout = () => {
         />
         <YearlySavings
           data={graphData}
+          spendingColor={spendingColor}
+          savingsColor={savingsColor}
+          retirementColor={retirementColor}
         />
       </div>
       <Divider />
