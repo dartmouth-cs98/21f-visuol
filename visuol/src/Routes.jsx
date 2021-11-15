@@ -19,6 +19,7 @@ class Routes extends Component {
           <Route path='/loadGraph' component={LoadGraphs} />
           <Route path='/new-offer' component={NewOfferForm} />
           <Route path='/logout' component={Logout} />
+          <Route path='/compensation-layout' component={CompensationLayout} />
           <Route path='/' component={Home} />
         </Switch>
       );
