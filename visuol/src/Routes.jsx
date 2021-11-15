@@ -7,6 +7,7 @@ import NewOfferForm from './NewOfferForm';
 import CompensationLayout from './components/compensation/compensation-layout';
 
 import Logout from './Logout';
+import NewOfferForm from './components/NewOffer/NewOfferForm';
 
 class Routes extends Component {
   display() {

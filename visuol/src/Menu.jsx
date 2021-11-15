@@ -24,7 +24,7 @@ class SideMenu extends Component {
     const retrieved = myOffers()
       .then((response) => {
         this.setState({
-          defaultSelectedKey: this.state.defaultSelectedKey,
+          // defaultSelectedKey: this.state.defaultSelectedKey,
           offers: response,
         });
       });

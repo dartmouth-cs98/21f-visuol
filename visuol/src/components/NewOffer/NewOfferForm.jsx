@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-max-props-per-line */
+/* eslint-disable react/jsx-first-prop-new-line */
 // import { Form, Input, Button } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import { Button } from 'antd';
+
 import { withRouter } from 'react-router-dom';
 import { postOffer } from '../../OfferAPI';
 import CompanyDetails from './CompanyDetails';
@@ -8,18 +12,25 @@ import Stocks from './Stocks';
 import AdditionalBenefits from './AdditionalBenefits';
 import './NewOfferForm.css';
 
-// export default?
 class NewOfferForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       step: 1,
-      companyName: '',
-      baseSalary: '',
-      stocks: '',
-      cashBonus: '',
+      askStocks: false,
+      showStocks: false,
+      askAdditionalBenefits: false,
+      showAdditionalBenefits: false,
+      showSubmit: false,
+      company: '',
+      startDate: '',
+      expiration: '',
+      base: '',
+      bonus: '',
       matchPercentage: '',
+      stocks: '',
+      PTO: '',
     };
   }
 
@@ -38,40 +49,105 @@ class NewOfferForm extends Component {
       }
 
       handleSubmit = () => {
-        // console.log(this.state);
         postOffer(this.state);
-        // clear state
-        // this.setState
+        // push to new page
+      }
+
+      showStocksQuestion = () => {
+        this.setState({ showStocks: true });
+      }
+
+      askAdditionalBenefitsQuestion = () => {
+        this.setState({ askAdditionalBenefits: true });
+      }
+
+      showAdditionalBenefitsQuestion = () => {
+        this.setState({ showAdditionalBenefits: true });
+      }
+
+      showSubmitButton = () => {
+        this.setState({ showSubmit: true });
       }
 
       render() {
         const { step } = this.state;
         const {
-          companyName, baseSalary, stocks, cashBonus, matchPercentage,
+          company, askStocks, showStocks, askAdditionalBenefits,
+          showAdditionalBenefits, showSubmit, baseSalary, stocks, onus, matchPercentage,
         } = this.state;
         const values = {
-          companyName, baseSalary, stocks, cashBonus, matchPercentage,
+          company,
+          askStocks,
+          showStocks,
+          showSubmit,
+          askAdditionalBenefits,
+          showAdditionalBenefits,
+          baseSalary,
+          stocks,
+          onus,
+          matchPercentage,
         };
 
         switch (step) {
           case 1:
             return (
               <div>
-                <CompanyDetails
-                  handleChange={this.handleChange}
-                  values={values}
-                />
-                <button type='button' onClick={this.nextStep}>Next</button>
+                <CompanyDetails handleChange={this.handleChange} values={values} />
+                {/* Change to equity */}
+                <h3>STOCKS</h3>
+                <hr />
+                <h2>Does your company offer stocks?</h2>
+                <div className='flex-container'>
+                  <Button className='yes-no-button' onClick={this.showStocksQuestion}> Yes </Button>
+                  <Button className='yes-no-button' onClick={this.askAdditionalBenefitsQuestion}>No </Button>
+                </div>
+
+                {showStocks
+                && (
+                  <div>
+                    <Stocks handleChange={this.handleChange} values={values} />
+                    <h3>CASH BONUS</h3>
+                    <hr />
+                    <h2>Does your company offer a cash bonus?</h2>
+                    <div className='flex-container'>
+                      <Button className='yes-no-button' onClick={this.showAdditionalBenefitsQuestion}> Yes </Button>
+                      <Button className='yes-no-button'> No </Button>
+                    </div>
+                  </div>
+                )}
+                {askAdditionalBenefits
+                && (
+                  <div>
+                    <h3>CASH BONUS</h3>
+                    <hr />
+                    <h2>Does your company offer a cash bonus?</h2>
+                    <div className='flex-container'>
+                      <Button className='yes-no-button' onClick={this.showAdditionalBenefitsQuestion}> Yes </Button>
+                      <Button className='yes-no-button' onClick={this.showSubmitButton}> No </Button>
+                    </div>
+                  </div>
+                )}
+                {showAdditionalBenefits
+                && (
+                  <div>
+                    <h3>ADDITIONAL BENEFITS</h3>
+                    <hr />
+                    <AdditionalBenefits handleChange={this.handleChange} values={values} />
+                    <button type='button' className='yes-no-button' onClick={this.handleSubmit}>Done</button>
+
+                  </div>
+                )}
+                {showSubmit
+                && (
+                  <button type='button' className='yes-no-button' onClick={this.handleSubmit}>Done</button>
+                )}
+                {/* <button type="button" onClick={this.nextStep}>Next</button> */}
               </div>
             );
           case 2:
             return (
               <div>
                 <CompanyDetails
-                  handleChange={this.handleChange}
-                  values={values}
-                />
-                <Stocks
                   handleChange={this.handleChange}
                   values={values}
                 />
@@ -103,89 +179,8 @@ class NewOfferForm extends Component {
             return (
               <div />
             );
-             // do nothing
         }
       }
-
-  // render() {
-  //     return (
-  //       <Form
-  //       name="basic"
-  //       labelCol={{
-  //         span: 8,
-  //       }}
-  //       wrapperCol={{
-  //         span: 10,
-  //       }}
-  //       initialValues={{
-  //         remember: true,
-  //       }}
-  //       onFinish={this.onFinish}
-  //       onFinishFailed={this.onFinishFailed}
-  //       autoComplete="off"
-  //     >
-  //       <Form.Item
-  //         label="Company Name"
-  //         name="companyName"
-  //         rules={[
-  //           {
-  //             required: true,
-  //             message: 'Please input the company name!',
-  //           },
-  //         ]}
-  //       >
-  //         <Input name="companyName" onChange={this.handleInputChange} />
-  //       </Form.Item>
-
-  //       <Form.Item
-  //         label="Base salary"
-  //         name="baseSalary"
-  //         rules={[
-  //           {
-  //             required: true,
-  //             message: 'Please add the base salary!',
-  //           },
-  //         ]}
-  //       >
-  //         <Input name="baseSalary" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
-  //         {/* <Switch checkedChildren="Yearly" unCheckedChildren="Hourly" defaultChecked /> */}
-  //       </Form.Item>
-
-  //       <Form.Item
-  //         label="Stocks"
-  //         name="stocks"
-  //       >
-  //         <Input name="stocks" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
-  //       </Form.Item>
-
-  //       <Form.Item
-  //         label="Cash Bonus"
-  //         name="cashBonus"
-  //       >
-  //         <Input name="cashBonus" onChange={this.handleInputChange} prefix="$" suffix="USD"/>
-  //       </Form.Item>
-
-  //       <Form.Item
-  //         label="401K Match Percentage"
-  //         name="matchPercentage"
-  //       >
-  //         <Input name="matchPercentage" onChange={this.handleInputChange} prefix="%"/>
-  //       </Form.Item>
-
-  //       <Form.Item
-  //         wrapperCol={{
-  //           offset: 12,
-  //           span: 10,
-  //         }}
-  //       >
-  //         <Button type="primary" htmlType="submit"  onClick={this.handleSubmit}
-  // style={{ background: "grey", borderColor: "grey" }}>
-  //           Save
-  //         </Button>
-  //       </Form.Item>
-  //     </Form>
-  //     )
-  // }
 }
 
 export default withRouter(NewOfferForm);
