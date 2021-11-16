@@ -132,7 +132,7 @@ const CompensationLayout = (props) => {
         backgroundColor: '#F0F2F5',
       }}
       >
-        <Divider style={{ borderTop: '1px dashed' }} />
+        <Divider style={{ backgroundColor: 'black' }} />
         <Row justify='start'>
           {showCompensation ? (
             <YearlyCompensation
