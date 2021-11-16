@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import {
   Divider,
+  Button,
+  Row,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
@@ -82,6 +84,9 @@ const CompensationLayout = (props) => {
   const [savingsPercentage, setSavingsPercentage] = useState(30);
   const [retirementPercentage, setRetirementPercentage] = useState(4);
 
+  // used to record which graph to show
+  const [showCompensation, setShowCompenstaion] = useState(true);
+
   fetchCompensationData(id, company, {
     setBase, setBonus, setSigning, setFederalTaxRate, setStateTaxRate,
   });
@@ -104,29 +109,6 @@ const CompensationLayout = (props) => {
         position='' // CURRENTLY DO NOT HAVE POSITION DATA
         company={company}
       />
-      <div style={{
-        // position: 'sticky', TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
-        top: 0,
-        opacity: 1,
-        zIndex: 5000, // arbitrary high value
-        backgroundColor: '#F0F2F5',
-      }}
-      >
-        <YearlyCompensation
-          data={graphData}
-          baseColor={baseColor}
-          bonusColor={bonusColor}
-          spendingPercentage={spendingPercentage}
-          savingsPercentage={savingsPercentage}
-          retirementPercentage={retirementPercentage}
-        />
-        <YearlySavings
-          data={graphData}
-          spendingColor={spendingColor}
-          savingsColor={savingsColor}
-          retirementColor={retirementColor}
-        />
-      </div>
       <Divider />
       <CompensationConfiguration
         base={base}
@@ -142,6 +124,43 @@ const CompensationLayout = (props) => {
         savingsColor={savingsColor}
         retirementColor={retirementColor}
       />
+      <div style={{
+        position: 'sticky', // TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
+        bottom: 0,
+        opacity: 1,
+        zIndex: 5000, // arbitrary high value
+        backgroundColor: '#F0F2F5',
+      }}
+      >
+        <Row justify='start'>
+          {showCompensation ? (
+            <YearlyCompensation
+              data={graphData}
+              baseColor={baseColor}
+              bonusColor={bonusColor}
+              spendingPercentage={spendingPercentage}
+              savingsPercentage={savingsPercentage}
+              retirementPercentage={retirementPercentage}
+            />
+          ) : (
+            <YearlySavings
+              data={graphData}
+              spendingColor={spendingColor}
+              savingsColor={savingsColor}
+              retirementColor={retirementColor}
+            />
+          )}
+          <Button
+            onClick={() => {
+              setShowCompenstaion(!showCompensation);
+            }}
+          >
+            {showCompensation ? 'Show Savings Graph' : 'Show Compensation Graph'}
+
+          </Button>
+        </Row>
+
+      </div>
 
     </>
   );
