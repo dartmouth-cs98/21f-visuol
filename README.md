@@ -26,6 +26,8 @@ We're using
 ### Dev
 Run `yarn start` to initialize the dev envivronment.
 
+Make sure that the backend is also running (https://github.com/dartmouth-cs98/21f-visuol-backend).
+
 
 ### Prod
 TBD
