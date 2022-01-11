@@ -1,0 +1,29 @@
+.delete-button {
+    color: rgba(196, 196, 196);
+    background: rgba(118, 118, 118);
+    border-radius: 5px;
+    width: 70px;
+  
+  }
+  
+  .delete-button:focus {
+    color: rgba(118, 118, 118); 
+    background:  rgba(196, 196, 196);
+    border-radius: 5px;
+    outline: none;
+    width: 70px;
+  
+  }
+  
+  .delete-button:hover {
+    color: rgba(118, 118, 118); 
+    background:  rgba(196, 196, 196);
+    border-radius: 5px;
+    outline: none;
+    width: 70px;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center;
+  }

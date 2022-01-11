@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  Slider, PageHeader, Row, Col, Divider, Typography, Card,
+  Slider, PageHeader, Row, Col, Divider, Typography, Card, Button,
 } from 'antd';
 import numberWithCommas from '../../tools/numbersWithCommas';
+import './CompensationConfiguration.css';
 
 const { Paragraph } = Typography;
 
@@ -151,6 +152,19 @@ const CompensationConfiguration = (props) => {
         ]}
         />
       </Card>
+      <div className='flex-container'>
+        <Button type='button' className='delete-button'>
+          Delete
+        </Button>
+        &nbsp;
+        <Button type='button' className='delete-button'>
+          Edit
+        </Button>
+        &nbsp;
+        <Button type='button' className='delete-button'>
+          Share
+        </Button>
+      </div>
     </>
   );
 };
