@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import './CompensationConfiguration.css';
+import { removeOffer } from '../../OfferAPI'
 
 const { Paragraph } = Typography;
 
@@ -75,8 +76,15 @@ const SliderLayout = (props) => {
   );
 };
 
+const deleteOffer = (id) => {
+  console.log("delete offer for " + id);
+  removeOffer(id);
+}
+
 const CompensationConfiguration = (props) => {
   const {
+    id,
+    company,
     base,
     bonus,
     updateBaseRate,
@@ -153,7 +161,7 @@ const CompensationConfiguration = (props) => {
         />
       </Card>
       <div className='flex-container'>
-        <Button type='button' className='delete-button'>
+        <Button type='button' className='delete-button' onClick={() => deleteOffer(id)}>
           Delete
         </Button>
         &nbsp;

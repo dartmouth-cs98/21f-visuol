@@ -54,3 +54,21 @@ export const myOffers = async () => {
 
   return offers;
 };
+
+export const removeOffer = async (id) => {
+  const tokenString = localStorage.getItem('token')
+
+  const headers = {
+    Authorization: tokenString,
+  };
+  console.log(tokenString);
+  console.log(headers);
+
+  const result = await axios.delete(`${BASE_URL}api_v1/remove_offer`, { headers: headers,
+    data: {
+      id: id
+    }
+    });
+
+  return result;
+}
