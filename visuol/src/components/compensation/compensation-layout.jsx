@@ -3,6 +3,7 @@ import {
   Divider,
   Button,
   Row,
+  PageHeader,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
@@ -14,6 +15,7 @@ import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
 import CompensationConfiguration from './CompensationConfiguration';
 
+const SECTION_HEADER_CLASSNAME = 'section-header';
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
 const spendingColor = '#9881dd';
@@ -125,7 +127,7 @@ const CompensationLayout = (props) => {
         retirementColor={retirementColor}
       />
       <div style={{
-        position: 'sticky', // TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
+        // position: 'sticky', // TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
         bottom: 0,
         opacity: 1,
         zIndex: 5000, // arbitrary high value
@@ -133,6 +135,11 @@ const CompensationLayout = (props) => {
       }}
       >
         <Divider style={{ backgroundColor: 'black' }} />
+        <PageHeader
+          className={SECTION_HEADER_CLASSNAME}
+          title='Compensation'
+          subTitle="Here's a quick rundown of your financials."
+        />
         <Row justify='start'>
           {showCompensation ? (
             <YearlyCompensation
