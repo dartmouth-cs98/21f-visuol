@@ -3,13 +3,9 @@ import {
   Row,
   Col,
   Typography,
-  Divider,
-  PageHeader,
 } from 'antd';
 
 const { Title, Text } = Typography;
-
-const SECTION_HEADER_CLASSNAME = 'section-header';
 
 const CompensationHeader = (props) => {
   const { company, position, totalCompensation } = props;
@@ -34,12 +30,6 @@ const CompensationHeader = (props) => {
           </div>
         </Col>
       </Row>
-      <Divider />
-      <PageHeader
-        className={SECTION_HEADER_CLASSNAME}
-        title='Compensation'
-        subTitle="Here's a quick rundown of your financials."
-      />
     </>
   );
 };
