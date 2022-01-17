@@ -7,6 +7,7 @@ import companyLogo from './VisuOL-logos.jpeg';
 const { Countdown } = Statistic;
 const deadline = new Date(2022, 3, 9);
 class Home extends PureComponent {
+  
   render() {
     return (
       <div style={{ margin: 'auto', width: '90%' }}>

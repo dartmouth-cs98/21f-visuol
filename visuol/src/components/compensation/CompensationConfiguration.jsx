@@ -5,6 +5,7 @@ import {
 import numberWithCommas from '../../tools/numbersWithCommas';
 import './CompensationConfiguration.css';
 import { removeOffer } from '../../OfferAPI'
+import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 
 const { Paragraph } = Typography;
 
@@ -79,6 +80,7 @@ const SliderLayout = (props) => {
 const deleteOffer = (id) => {
   console.log("delete offer for " + id);
   removeOffer(id);
+  window.location.href = '/';
 }
 
 const CompensationConfiguration = (props) => {
@@ -98,6 +100,8 @@ const CompensationConfiguration = (props) => {
     updateSavingsPercentage,
     updateRetirementPercentage,
   } = props;
+
+  const { history } = props;
 
   return (
     <>
@@ -161,9 +165,11 @@ const CompensationConfiguration = (props) => {
         />
       </Card>
       <div className='flex-container'>
-        <Button type='button' className='delete-button' onClick={() => deleteOffer(id)}>
-          Delete
-        </Button>
+        <NavLink to='/'>
+          <Button type='button' className='delete-button' onClick={() => deleteOffer(id)}>
+            Delete
+          </Button>
+        </NavLink>
         &nbsp;
         <Button type='button' className='delete-button'>
           Edit
