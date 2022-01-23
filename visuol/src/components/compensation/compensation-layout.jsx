@@ -37,6 +37,7 @@ const fetchCompensationData = async (id, company, setters) => {
   const {
     base,
     bonus,
+    state,
   } = resp.data;
   const signing = 0;
 
@@ -49,6 +50,15 @@ const fetchCompensationData = async (id, company, setters) => {
 
   const fedTaxRate = taxResp.data.fed_tax_percent;
 
+  const stateTaxResp = await axios.post(`${BASE_URL}api_v1/state_taxes`, {
+    married: 'not-married',
+    income: base + bonus,
+    state,
+  }, {
+    headers: { Authorization: token },
+  });
+
+  const stateTaxRate = stateTaxResp.data.state_tax_percent;
   const {
     setBase,
     setBonus,
@@ -61,7 +71,7 @@ const fetchCompensationData = async (id, company, setters) => {
   setBonus(bonus != null ? bonus : 0);
   setSigning(0);
   setFederalTaxRate(fedTaxRate);
-  setStateTaxRate(0);
+  setStateTaxRate(stateTaxRate);
 };
 
 const updateComplimentary = (updateSpendingPercentage,
@@ -78,7 +88,7 @@ const CompensationLayout = (props) => {
   const [bonus, setBonus] = useState(0);
   const [signing, setSigning] = useState(0);
   const [federalTax, setFederalTaxRate] = useState(0);
-  const [stateTax, setStateTaxRate] = useState(0); // Not currently using
+  const [stateTax, setStateTaxRate] = useState(0);
 
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);

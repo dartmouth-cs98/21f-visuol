@@ -32,6 +32,7 @@ class NewOfferForm extends Component {
       matchPercentage: '',
       stocks: '',
       PTO: '',
+      state: '',
     };
   }
 
@@ -78,6 +79,7 @@ class NewOfferForm extends Component {
         data.matchPercentage = Number.parseInt(offer.matchPercentage, 10);
         data.stocks = Number.parseInt(offer.stocks, 10);
         data.PTO = Number.parseInt(offer.PTO, 10);
+        data.state = offer.state;
         const tokenString = localStorage.getItem('token');
         const headers = {
           Authorization: tokenString,
@@ -104,7 +106,7 @@ class NewOfferForm extends Component {
       render() {
         const {
           company, askStocks, showStocks, askAdditionalBenefits,
-          showAdditionalBenefits, showSubmit, baseSalary, stocks, bonus, matchPercentage,
+          showAdditionalBenefits, showSubmit, baseSalary, stocks, bonus, matchPercentage, state,
         } = this.state;
         const values = {
           company,
@@ -117,6 +119,7 @@ class NewOfferForm extends Component {
           stocks,
           bonus,
           matchPercentage,
+          state,
         };
 
         return (
