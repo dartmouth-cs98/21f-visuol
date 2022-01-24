@@ -122,7 +122,7 @@ const CompensationLayout = (props) => {
       />
       <Divider />
       <CompensationConfiguration
-        id = {id}
+        id={id}
         company={company}
         base={base}
         bonus={bonus}
