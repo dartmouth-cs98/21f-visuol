@@ -81,8 +81,14 @@ const updateComplimentary = (updateSpendingPercentage,
 };
 
 const CompensationLayout = (props) => {
-  const { match } = props;
-  const { id, company } = match.params;
+  const { match, offer } = props;
+  let { id, company } = match.params;
+
+  if (id == null || company == null) { // didn't find a match from url, try to grab prop from offer
+    id = offer.id;
+    company = offer.company;
+  }
+  console.log('SUBMISSION PARAMS', id, company);
 
   const [base, setBase] = useState(0);
   const [bonus, setBonus] = useState(0);
