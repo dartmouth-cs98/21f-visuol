@@ -85,7 +85,6 @@ const CompensationLayout = (props) => {
   const [spendingPercentage, setSpendingPercentage] = useState(60);
   const [savingsPercentage, setSavingsPercentage] = useState(30);
   const [retirementPercentage, setRetirementPercentage] = useState(4);
-
   // used to record which graph to show
   const [showCompensation, setShowCompenstaion] = useState(true);
 
@@ -113,6 +112,8 @@ const CompensationLayout = (props) => {
       />
       <Divider />
       <CompensationConfiguration
+        id = {id}
+        company={company}
         base={base}
         bonus={bonus}
         savingsPercentage={savingsPercentage}
