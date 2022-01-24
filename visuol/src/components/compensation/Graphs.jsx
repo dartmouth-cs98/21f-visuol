@@ -36,7 +36,7 @@ export const DataTransform = (compData, baseGrowth,
     data.Bonus = Math.round(bonus * ((1 + (bonusGrowth) / 100) ** i));
     data.Total = data.Base + data.Bonus;
     // Calculating Tax and Post Tax Compensation
-    data.Tax = data.Total * (federalTax + stateTax);
+    data.Tax = data.Total * (Number.parseFloat(federalTax) + Number.parseFloat(stateTax));
     data.PostTaxCompensation = data.Total - data.Tax;
     // Update accumulated variables
     pastCompensation += data.Total;
