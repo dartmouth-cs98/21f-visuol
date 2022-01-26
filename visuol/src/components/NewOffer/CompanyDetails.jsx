@@ -92,6 +92,12 @@ const CompanyDetails = ({ handleChange, values }) => (
         value={values.company}
         onChange={handleChange('company')}
       />
+      <input
+        type='text'
+        placeholder='*State (Ex: Ohio)'
+        value={values.state}
+        onChange={handleChange('state')}
+      />
       <h3>BASE SALARY</h3>
       <hr />
       <div className='input-box'>

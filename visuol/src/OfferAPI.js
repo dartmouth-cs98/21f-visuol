@@ -56,7 +56,7 @@ export const myOffers = async () => {
 };
 
 export const removeOffer = async (id) => {
-  const tokenString = localStorage.getItem('token')
+  const tokenString = localStorage.getItem('token');
 
   const headers = {
     Authorization: tokenString,
@@ -64,11 +64,12 @@ export const removeOffer = async (id) => {
   console.log(tokenString);
   console.log(headers);
 
-  const result = await axios.delete(`${BASE_URL}api_v1/remove_offer`, { headers: headers,
+  const result = await axios.delete(`${BASE_URL}api_v1/remove_offer`, {
+    headers,
     data: {
-      id: id
-    }
-    });
+      id,
+    },
+  });
 
   return result;
-}
+};

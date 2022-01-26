@@ -2,10 +2,10 @@ import React from 'react';
 import {
   Slider, PageHeader, Row, Col, Divider, Typography, Card, Button,
 } from 'antd';
-import numberWithCommas from '../../tools/numbersWithCommas';
 import './CompensationConfiguration.css';
-import { removeOffer } from '../../OfferAPI'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { removeOffer } from '../../OfferAPI';
+import numberWithCommas from '../../tools/numbersWithCommas';
 
 const { Paragraph } = Typography;
 
@@ -78,15 +78,15 @@ const SliderLayout = (props) => {
 };
 
 const deleteOffer = (id) => {
-  console.log("delete offer for " + id);
+  console.log(`delete offer for ${id}`);
   removeOffer(id);
   window.location.href = '/';
-}
+};
 
 const CompensationConfiguration = (props) => {
   const {
     id,
-    company,
+    // company,
     base,
     bonus,
     updateBaseRate,
@@ -101,7 +101,7 @@ const CompensationConfiguration = (props) => {
     updateRetirementPercentage,
   } = props;
 
-  const { history } = props;
+  // const { history } = props;
 
   return (
     <>
