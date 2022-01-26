@@ -5,6 +5,7 @@ import Registration from './Registration';
 import Home from './Home';
 import NewOfferForm from './components/NewOffer/NewOfferForm';
 import CompensationLayout from './components/compensation/compensation-layout';
+import ComparisonLayout from './components/comparison/ComparisonLayout';
 import Logout from './Logout';
 
 class Routes extends Component {
@@ -16,6 +17,7 @@ class Routes extends Component {
           <Route path='/loadGraphs/:company/:id' component={CompensationLayout} />
           <Route path='/loadGraph' component={CompensationLayout} />
           <Route path='/new-offer' component={NewOfferForm} />
+          <Route path='/compare' component={ComparisonLayout} />
           <Route path='/logout' component={Logout} />
           <Route path='/' component={Home} />
         </Switch>

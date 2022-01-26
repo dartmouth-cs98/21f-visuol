@@ -64,6 +64,11 @@ class SideMenu extends Component {
               </Menu.Item>
             ))}
           </SubMenu>
+          <Menu.Item key='compare'>
+            <NavLink to='/compare'>
+              <span className='black'>Compare Offers</span>
+            </NavLink>
+          </Menu.Item>
           <Menu.Item key='logout'>
             <NavLink to='/logout'>
               <span className='black'>Log Out</span>
