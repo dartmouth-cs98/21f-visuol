@@ -19,10 +19,6 @@ function PaymentRateSwitch() {
           text: 'Year',
           value: 'year',
         },
-        {
-          text: 'Hour',
-          value: 'hour',
-        },
       ]}
     />
   );
@@ -44,7 +40,7 @@ const CompanyDetails = ({ handleChange, values }) => (
         onChange={handleChange('state')}
       />
       <h3>BASE SALARY</h3>
-      <hr />
+      <hr width='10%' align='left' />
       <div className='input-box'>
         <input
           className='small-input'
