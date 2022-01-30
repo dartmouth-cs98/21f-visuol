@@ -49,12 +49,11 @@ class NewOfferForm extends Component {
       }
 
       handleChange = (input) => (e) => {
-        this.setState({ [input]: e.target.value });
-      }
-
-      handleHoursChange = (input, value) => {
-        this.setState({ [input]: value})
-        this.setState({ [base]: this.state.hours * this.state.weeks})
+        if (input !== 'total') {
+          this.setState({ [input]: e.target.value });
+        } else {
+          this.setState({ 'base': this.state.base * this.state.weeks * this.state.hours });
+        }
       }
 
       handleSubmit = () => {

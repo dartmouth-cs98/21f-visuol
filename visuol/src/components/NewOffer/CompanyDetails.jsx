@@ -29,9 +29,9 @@ const HoursInfo = ({ handleChange, values }) => (
           onChange={handleChange('weeks')}
         />
       </label>
-      <div className='flex-container'>
-        <Button type='button' className='yes-no-button'>Done</Button>
-      </div>
+    </div>
+    <div className='flex-container'>
+      <Button type='button' className='yes-no-button' onClick={handleChange('total')}>Done</Button>
     </div>
   </div>
 );
@@ -61,23 +61,32 @@ const PaymentRateSwitch = ({ handleChange, values }) => {
   } else {
     return (
       <div>
-        <SwitchMultiButton
-          className='wage-toggle'
-          value={state}
-          setValue={setState}
-          style={{ fontSize: 18, fontWeight: 20 }}
-          buttons={[
-            {
-              text: 'Year',
-              value: 'year',
-            },
-            {
-              text: 'Hour',
-              value: 'hour',
-            },
-          ]}
-        />
-        <HoursInfo handleChange={handleChange} values={values}/>
+
+        <div className='input-box'>
+          <SwitchMultiButton
+            className='wage-toggle'
+            value={state}
+            setValue={setState}
+            style={{ fontSize: 18, fontWeight: 20 }}
+            buttons={[
+              {
+                text: 'Year',
+                value: 'year',
+              },
+              {
+                text: 'Hour',
+                value: 'hour',
+              },
+            ]}
+          />
+        </div>
+        
+        <div>
+          <HoursInfo 
+            handleChange={handleChange} 
+            values={values}/>
+        </div>
+
       </div>
     );
   }
@@ -108,7 +117,13 @@ const CompanyDetails = ({ handleChange, values }) => (
           value={values.base}
           onChange={handleChange('base')}
         />
-        <PaymentRateSwitch handleChange={handleChange} values={values}/>
+      </div>
+      <div className='input-box'>
+        <PaymentRateSwitch 
+          handleChange={handleChange} 
+          values={values}
+          className='salary-info'
+        />
       </div>
     </label>
   </div>
