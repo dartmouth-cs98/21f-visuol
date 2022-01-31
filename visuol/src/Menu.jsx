@@ -5,7 +5,7 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
-import { myOffers } from './OfferAPI';
+import { myOffers, myAccount } from './OfferAPI';
 
 const { SubMenu } = Menu;
 
@@ -17,6 +17,7 @@ class SideMenu extends Component {
     this.state = {
       defaultSelectedKey: lastToken,
       offers: [],
+      recruiterCompany: '',
     };
   }
 
@@ -28,12 +29,14 @@ class SideMenu extends Component {
           offers: response,
         });
       });
+    myAccount()
+      .then((response) => {
+        this.setState({
+          recruiterCompany: response,
+        });
+      });
     return retrieved;
   }
-
-  handleClick = (e) => {
-    console.log('click ', e);
-  };
 
   display = (offers) => {
     const { loggedIn } = this.props;
@@ -53,7 +56,14 @@ class SideMenu extends Component {
               <span className='black'>New Offer</span>
             </NavLink>
           </Menu.Item>
-          <SubMenu key='offers' title={<span className='black'>My Offers</span>}>
+          <SubMenu
+            key='offers'
+            title={
+                  (this.state.recruiterCompany)
+                    ? <span className='black'>My Clients</span>
+                    : <span className='black'>My Offers</span>
+                }
+          >
             {offers.map((offer) => (
               // eslint-disable-next-line no-underscore-dangle
               <Menu.Item key={`${offer.company}/${offer._id}`}>
@@ -96,7 +106,7 @@ class SideMenu extends Component {
   }
 
   render() {
-    const { defaultSelectedKey, offers } = this.state;
+    const { defaultSelectedKey, offers, recruiterCompany } = this.state;
     return (
       <Menu
         onClick={this.handleClick}
@@ -107,7 +117,7 @@ class SideMenu extends Component {
         theme='dark'
       >
         {/* Menu Item keys must match the last part of their url (text behind last /) */}
-        {this.display(offers)}
+        {this.display(offers, recruiterCompany)}
       </Menu>
     );
   }

@@ -54,3 +54,20 @@ export const myOffers = async () => {
 
   return offers;
 };
+
+export const myAccount = async () => {
+  const tokenString = localStorage.getItem('token');
+
+  const config = {
+    Authorization: tokenString,
+  };
+
+  const userAccount = await axios.get(`${BASE_URL}api_v1/user`, { headers: config })
+    .then((response) => response.data);
+
+  console.log(userAccount);
+  console.log('company name:');
+  console.log(userAccount.company);
+
+  return userAccount.company;
+};
