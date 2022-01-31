@@ -55,6 +55,23 @@ export const myOffers = async () => {
   return offers;
 };
 
+export const shareOffer = async (email) => {
+  const tokenString = localStorage.getItem('token');
+
+  const headers = {
+    Authorization: tokenString,
+  };
+
+  const result = await axios.post(`${BASE_URL}api_v1/share_offer`, {
+    headers,
+    data: {
+      email,
+    },
+  });
+
+  return result;
+}
+
 export const removeOffer = async (id) => {
   const tokenString = localStorage.getItem('token');
 
