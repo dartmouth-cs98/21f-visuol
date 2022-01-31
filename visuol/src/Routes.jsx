@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
+import Health from './HealthDict';
 import NewOfferForm from './components/NewOffer/NewOfferForm';
 import CompensationLayout from './components/compensation/compensation-layout';
 import ComparisonLayout from './components/comparison/ComparisonLayout';
@@ -19,6 +20,7 @@ class Routes extends Component {
           <Route path='/new-offer' component={NewOfferForm} />
           <Route path='/compare' component={ComparisonLayout} />
           <Route path='/logout' component={Logout} />
+          <Route path='/health' component={Health} />
           <Route path='/' component={Home} />
         </Switch>
       );
