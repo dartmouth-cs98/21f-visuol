@@ -3,6 +3,7 @@ import {
   Divider,
   Button,
   Row,
+  PageHeader,
 } from 'antd';
 
 import { withRouter } from 'react-router-dom';
@@ -14,6 +15,7 @@ import numberWithCommas from '../../tools/numbersWithCommas';
 import CompensationHeader from './CompensationHeader';
 import CompensationConfiguration from './CompensationConfiguration';
 
+const SECTION_HEADER_CLASSNAME = 'section-header';
 const baseColor = '#9696CE';
 const bonusColor = '#81DDB0';
 const spendingColor = '#9881dd';
@@ -35,6 +37,7 @@ const fetchCompensationData = async (id, company, setters) => {
   const {
     base,
     bonus,
+    state,
   } = resp.data;
   const signing = 0;
 
@@ -47,6 +50,15 @@ const fetchCompensationData = async (id, company, setters) => {
 
   const fedTaxRate = taxResp.data.fed_tax_percent;
 
+  const stateTaxResp = await axios.post(`${BASE_URL}api_v1/state_taxes`, {
+    married: 'not-married',
+    income: base + bonus,
+    state,
+  }, {
+    headers: { Authorization: token },
+  });
+
+  const stateTaxRate = stateTaxResp.data.state_tax_percent;
   const {
     setBase,
     setBonus,
@@ -59,7 +71,7 @@ const fetchCompensationData = async (id, company, setters) => {
   setBonus(bonus != null ? bonus : 0);
   setSigning(0);
   setFederalTaxRate(fedTaxRate);
-  setStateTaxRate(0);
+  setStateTaxRate(stateTaxRate);
 };
 
 const updateComplimentary = (updateSpendingPercentage,
@@ -69,21 +81,26 @@ const updateComplimentary = (updateSpendingPercentage,
 };
 
 const CompensationLayout = (props) => {
-  const { match } = props;
-  const { id, company } = match.params;
+  const { match, offer } = props;
+  let { id, company } = match.params;
+
+  if (id == null || company == null) { // didn't find a match from url, try to grab prop from offer
+    id = offer.id;
+    company = offer.company;
+  }
+  console.log('SUBMISSION PARAMS', id, company);
 
   const [base, setBase] = useState(0);
   const [bonus, setBonus] = useState(0);
   const [signing, setSigning] = useState(0);
   const [federalTax, setFederalTaxRate] = useState(0);
-  const [stateTax, setStateTaxRate] = useState(0); // Not currently using
+  const [stateTax, setStateTaxRate] = useState(0);
 
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
   const [spendingPercentage, setSpendingPercentage] = useState(60);
   const [savingsPercentage, setSavingsPercentage] = useState(30);
   const [retirementPercentage, setRetirementPercentage] = useState(4);
-
   // used to record which graph to show
   const [showCompensation, setShowCompenstaion] = useState(true);
 
@@ -111,6 +128,8 @@ const CompensationLayout = (props) => {
       />
       <Divider />
       <CompensationConfiguration
+        id={id}
+        company={company}
         base={base}
         bonus={bonus}
         savingsPercentage={savingsPercentage}
@@ -125,7 +144,7 @@ const CompensationLayout = (props) => {
         retirementColor={retirementColor}
       />
       <div style={{
-        position: 'sticky', // TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
+        // position: 'sticky', // TODO: NEED TO ADD TOGGLE BEFORE WE MAKE THIS STICKY
         bottom: 0,
         opacity: 1,
         zIndex: 5000, // arbitrary high value
@@ -133,6 +152,11 @@ const CompensationLayout = (props) => {
       }}
       >
         <Divider style={{ backgroundColor: 'black' }} />
+        <PageHeader
+          className={SECTION_HEADER_CLASSNAME}
+          title='Compensation'
+          subTitle="Here's a quick rundown of your financials."
+        />
         <Row justify='start'>
           {showCompensation ? (
             <YearlyCompensation

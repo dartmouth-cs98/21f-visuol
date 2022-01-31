@@ -36,7 +36,7 @@ export const DataTransform = (compData, baseGrowth,
     data.Bonus = Math.round(bonus * ((1 + (bonusGrowth) / 100) ** i));
     data.Total = data.Base + data.Bonus;
     // Calculating Tax and Post Tax Compensation
-    data.Tax = data.Total * (federalTax + stateTax);
+    data.Tax = data.Total * (Number.parseFloat(federalTax) + Number.parseFloat(stateTax));
     data.PostTaxCompensation = data.Total - data.Tax;
     // Update accumulated variables
     pastCompensation += data.Total;
@@ -74,7 +74,7 @@ export const YearlyCompensation = (props) => {
     >
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='Year' height={60} tick={<CustomizedAxisTick />} />
-      <YAxis />
+      <YAxis tickFormatter={(value) => new Intl.NumberFormat('en').format(value)} />
       <Line type='monotone' dataKey='Base' stroke={baseColor} label={<CustomizedLabel />} />
       <Line type='monotone' dataKey='Bonus' stroke={bonusColor} label={<CustomizedLabel />} />
       <Line type='monotone' dataKey='Total' stroke='#cc3300' label={<CustomizedLabel />} />
@@ -94,15 +94,15 @@ export const YearlySavings = (props) => {
       height={500}
       data={data}
       margin={{
-        top: 10,
+        top: 20,
         right: 30,
-        left: 0,
-        bottom: 0,
+        left: 20,
+        bottom: 10,
       }}
     >
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='Year' height={60} tick={<CustomizedAxisTick />} />
-      <YAxis />
+      <YAxis tickFormatter={(value) => new Intl.NumberFormat('en').format(value)} />
       <Tooltip content={<CustomTooltipSavings />} />
       <Line type='monotone' dataKey='TotalAccumulatedCompensation' stroke='#cc3300' fill='#cc3300' />
       <Area type='monotone' dataKey='TotalPaidInTaxes' stackId='1' stroke='#6196E5' fill='#6196E5' />

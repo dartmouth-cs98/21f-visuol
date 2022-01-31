@@ -1,7 +1,10 @@
 import React from 'react';
 import {
-  Slider, PageHeader, Row, Col, Divider, Typography, Card,
+  Slider, PageHeader, Row, Col, Divider, Typography, Card, Button,
 } from 'antd';
+import './CompensationConfiguration.css';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { removeOffer } from '../../OfferAPI';
 import numberWithCommas from '../../tools/numbersWithCommas';
 
 const { Paragraph } = Typography;
@@ -74,8 +77,16 @@ const SliderLayout = (props) => {
   );
 };
 
+const deleteOffer = (id) => {
+  console.log(`delete offer for ${id}`);
+  removeOffer(id);
+  window.location.href = '/';
+};
+
 const CompensationConfiguration = (props) => {
   const {
+    id,
+    // company,
     base,
     bonus,
     updateBaseRate,
@@ -89,6 +100,8 @@ const CompensationConfiguration = (props) => {
     updateSavingsPercentage,
     updateRetirementPercentage,
   } = props;
+
+  // const { history } = props;
 
   return (
     <>
@@ -151,6 +164,21 @@ const CompensationConfiguration = (props) => {
         ]}
         />
       </Card>
+      <div className='flex-container'>
+        <NavLink to='/'>
+          <Button type='button' className='delete-button' onClick={() => deleteOffer(id)}>
+            Delete
+          </Button>
+        </NavLink>
+        &nbsp;
+        <Button type='button' className='delete-button'>
+          Edit
+        </Button>
+        &nbsp;
+        <Button type='button' className='delete-button'>
+          Share
+        </Button>
+      </div>
     </>
   );
 };

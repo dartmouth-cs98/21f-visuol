@@ -65,9 +65,24 @@ export const myAccount = async () => {
   const userAccount = await axios.get(`${BASE_URL}api_v1/user`, { headers: config })
     .then((response) => response.data);
 
-  console.log(userAccount);
-  console.log('company name:');
-  console.log(userAccount.company);
-
   return userAccount.company;
+};
+
+export const removeOffer = async (id) => {
+  const tokenString = localStorage.getItem('token');
+
+  const headers = {
+    Authorization: tokenString,
+  };
+  console.log(tokenString);
+  console.log(headers);
+
+  const result = await axios.delete(`${BASE_URL}api_v1/remove_offer`, {
+    headers,
+    data: {
+      id,
+    },
+  });
+
+  return result;
 };
