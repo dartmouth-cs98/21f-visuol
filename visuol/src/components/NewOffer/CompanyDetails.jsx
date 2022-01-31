@@ -19,6 +19,10 @@ function PaymentRateSwitch() {
           text: 'Year',
           value: 'year',
         },
+        {
+          text: 'Hour',
+          value: 'hour',
+        },
       ]}
     />
   );
