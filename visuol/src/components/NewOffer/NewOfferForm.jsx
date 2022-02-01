@@ -132,7 +132,7 @@ class NewOfferForm extends Component {
           <div>
             <CompanyDetails handleChange={this.handleChange} values={values} />
             <h3>STOCKS</h3>
-            <hr />
+            <hr width='10%' align='left' />
 
             <div>
               <Stocks handleChange={this.handleChange} values={values} />
@@ -140,7 +140,7 @@ class NewOfferForm extends Component {
 
             <div>
               <h3>ADDITIONAL BENEFITS</h3>
-              <hr />
+              <hr width='10%' align='left' />
               <AdditionalBenefits handleChange={this.handleChange} values={values} />
 
             </div>
