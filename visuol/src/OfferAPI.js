@@ -55,18 +55,17 @@ export const myOffers = async () => {
   return offers;
 };
 
-export const shareOffer = async (email) => {
+export const shareOffer = async (id, email) => {
   const tokenString = localStorage.getItem('token');
 
   const headers = {
     Authorization: tokenString,
   };
 
-  const result = await axios.post(`${BASE_URL}api_v1/share_offer`, {
-    headers,
-    data: {
-      email,
-    },
+  const data = { 'id': id, 'email': email }
+
+  const result = await axios.post(`${BASE_URL}api_v1/share_offer`, data, {
+    headers: headers
   });
 
   return result;

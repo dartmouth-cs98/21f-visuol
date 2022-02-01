@@ -181,7 +181,7 @@ const CompensationConfiguration = (props) => {
           Share
         </Button>
 
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <Modal id={id} open={isOpen} onClose={() => setIsOpen(false)}>
           
         </Modal>
       </div>

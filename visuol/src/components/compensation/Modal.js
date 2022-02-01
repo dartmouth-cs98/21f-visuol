@@ -3,13 +3,13 @@ import './Modal.css'
 import './CompensationConfiguration.css';
 import { shareOffer } from '../../OfferAPI';
 
-export default function Modal({ open, children, onClose }) {
+export default function Modal({ id, open, children, onClose }) {
     if (!open) return null;
 
     const [email, setEmail] = useState('');
 
     const share = () => {
-        shareOffer(email);
+        shareOffer(id, email);
         onClose();
     }
 
