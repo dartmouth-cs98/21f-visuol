@@ -32,6 +32,8 @@ class NewOfferForm extends Component {
       matchPercentage: '',
       stocks: '',
       PTO: '',
+      hours: '',
+      weeks: '',
       state: '',
     };
   }
@@ -47,7 +49,11 @@ class NewOfferForm extends Component {
       }
 
       handleChange = (input) => (e) => {
-        this.setState({ [input]: e.target.value });
+        if (input !== 'total') {
+          this.setState({ [input]: e.target.value });
+        } else {
+          this.setState({ 'base': this.state.base * this.state.weeks * this.state.hours });
+        }
       }
 
       handleSubmit = () => {

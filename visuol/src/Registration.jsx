@@ -1,7 +1,7 @@
 // Credit to https://ant.design/components/form/
 // Component for logging in
 import {
-  Form, Input, Button, Switch, notification,
+  Form, Input, Button, notification, Radio,
 } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
@@ -13,7 +13,7 @@ class Registration extends Component {
     super(props);
 
     this.state = {
-      displayCompanyForm: false,
+      companyRegistration: false,
     };
   }
 
@@ -26,13 +26,13 @@ class Registration extends Component {
 
   // OnFinish dictates what happens when submitting a form object
   onFinish = (values) => {
-    const { displayCompanyForm } = this.state;
+    const { companyRegistration } = this.state;
 
     const info = {
       name: values.name,
       email: values.email,
       password: values.password,
-      company: (displayCompanyForm) ? values.company : null,
+      company: (companyRegistration) ? values.company : null,
     };
     axios.post('http://localhost:5000/api_v1/register_user', info).then((response) => {
       console.log(response);
@@ -55,12 +55,12 @@ class Registration extends Component {
     console.log('Failed:', errorInfo);
   };
 
-  onClickSwitch = () => {
-    this.setState((state) => ({ displayCompanyForm: !state.displayCompanyForm }));
+  onChange = (e) => {
+    this.setState(() => ({ companyRegistration: e.target.value }));
   };
 
   render() {
-    const { displayCompanyForm } = this.state;
+    const { companyRegistration } = this.state;
 
     return (
       <Form
@@ -119,13 +119,15 @@ class Registration extends Component {
 
         <Form.Item
           wrapperCol={{
-            offset: 4,
-            span: 2,
+            offset: 3,
+            span: 0,
           }}
-          label='Company Account'
-          valuePropName='checked'
+          label='Account Type'
         >
-          <Switch onClick={this.onClickSwitch} />
+          <Radio.Group onChange={this.onChange} value={companyRegistration}>
+            <Radio value={false}>Individual</Radio>
+            <Radio value>Recruiter</Radio>
+          </Radio.Group>
         </Form.Item>
 
         <Form.Item
@@ -133,12 +135,12 @@ class Registration extends Component {
           name='company'
           rules={[
             {
-              required: displayCompanyForm,
+              required: companyRegistration,
               message: 'Please input your company name',
             },
           ]}
         >
-          <Input disabled={!displayCompanyForm} />
+          <Input disabled={!companyRegistration} />
         </Form.Item>
 
         <Form.Item
