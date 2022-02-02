@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Slider, PageHeader, Row, Col, Divider, Typography, Card, Button,
 } from 'antd';
@@ -6,6 +6,7 @@ import './CompensationConfiguration.css';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { removeOffer } from '../../OfferAPI';
 import numberWithCommas from '../../tools/numbersWithCommas';
+import Modal from './Modal';
 
 const { Paragraph } = Typography;
 
@@ -102,6 +103,7 @@ const CompensationConfiguration = (props) => {
   } = props;
 
   // const { history } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -175,9 +177,13 @@ const CompensationConfiguration = (props) => {
           Edit
         </Button>
         &nbsp;
-        <Button type='button' className='delete-button'>
+        <Button type='button' className='delete-button' onClick={() => setIsOpen(true)}>
           Share
         </Button>
+
+        <Modal id={id} open={isOpen} onClose={() => setIsOpen(false)}>
+          
+        </Modal>
       </div>
     </>
   );
