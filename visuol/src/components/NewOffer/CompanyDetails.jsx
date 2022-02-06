@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import React from 'react';
 // import { Button } from 'antd';
@@ -39,7 +40,7 @@ const HoursInfo = ({ handleChange, values }) => (
 const PaymentRateSwitch = ({ handleChange, values }) => {
   const [state, setState] = useState('year');
 
-  if (state == 'year') {
+  if (state === 'year') {
     return (
       <SwitchMultiButton
         className='wage-toggle'
@@ -58,39 +59,39 @@ const PaymentRateSwitch = ({ handleChange, values }) => {
         ]}
       />
     );
-  } else {
-    return (
-      <div>
-
-        <div className='input-box'>
-          <SwitchMultiButton
-            className='wage-toggle'
-            value={state}
-            setValue={setState}
-            style={{ fontSize: 18, fontWeight: 20 }}
-            buttons={[
-              {
-                text: 'Year',
-                value: 'year',
-              },
-              {
-                text: 'Hour',
-                value: 'hour',
-              },
-            ]}
-          />
-        </div>
-        
-        <div>
-          <HoursInfo 
-            handleChange={handleChange} 
-            values={values}/>
-        </div>
-
-      </div>
-    );
   }
-}
+  return (
+    <div>
+
+      <div className='input-box'>
+        <SwitchMultiButton
+          className='wage-toggle'
+          value={state}
+          setValue={setState}
+          style={{ fontSize: 18, fontWeight: 20 }}
+          buttons={[
+            {
+              text: 'Year',
+              value: 'year',
+            },
+            {
+              text: 'Hour',
+              value: 'hour',
+            },
+          ]}
+        />
+      </div>
+
+      <div>
+        <HoursInfo
+          handleChange={handleChange}
+          values={values}
+        />
+      </div>
+
+    </div>
+  );
+};
 
 const CompanyDetails = ({ handleChange, values }) => (
   <div>
@@ -119,8 +120,8 @@ const CompanyDetails = ({ handleChange, values }) => (
         />
       </div>
       <div className='input-box'>
-        <PaymentRateSwitch 
-          handleChange={handleChange} 
+        <PaymentRateSwitch
+          handleChange={handleChange}
           values={values}
           className='salary-info'
         />
