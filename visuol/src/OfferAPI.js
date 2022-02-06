@@ -62,14 +62,14 @@ export const shareOffer = async (id, email) => {
     Authorization: tokenString,
   };
 
-  const data = { 'id': id, 'email': email }
+  const data = { id, email };
 
   const result = await axios.post(`${BASE_URL}api_v1/share_offer`, data, {
-    headers: headers
+    headers,
   });
 
   return result;
-}
+};
 
 export const myAccount = async () => {
   const tokenString = localStorage.getItem('token');

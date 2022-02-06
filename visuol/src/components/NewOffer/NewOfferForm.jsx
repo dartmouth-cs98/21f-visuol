@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/jsx-max-props-per-line */
 /* eslint-disable react/jsx-first-prop-new-line */
 // import { Form, Input, Button } from 'antd';
@@ -52,7 +54,7 @@ class NewOfferForm extends Component {
         if (input !== 'total') {
           this.setState({ [input]: e.target.value });
         } else {
-          this.setState({ 'base': this.state.base * this.state.weeks * this.state.hours });
+          this.setState({ base: this.state.base * this.state.weeks * this.state.hours });
         }
       }
 
