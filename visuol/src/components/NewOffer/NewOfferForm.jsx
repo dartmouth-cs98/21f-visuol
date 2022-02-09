@@ -14,12 +14,14 @@ import CompanyDetails from './CompanyDetails';
 import Stocks from './Stocks';
 import AdditionalBenefits from './AdditionalBenefits';
 import './NewOfferForm.css';
+import { myAccount } from '../../OfferAPI';
 
 class NewOfferForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      recruiterCompany: '',
       step: 1,
       askStocks: false,
       showStocks: false,
@@ -38,6 +40,15 @@ class NewOfferForm extends Component {
       weeks: '',
       state: '',
     };
+  }
+
+  componentDidMount() {
+    myAccount()
+      .then((response) => {
+        this.setState({
+          recruiterCompany: response,
+        });
+      });
   }
 
       prevStep = () => {
@@ -113,10 +124,11 @@ class NewOfferForm extends Component {
 
       render() {
         const {
-          company, askStocks, showStocks, askAdditionalBenefits,
+          recruiterCompany, company, askStocks, showStocks, askAdditionalBenefits,
           showAdditionalBenefits, showSubmit, baseSalary, stocks, bonus, matchPercentage, state,
         } = this.state;
         const values = {
+          recruiterCompany,
           company,
           askStocks,
           showStocks,

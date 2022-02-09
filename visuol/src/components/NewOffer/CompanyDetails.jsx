@@ -98,7 +98,11 @@ const CompanyDetails = ({ handleChange, values }) => (
     <label>
       <input
         type='text'
-        placeholder='*Company Name'
+        placeholder={
+          (values.recruiterCompany)
+            ? 'Client Name'
+            : 'Company Name'
+        }
         value={values.company}
         onChange={handleChange('company')}
       />
