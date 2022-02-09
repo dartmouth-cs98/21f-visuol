@@ -18,8 +18,6 @@ const ComparisonLayout = () => {
     });
     setConstructed(true);
   }
-  console.log('offers', offers);
-  console.log(offer1, offer2);
   // offer selection
   // offer display
   return (
