@@ -51,6 +51,11 @@ class SideMenu extends Component {
             </span>
           )}
         >
+          <Menu.Item key='home'>
+            <NavLink to='/'>
+              <span className='black'>Home</span>
+            </NavLink>
+          </Menu.Item>
           <Menu.Item key='new-offer'>
             <NavLink to='/new-offer'>
               <span className='black'>New Offer</span>
@@ -101,6 +106,11 @@ class SideMenu extends Component {
           </span>
         )}
       >
+        <Menu.Item key='home'>
+          <NavLink to='/'>
+            <span className='black'>Home</span>
+          </NavLink>
+        </Menu.Item>
         <Menu.Item key='login'>
           <NavLink to='/login'>
             <span className='black'>Login</span>
