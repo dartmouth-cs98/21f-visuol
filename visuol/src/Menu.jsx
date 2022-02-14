@@ -5,7 +5,7 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
-import { myOffers, myAccount } from './OfferAPI';
+import { myOffers, myAccount, myShared } from './OfferAPI';
 
 const { SubMenu } = Menu;
 
@@ -18,6 +18,7 @@ class SideMenu extends Component {
       defaultSelectedKey: lastToken,
       offers: [],
       recruiterCompany: '',
+      shared: [],
     };
   }
 
@@ -33,6 +34,12 @@ class SideMenu extends Component {
       .then((response) => {
         this.setState({
           recruiterCompany: response,
+        });
+      });
+    myShared()
+      .then((response) => {
+        this.setState({
+          shared: response,
         });
       });
     return retrieved;
@@ -70,6 +77,24 @@ class SideMenu extends Component {
                 {/* eslint-disable-next-line no-underscore-dangle */}
                 <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
                   <span className='black'>{offer.company}</span>
+                </NavLink>
+              </Menu.Item>
+            ))}
+          </SubMenu>
+          <SubMenu
+            key='shared'
+            title={(
+              <span>
+                <span className='black'>Shared With Me</span>
+              </span>
+            )}
+          >
+            {this.state.shared.map((offer) => (
+              // eslint-disable-next-line no-underscore-dangle
+              <Menu.Item key={`${offer.user}/${offer._id}`}>
+                {/* eslint-disable-next-line no-underscore-dangle */}
+                <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
+                  <span className='black'>{offer.user}</span>
                 </NavLink>
               </Menu.Item>
             ))}
@@ -116,7 +141,9 @@ class SideMenu extends Component {
   }
 
   render() {
-    const { defaultSelectedKey, offers, recruiterCompany } = this.state;
+    const {
+      defaultSelectedKey, offers, recruiterCompany, shared,
+    } = this.state;
     return (
       <Menu
         onClick={this.handleClick}
@@ -127,7 +154,7 @@ class SideMenu extends Component {
         theme='dark'
       >
         {/* Menu Item keys must match the last part of their url (text behind last /) */}
-        {this.display(offers, recruiterCompany)}
+        {this.display(offers, recruiterCompany, shared)}
       </Menu>
     );
   }

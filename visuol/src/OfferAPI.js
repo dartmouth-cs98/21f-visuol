@@ -84,6 +84,20 @@ export const myAccount = async () => {
   return userAccount.company;
 };
 
+export const myShared = async () => {
+  console.log('getting shared');
+  const tokenString = localStorage.getItem('token');
+
+  const config = {
+    Authorization: tokenString,
+  };
+
+  const offers = await axios.get(`${BASE_URL}api_v1/get_shared`, { headers: config })
+    .then((response) => response.data);
+  console.log(offers);
+  return offers;
+};
+
 export const removeOffer = async (id) => {
   const tokenString = localStorage.getItem('token');
 
