@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import {
   Slider, PageHeader, Row, Col, Divider, Typography, Card, Button,
@@ -7,6 +8,7 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { removeOffer } from '../../OfferAPI';
 import numberWithCommas from '../../tools/numbersWithCommas';
 import Modal from './Modal';
+import UpdateModal from './Update-Modal';
 
 const { Paragraph } = Typography;
 
@@ -104,6 +106,7 @@ const CompensationConfiguration = (props) => {
 
   // const { history } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   return (
     <>
@@ -173,14 +176,14 @@ const CompensationConfiguration = (props) => {
           </Button>
         </NavLink>
         &nbsp;
-        <Button type='button' className='delete-button'>
+        <Button type='button' className='delete-button' onClick={() => setIsEdit(true)}>
           Edit
         </Button>
         &nbsp;
         <Button type='button' className='delete-button' onClick={() => setIsOpen(true)}>
           Share
         </Button>
-
+        <UpdateModal id={id} open={isEdit} base={base} bonus={bonus} onClose={() => setIsEdit(false)} />
         <Modal id={id} open={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     </>
