@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/21f-visuol/static/css/main.df2785af.chunk.css",
+    "main.js": "/21f-visuol/static/js/main.7abd54e1.chunk.js",
+    "main.js.map": "/21f-visuol/static/js/main.7abd54e1.chunk.js.map",
+    "runtime-main.js": "/21f-visuol/static/js/runtime-main.ac77b31a.js",
+    "runtime-main.js.map": "/21f-visuol/static/js/runtime-main.ac77b31a.js.map",
+    "static/css/2.a95be28f.chunk.css": "/21f-visuol/static/css/2.a95be28f.chunk.css",
+    "static/js/2.b524e7be.chunk.js": "/21f-visuol/static/js/2.b524e7be.chunk.js",
+    "static/js/2.b524e7be.chunk.js.map": "/21f-visuol/static/js/2.b524e7be.chunk.js.map",
+    "static/js/3.b4dff07d.chunk.js": "/21f-visuol/static/js/3.b4dff07d.chunk.js",
+    "static/js/3.b4dff07d.chunk.js.map": "/21f-visuol/static/js/3.b4dff07d.chunk.js.map",
+    "index.html": "/21f-visuol/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/21f-visuol/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.df2785af.chunk.css.map": "/21f-visuol/static/css/main.df2785af.chunk.css.map",
+    "static/js/2.b524e7be.chunk.js.LICENSE.txt": "/21f-visuol/static/js/2.b524e7be.chunk.js.LICENSE.txt",
+    "static/media/VisuOL-logos.18808451.jpeg": "/21f-visuol/static/media/VisuOL-logos.18808451.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac77b31a.js",
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.b524e7be.chunk.js",
+    "static/css/main.df2785af.chunk.css",
+    "static/js/main.7abd54e1.chunk.js"
+  ]
+}
