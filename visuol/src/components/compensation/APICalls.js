@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BASE_URL } from '../../OfferAPI';
 
 const getSessionToken = () => {
   const token = localStorage.getItem('token');
@@ -19,4 +20,4 @@ const postWithToken = async (url, data) => {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const getFedTaxPercentage = async (income) => postWithToken('localhost:5000/api_v1/fed_taxes', { income, married: 'not-married' });
+export const getFedTaxPercentage = async (income) => postWithToken(`${BASE_URL}api_v1/fed_taxes`, { income, married: 'not-married' });
