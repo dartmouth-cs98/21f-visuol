@@ -65,6 +65,7 @@ class Login extends Component {
          onFinishFailed={this.onFinishFailed}
          autoComplete='off'
        >
+         <h1>Test</h1>
          <Form.Item
            label='Email'
            name='email'
