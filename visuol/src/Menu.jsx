@@ -59,12 +59,12 @@ class SideMenu extends Component {
           )}
         >
           <Menu.Item key='home'>
-            <NavLink to='/'>
+            <NavLink to='/21f-visuol'>
               <span className='black'>Home</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key='new-offer'>
-            <NavLink to='/new-offer'>
+            <NavLink to='/21f-visuol/new-offer'>
               <span className='black'>New Offer</span>
             </NavLink>
           </Menu.Item>
@@ -80,7 +80,7 @@ class SideMenu extends Component {
               // eslint-disable-next-line no-underscore-dangle
               <Menu.Item key={`${offer.company}/${offer._id}`}>
                 {/* eslint-disable-next-line no-underscore-dangle */}
-                <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
+                <NavLink to={`/21f-visuol/LoadGraphs/${offer.company}/${offer._id}`}>
                   <span className='black'>{offer.company}</span>
                 </NavLink>
               </Menu.Item>
@@ -105,17 +105,17 @@ class SideMenu extends Component {
             ))}
           </SubMenu>
           <Menu.Item key='compare'>
-            <NavLink to='/compare'>
+            <NavLink to='/21f-visuol/compare'>
               <span className='black'>Compare Offers</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key='health'>
-            <NavLink to='/health'>
+            <NavLink to='/21f-visuol/health'>
               <span className='black'>Health FAQ</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key='logout'>
-            <NavLink to='/logout'>
+            <NavLink to='/21f-visuol/logout'>
               <span className='black'>Log Out</span>
             </NavLink>
           </Menu.Item>
@@ -132,17 +132,17 @@ class SideMenu extends Component {
         )}
       >
         <Menu.Item key='home'>
-          <NavLink to='/'>
+          <NavLink to='/21f-visuol/'>
             <span className='black'>Home</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key='login'>
-          <NavLink to='/login'>
+          <NavLink to='/21f-visuol/login'>
             <span className='black'>Login</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key='register'>
-          <NavLink to='/register'>
+          <NavLink to='/21f-visuol/register'>
             <span className='black'>Register</span>
           </NavLink>
         </Menu.Item>

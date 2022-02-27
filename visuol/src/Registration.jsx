@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import { withRouter, useRouteMatch } from 'react-router';
+import { BASE_URL } from './OfferAPI';
 
 class Registration extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Registration extends Component {
       password: values.password,
       company: (companyRegistration) ? values.company : null,
     };
-    axios.post('http://localhost:5000/api_v1/register_user', info).then((response) => {
+    axios.post(`${BASE_URL}api_v1/register_user`, info).then((response) => {
       console.log(response);
       if (response.data && response.data.status === 'success') {
         this.finishRegistration(response);

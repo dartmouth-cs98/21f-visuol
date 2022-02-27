@@ -170,7 +170,7 @@ const CompensationConfiguration = (props) => {
         />
       </Card>
       <div className='flex-container'>
-        <NavLink to='/'>
+        <NavLink to='/21f-visuol'>
           <Button type='button' className='delete-button' onClick={() => deleteOffer(id)}>
             Delete
           </Button>

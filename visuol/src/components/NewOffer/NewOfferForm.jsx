@@ -14,7 +14,7 @@ import CompanyDetails from './CompanyDetails';
 import Stocks from './Stocks';
 import AdditionalBenefits from './AdditionalBenefits';
 import './NewOfferForm.css';
-import { myAccount } from '../../OfferAPI';
+import { myAccount, BASE_URL } from '../../OfferAPI';
 
 class NewOfferForm extends Component {
   constructor(props) {
@@ -106,7 +106,6 @@ class NewOfferForm extends Component {
         };
 
         console.log('createOfferData', data);
-        const BASE_URL = 'http://localhost:5000/';
         axios.post(`${BASE_URL}api_v1/create_offer`, offer, {
           headers,
         })

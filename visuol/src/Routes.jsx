@@ -15,22 +15,22 @@ class Routes extends Component {
     if (loggedIn) {
       return (
         <Switch>
-          <Route path='/loadGraphs/:company/:id' component={CompensationLayout} />
-          <Route path='/loadGraph' component={CompensationLayout} />
-          <Route path='/new-offer' component={NewOfferForm} />
-          <Route path='/compare' component={ComparisonLayout} />
-          <Route path='/logout' component={Logout} />
-          <Route path='/health' component={Health} />
-          <Route path='/' component={Home} />
+          <Route path='/21f-visuol/loadGraphs/:company/:id' component={CompensationLayout} />
+          <Route path='/21f-visuol/loadGraph' component={CompensationLayout} />
+          <Route path='/21f-visuol/new-offer' component={NewOfferForm} />
+          <Route path='/21f-visuol/compare' component={ComparisonLayout} />
+          <Route path='/21f-visuol/logout' component={Logout} />
+          <Route path='/21f-visuol/health' component={Health} />
+          <Route path='/21f-visuol/' component={Home} />
         </Switch>
       );
     }
     return (
       <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Registration} />
-        <Route path='/compensation-layout' component={CompensationLayout} />
-        <Route path='/' component={Home} />
+        <Route path='/21f-visuol/login' component={Login} />
+        <Route path='/21f-visuol/register' component={Registration} />
+        <Route path='/21f-visuol/compensation-layout' component={CompensationLayout} />
+        <Route path='/21f-visuol/' component={Home} />
       </Switch>
     );
   }
