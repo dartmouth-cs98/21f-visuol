@@ -9,7 +9,7 @@ import { Button } from 'antd';
 
 import axios from 'axios';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, useRouteMatch } from 'react-router-dom';
 import CompanyDetails from './CompanyDetails';
 import Stocks from './Stocks';
 import AdditionalBenefits from './AdditionalBenefits';
@@ -114,8 +114,9 @@ class NewOfferForm extends Component {
             console.log('submitted', response);
             if (response.data.id) {
               const { history } = this.props;
+              const match = useRouteMatch();
               // eslint-disable-next-line react/destructuring-assignment
-              history.push(`/LoadGraphs/${this.state.company}/${response.data.id}`);
+              history.push(`${match.url}/LoadGraphs/${this.state.company}/${response.data.id}`);
               window.location.reload();
             }
             return response;
