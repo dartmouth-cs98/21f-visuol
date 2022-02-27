@@ -3,14 +3,13 @@
 import { Form, Button } from 'antd';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { withRouter, useRouteMatch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Logout extends Component {
   onFinish = () => { // (values) => {
-    const { history } = this.props;
-    const match = useRouteMatch();
+    const { history, match } = this.props;
     localStorage.removeItem('token');
-    history.push(`${match.url}/`);
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}`);
     window.location.reload();
   };
 

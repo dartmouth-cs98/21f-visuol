@@ -6,7 +6,7 @@ import {
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import axios from 'axios';
-import { withRouter, useRouteMatch } from 'react-router';
+import { withRouter } from 'react-router';
 import { BASE_URL } from './OfferAPI';
 
 class Registration extends Component {
@@ -20,10 +20,9 @@ class Registration extends Component {
 
   // OnFinish dictates what happens when submitting a form object
   finishRegistration = () => { // (response) => {
-    const { history } = this.props;
-    const match = useRouteMatch();
+    const { history, match } = this.props;
     console.log('Success!');
-    history.push(`${match.url}/login`);
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}login`);
   }
 
   // OnFinish dictates what happens when submitting a form object

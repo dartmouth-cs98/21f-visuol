@@ -6,7 +6,7 @@ import {
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import axios from 'axios';
-import { withRouter, useRouteMatch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { BASE_URL } from './OfferAPI';
 
 class Login extends Component {
@@ -22,10 +22,9 @@ class Login extends Component {
     localStorage.setItem('token', response.data.session_token);
     localStorage.setItem('expiration', response.data.expiration);
 
-    const { history } = this.props;
+    const { history, match } = this.props;
     // https://stackoverflow.com/questions/63679919/react-router-push-to-history-and-preserve-relative-path
-    const match = useRouteMatch();
-    history.push(`${match.url}/`);
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}`);
     window.location.reload();
   }
 
