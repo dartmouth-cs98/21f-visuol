@@ -20,9 +20,9 @@ class Registration extends Component {
 
   // OnFinish dictates what happens when submitting a form object
   finishRegistration = () => { // (response) => {
-    const { history } = this.props;
+    const { history, match } = this.props;
     console.log('Success!');
-    history.push('/login'); // TODO: better convey that registration succeeded (alert?)
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}login`);
   }
 
   // OnFinish dictates what happens when submitting a form object

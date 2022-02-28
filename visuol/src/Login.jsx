@@ -22,8 +22,9 @@ class Login extends Component {
     localStorage.setItem('token', response.data.session_token);
     localStorage.setItem('expiration', response.data.expiration);
 
-    const { history } = this.props;
-    history.push('/');
+    const { history, match } = this.props;
+    // https://stackoverflow.com/questions/63679919/react-router-push-to-history-and-preserve-relative-path
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}`);
     window.location.reload();
   }
 

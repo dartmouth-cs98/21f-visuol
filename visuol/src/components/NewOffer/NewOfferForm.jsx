@@ -112,9 +112,9 @@ class NewOfferForm extends Component {
           .then((response) => {
             console.log('submitted', response);
             if (response.data.id) {
-              const { history } = this.props;
+              const { history, match } = this.props;
               // eslint-disable-next-line react/destructuring-assignment
-              history.push(`/LoadGraphs/${this.state.company}/${response.data.id}`);
+              history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}LoadGraphs/${this.state.company}/${response.data.id}`);
               window.location.reload();
             }
             return response;

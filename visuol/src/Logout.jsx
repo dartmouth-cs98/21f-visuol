@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 
 class Logout extends Component {
   onFinish = () => { // (values) => {
-    const { history } = this.props;
+    const { history, match } = this.props;
     localStorage.removeItem('token');
-    history.push('/');
+    history.push(`${match.url.substring(0, match.url.lastIndexOf('/') + 1)}`);
     window.location.reload();
   };
 
