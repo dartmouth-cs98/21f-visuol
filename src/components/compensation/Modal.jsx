@@ -8,10 +8,11 @@ export default function Modal({
   id, open, children, onClose,
 }) {
   const [email, setEmail] = useState('');
-  
+
   if (!open) return null;
 
   const share = () => {
+    console.log("about to call share")
     shareOffer(id, email);
     onClose();
   };

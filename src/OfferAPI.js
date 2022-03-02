@@ -56,6 +56,7 @@ export const myOffers = async () => {
 };
 
 export const shareOffer = async (id, email) => {
+  console.log("in share api request")
   const tokenString = localStorage.getItem('token');
 
   const headers = {
