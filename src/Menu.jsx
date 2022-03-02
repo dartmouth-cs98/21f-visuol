@@ -98,7 +98,7 @@ class SideMenu extends Component {
               // eslint-disable-next-line no-underscore-dangle
               <Menu.Item key={`${offer.user}/${offer._id}`}>
                 {/* eslint-disable-next-line no-underscore-dangle */}
-                <NavLink to={`/LoadGraphs/${offer.company}/${offer._id}`}>
+                <NavLink to={`/21f-visuol/LoadGraphs/${offer.company}/${offer._id}`}>
                   <span className='black'>{offer.user}</span>
                 </NavLink>
               </Menu.Item>

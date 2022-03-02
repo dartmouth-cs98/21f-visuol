@@ -12,7 +12,6 @@ export default function Modal({
   if (!open) return null;
 
   const share = () => {
-    console.log("about to call share")
     shareOffer(id, email);
     onClose();
   };
