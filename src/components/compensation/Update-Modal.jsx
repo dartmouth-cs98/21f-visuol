@@ -7,10 +7,10 @@ import { updateOffer } from '../../OfferAPI';
 export default function UpdateModal({
   id, open, base, bonus, children, onClose,
 }) {
-  if (!open) return null;
-
   const [newBase, setNewBase] = useState('');
   const [newBonus, setNewBonus] = useState('');
+
+  if (!open) return null;
 
   const update = () => {
     updateOffer(id, newBase, newBonus);
