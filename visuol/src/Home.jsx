@@ -13,7 +13,7 @@ import companyLogo from './VisuOL-logos.jpeg';
 const { Panel } = Collapse;
 
 const { Countdown } = Statistic;
-const deadline = new Date(2022, 3, 9);
+const deadline = new Date(2022, 2, 9);
 class Home extends PureComponent {
   render() {
     return (
@@ -34,7 +34,7 @@ class Home extends PureComponent {
             <p>You can display two offers side by side to compare how savings or compensation differ</p>
           </Panel>
         </Collapse>
-        <Countdown title='Days until launch' value={deadline} format='DD:HH:mm:ss:SSS' style={{ paddingBottom: '5%' }} />
+        <Countdown title='Days until launch' value={deadline} style={{ paddingBottom: '5%' }} />
         <img src={companyLogo} alt='VisuOL' width='20%' height='20%' />
       </div>
     );
