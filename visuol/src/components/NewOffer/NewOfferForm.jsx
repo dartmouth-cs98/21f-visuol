@@ -38,7 +38,7 @@ class NewOfferForm extends Component {
       PTO: '',
       hours: '',
       weeks: '',
-      state: '',
+      state: 'Alabama',
     };
   }
 
