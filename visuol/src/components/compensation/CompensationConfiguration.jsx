@@ -141,7 +141,7 @@ const CompensationConfiguration = (props) => {
             sliderColor: bonusColor,
           },
           {
-            title: 'Annual Equity Appreciation',
+            title: 'Annual Equity',
             min: 0,
             max: 50,
             value: `$${numberWithCommas(stocks)}`,

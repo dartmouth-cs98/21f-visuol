@@ -8,7 +8,7 @@ const Stocks = ({ handleChange, values }) => (
         <input
           className='small-input'
           type='number'
-          placeholder='Stocks'
+          placeholder='Annual Stocks in $'
           value={values.stocks}
           onChange={handleChange('stocks')}
         />
