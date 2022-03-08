@@ -5,6 +5,7 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
+import companyLogo from './VisuOL-logos.jpeg';
 import { myOffers, myAccount, myShared } from './OfferAPI';
 
 const { SubMenu } = Menu;
