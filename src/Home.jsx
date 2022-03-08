@@ -34,7 +34,7 @@ class Home extends PureComponent {
             <p>You can display two offers side by side to compare how savings or compensation differ</p>
           </Panel>
         </Collapse>
-        <Countdown title='Days until launch' value={deadline} style={{ paddingBottom: '5%' }} />
+        <Countdown title='Hours until launch' value={deadline} style={{ paddingBottom: '5%' }} />
         <img src={companyLogo} alt='VisuOL' width='20%' height='20%' />
       </div>
     );
