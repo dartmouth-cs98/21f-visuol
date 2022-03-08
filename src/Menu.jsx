@@ -54,9 +54,9 @@ class SideMenu extends Component {
           key='sub1'
           title={(
             <span>
-              <span className='black'>VisuOL</span>
+              <img src={companyLogo} alt='VisuOL' width='50%' height='50%' />
             </span>
-          )}
+        )}
         >
           <Menu.Item key='home'>
             <NavLink to='/21f-visuol'>
