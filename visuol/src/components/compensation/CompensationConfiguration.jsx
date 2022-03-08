@@ -92,8 +92,10 @@ const CompensationConfiguration = (props) => {
     // company,
     base,
     bonus,
+    stocks,
     updateBaseRate,
     updateBonusRate,
+    updateStockRate,
     baseColor,
     bonusColor,
     savingsColor,
@@ -137,6 +139,14 @@ const CompensationConfiguration = (props) => {
             value: `$${numberWithCommas(bonus)}`,
             updateValue: updateBonusRate,
             sliderColor: bonusColor,
+          },
+          {
+            title: 'Annual Equity',
+            min: 0,
+            max: 50,
+            value: `$${numberWithCommas(stocks)}`,
+            updateValue: updateStockRate,
+            sliderColor: savingsColor,
           },
           ]}
         />

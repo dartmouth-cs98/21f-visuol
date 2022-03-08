@@ -18,7 +18,7 @@ import numberWithCommas from '../../tools/numbersWithCommas';
 // amount, we get spend vs savings. Savings are computed as a savings percentage of post tax
 // post retirement money
 export const DataTransform = (compData, baseGrowth,
-  bonusGrowth, savingsPercentage, retirementSavingsPercentage, years) => {
+  bonusGrowth, stockGrowth, savingsPercentage, retirementSavingsPercentage, years) => {
   const res = [];
   let pastSavings = 0;
   let pastCompensation = 0;
@@ -26,7 +26,7 @@ export const DataTransform = (compData, baseGrowth,
   let nonSavings = 0;
   let retirementSavings = 0;
   const {
-    base, bonus, federalTax, stateTax,
+    base, bonus, federalTax, stateTax, stocks,
   } = compData;
   for (let i = 0; i < years; i += 1) {
     const data = {};
@@ -34,7 +34,8 @@ export const DataTransform = (compData, baseGrowth,
     data.Year = i;
     data.Base = Math.round((base * ((1 + (baseGrowth) / 100) ** i)));
     data.Bonus = Math.round(bonus * ((1 + (bonusGrowth) / 100) ** i));
-    data.Total = data.Base + data.Bonus;
+    data.Stocks = Math.round(stocks * ((1 + (stockGrowth) / 100) ** i));
+    data.Total = data.Base + data.Bonus + data.Stocks;
     // Calculating Tax and Post Tax Compensation
     data.Tax = data.Total * (Number.parseFloat(federalTax) + Number.parseFloat(stateTax));
     data.PostTaxCompensation = data.Total - data.Tax;
@@ -59,7 +60,9 @@ export const DataTransform = (compData, baseGrowth,
 };
 
 export const YearlyCompensation = (props) => {
-  const { data, baseColor, bonusColor } = props;
+  const {
+    data, baseColor, bonusColor, stockColor,
+  } = props;
   return (
     <LineChart
       width={730}
@@ -77,6 +80,7 @@ export const YearlyCompensation = (props) => {
       <YAxis tickFormatter={(value) => new Intl.NumberFormat('en').format(value)} />
       <Line type='monotone' dataKey='Base' stroke={baseColor} label={<CustomizedLabel />} />
       <Line type='monotone' dataKey='Bonus' stroke={bonusColor} label={<CustomizedLabel />} />
+      <Line type='monotone' dataKey='Stocks' stroke={stockColor} label={<CustomizedLabel />} />
       <Line type='monotone' dataKey='Total' stroke='#cc3300' label={<CustomizedLabel />} />
       <Tooltip content={<CustomTooltipCompensation />} />
       <Legend />
@@ -132,6 +136,7 @@ const CustomTooltipCompensation = ({ active, payload, label }) => {
         <p className={payload[0].name}>{`${payload[0].name} : ${numberWithCommas(payload[0].value)}`}</p>
         <p className={payload[1].name}>{`${payload[1].name} : ${numberWithCommas(payload[1].value)}`}</p>
         <p className={payload[2].name}>{`${payload[2].name} : ${numberWithCommas(payload[2].value)}`}</p>
+        <p className={payload[3].name}>{`${payload[3].name} : ${numberWithCommas(payload[3].value)}`}</p>
       </div>
     );
   }

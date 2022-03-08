@@ -38,6 +38,7 @@ const fetchCompensationData = async (id, company, setters) => {
     base,
     bonus,
     state,
+    stocks,
   } = resp.data;
   const signing = 0;
 
@@ -61,6 +62,7 @@ const fetchCompensationData = async (id, company, setters) => {
   const stateTaxRate = stateTaxResp.data.state_tax_percent;
   const {
     setBase,
+    setStocks,
     setBonus,
     setSigning,
     setFederalTaxRate,
@@ -69,6 +71,7 @@ const fetchCompensationData = async (id, company, setters) => {
 
   setBase(base != null ? base : 0);
   setBonus(bonus != null ? bonus : 0);
+  setStocks(stocks != null ? stocks : 0);
   setSigning(0);
   setFederalTaxRate(fedTaxRate);
   setStateTaxRate(stateTaxRate);
@@ -88,16 +91,17 @@ const CompensationLayout = (props) => {
     id = offer.id;
     company = offer.company;
   }
-  console.log('SUBMISSION PARAMS', id, company);
 
   const [base, setBase] = useState(0);
   const [bonus, setBonus] = useState(0);
   const [signing, setSigning] = useState(0);
+  const [stocks, setStocks] = useState(0);
   const [federalTax, setFederalTaxRate] = useState(0);
   const [stateTax, setStateTaxRate] = useState(0);
 
   const [bonusAppreciationRate, setBonusAppreciationRate] = useState(0);
   const [baseAppreciationRate, setBaseAppreciationRate] = useState(0);
+  const [stockAppreciationRate, setStockAppreciationRate] = useState(0);
   const [spendingPercentage, setSpendingPercentage] = useState(60);
   const [savingsPercentage, setSavingsPercentage] = useState(30);
   const [retirementPercentage, setRetirementPercentage] = useState(4);
@@ -105,20 +109,26 @@ const CompensationLayout = (props) => {
   const [showCompensation, setShowCompenstaion] = useState(true);
 
   fetchCompensationData(id, company, {
-    setBase, setBonus, setSigning, setFederalTaxRate, setStateTaxRate,
+    setBase, setBonus, setSigning, setFederalTaxRate, setStateTaxRate, setStocks,
   });
 
   const updateValue = (setter) => (value) => {
     setter(value);
   };
 
-  const totalCompensation = base + bonus;
+  const totalCompensation = base + bonus + stocks;
 
-  console.log(bonusAppreciationRate, baseAppreciationRate);
   const graphData = DataTransform({
-    base, bonus, federalTax, stateTax,
+    base, bonus, federalTax, stateTax, stocks,
   },
-  baseAppreciationRate, bonusAppreciationRate, savingsPercentage, retirementPercentage, 7);
+  baseAppreciationRate,
+  bonusAppreciationRate,
+  stockAppreciationRate,
+  savingsPercentage,
+  retirementPercentage,
+  7);
+  console.log('GRAPH DATA', graphData);
+
   return (
     <>
       <CompensationHeader
@@ -132,10 +142,12 @@ const CompensationLayout = (props) => {
         company={company}
         base={base}
         bonus={bonus}
+        stocks={stocks}
         savingsPercentage={savingsPercentage}
         retirementPercentage={retirementPercentage}
         updateBaseRate={updateValue(setBaseAppreciationRate)}
         updateBonusRate={updateValue(setBonusAppreciationRate)}
+        updateStockRate={updateValue(setStockAppreciationRate)}
         updateSavingsPercentage={updateComplimentary(setSpendingPercentage, setSavingsPercentage)}
         updateRetirementPercentage={updateValue(setRetirementPercentage)}
         baseColor={baseColor}
@@ -163,6 +175,7 @@ const CompensationLayout = (props) => {
               data={graphData}
               baseColor={baseColor}
               bonusColor={bonusColor}
+              stockColor={savingsColor}
               spendingPercentage={spendingPercentage}
               savingsPercentage={savingsPercentage}
               retirementPercentage={retirementPercentage}

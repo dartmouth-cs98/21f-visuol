@@ -5,6 +5,7 @@ import { Menu } from 'antd';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
+import companyLogo from './VisuOL-logos.jpeg';
 import { myOffers, myAccount, myShared } from './OfferAPI';
 
 const { SubMenu } = Menu;
@@ -54,9 +55,9 @@ class SideMenu extends Component {
           key='sub1'
           title={(
             <span>
-              <span className='black'>Navigation</span>
+              <img src={companyLogo} alt='VisuOL' width='50%' height='50%' />
             </span>
-          )}
+        )}
         >
           <Menu.Item key='home'>
             <NavLink to='/21f-visuol'>
@@ -127,7 +128,7 @@ class SideMenu extends Component {
         key='sub1'
         title={(
           <span>
-            <span className='black'>Navigation</span>
+            <img src={companyLogo} alt='VisuOL' width='50%' height='50%' />
           </span>
         )}
       >
